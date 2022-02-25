@@ -1,0 +1,207 @@
+\begin{thebibliography}{10}
+
+\bibitem{BangjensenGutin09}
+J{\o}rgen Bang-Jensen and Gregory Gutin.
+\newblock {\em Digraphs}.
+\newblock Springer Monographs in Mathematics. Springer-Verlag London Ltd.,
+  London, second edition, 2009.
+
+\bibitem{Bessiere09}
+Christian Bessiere, Emmanuel Hebrard, and Barry O'Sullivan.
+\newblock Minimising decision tree size as combinatorial optimisation.
+\newblock In Ian~P. Gent, editor, {\em Principles and Practice of Constraint
+  Programming - CP 2009}, pages 173--187, Berlin, Heidelberg, 2009. Springer
+  Berlin Heidelberg.
+
+\bibitem{Bodlaender96}
+Hans~L. Bodlaender.
+\newblock A linear-time algorithm for finding tree-decompositions of small
+  treewidth.
+\newblock {\em SIAM J. Comput.}, 25(6):1305--1317, 1996.
+
+\bibitem{BorosCHIKM11}
+Endre Boros, Yves Crama, Peter~L. Hammer, Toshihide Ibaraki, Alexander Kogan,
+  and Kazuhisa Makino.
+\newblock Logical analysis of data: classification with justification.
+\newblock {\em Ann. Oper. Res.}, 188(1):33--61, 2011.
+
+\bibitem{BorosGHIK95}
+Endre Boros, Vladimir Gurvich, Peter~L. Hammer, Toshihide Ibaraki, and
+  Alexander Kogan.
+\newblock Decomposability of partially defined {Boolean} functions.
+\newblock {\em Discr. Appl. Math.}, 62(1-3):51--75, 1995.
+
+\bibitem{Boros03}
+Endre Boros, Takashi Horiyama, Toshihide Ibaraki, Kazuhisa Makino, and
+  Mutsunori Yagiura.
+\newblock Finding essential attributes from binary data.
+\newblock {\em Ann. Math. Artif. Intell.}, 39:223--257, 11 2003.
+\newblock \href {https://doi.org/10.1023/A:1024653703689}
+  {\path{doi:10.1023/A:1024653703689}}.
+
+\bibitem{BorosIbarakiMakino03}
+Endre Boros, Toshihide Ibaraki, and Kazuhisa Makino.
+\newblock Variations on extending partially defined {Boolean} functions with
+  missing bits.
+\newblock {\em Information and Computation}, 180(1):53--70, 2003.
+
+\bibitem{CramaHammerIbaraki88}
+Yves Crama, Peter~L. Hammer, and Toshihide Ibaraki.
+\newblock Cause-effect relationships and partially defined {Boolean} function.
+\newblock {\em Ann. Oper. Res.}, 16:299--326, 1988.
+
+\bibitem{CyganFKLMPPS15}
+Marek Cygan, Fedor~V. Fomin, Lukasz Kowalik, Daniel Lokshtanov, D{\'{a}}niel
+  Marx, Marcin Pilipczuk, Michal Pilipczuk, and Saket Saurabh.
+\newblock {\em Parameterized Algorithms}.
+\newblock Springer, 2015.
+\newblock \href {https://doi.org/10.1007/978-3-319-21275-3}
+  {\path{doi:10.1007/978-3-319-21275-3}}.
+
+\bibitem{DarwicheHirth20}
+Adnan Darwiche and Auguste Hirth.
+\newblock On the reasons behind decisions.
+\newblock In Giuseppe~De Giacomo, Alejandro Catal{\'{a}}, Bistra Dilkina,
+  Michela Milano, Sen{\'{e}}n Barro, Alberto Bugar{\'{\i}}n, and
+  J{\'{e}}r{\^{o}}me Lang, editors, {\em {ECAI} 2020 - 24th European Conference
+  on Artificial Intelligence, 29 August-8 September 2020, Santiago de
+  Compostela, Spain, August 29 - September 8, 2020 - Including 10th Conference
+  on Prestigious Applications of Artificial Intelligence {(PAIS} 2020)}, volume
+  325 of {\em Frontiers in Artificial Intelligence and Applications}. {IOS}
+  Press, 2020.
+
+\bibitem{Diestel00}
+Reinhard Diestel.
+\newblock {\em Graph Theory}, volume 173 of {\em Graduate Texts in
+  Mathematics}.
+\newblock Springer Verlag, New York, 2nd edition, 2000.
+
+\bibitem{DoshivelezKim17}
+Finale Doshi{-}Velez and Been Kim.
+\newblock A roadmap for a rigorous science of interpretability.
+\newblock {\em CoRR}, abs/1702.08608, 2017.
+\newblock URL: \url{http://arxiv.org/abs/1702.08608}, \href
+  {http://arxiv.org/abs/1702.08608} {\path{arXiv:1702.08608}}.
+
+\bibitem{DowneyFellows13}
+Rodney~G. Downey and Michael~R. Fellows.
+\newblock {\em Fundamentals of parameterized complexity}.
+\newblock Texts in Computer Science. Springer Verlag, 2013.
+
+\bibitem{DBLP:journals/jgaa/EspelageGW03}
+Wolfgang Espelage, Frank Gurski, and Egon Wanke.
+\newblock Deciding clique-width for graphs of bounded tree-width.
+\newblock {\em J. Graph Algorithms Appl.}, 7(2):141--180, 2003.
+
+\bibitem{DBLP:journals/dam/GanianH10}
+Robert Ganian and Petr Hlin\v{e}n{\'y}.
+\newblock On parse trees and {Myhill-Nerode}-type tools for handling graphs of
+  bounded rank-width.
+\newblock {\em Discr. Appl. Math.}, 158(7):851--867, 2010.
+
+\bibitem{GoodmanFlaxman17}
+Bryce Goodman and Seth~R. Flaxman.
+\newblock European union regulations on algorithmic decision-making and a
+  ``right to explanation''.
+\newblock {\em AI Magazine}, 38(3):50--57, 2017.
+
+\bibitem{HlinenyOum08}
+Petr Hlin\v{e}n{\'y} and Sang{-}il Oum.
+\newblock Finding branch-decompositions and rank-decompositions.
+\newblock {\em SIAM J. Comput.}, 38(3):1012--1032, 2008.
+
+\bibitem{HyafilRivest76}
+Laurent Hyafil and Ronald~L. Rivest.
+\newblock Constructing optimal binary decision trees is {NP}-complete.
+\newblock {\em Information Processing Letters}, 5(1):15--17, 1976.
+
+\bibitem{IbarakiCramaHammer11}
+Toshihide Ibaraki, Yves Crama, and Peter~L. Hammer.
+\newblock {\em Partially defined {Boolean} functions}, page 511–563.
+\newblock Encyclopedia of Mathematics and its Applications. Cambridge
+  University Press, 2011.
+
+\bibitem{DBLP:journals/dam/KaminskiLM09}
+Marcin Kaminski, Vadim~V. Lozin, and Martin Milanic.
+\newblock Recent developments on graphs of bounded clique-width.
+\newblock {\em Discret. Appl. Math.}, 157(12):2747--2761, 2009.
+
+\bibitem{Larose05}
+Daniel~T. Larose.
+\newblock {\em Discovering knowledge in data}.
+\newblock Wiley-Interscience [John Wiley \& Sons], Hoboken, NJ, 2005.
+\newblock An introduction to data mining.
+
+\bibitem{Lewis78}
+Harry~R. Lewis.
+\newblock Renaming a set of clauses as a {Horn} set.
+\newblock {\em J. of the ACM}, 25(1):134--135, January 1978.
+
+\bibitem{Lipton18}
+Zachary~C. Lipton.
+\newblock The mythos of model interpretability.
+\newblock {\em Communications of the ACM}, 61(10):36--43, 2018.
+
+\bibitem{Mccluskey65}
+E.J. McCluskey.
+\newblock {\em Introduction to the Theory of Switching Circuits}.
+\newblock Electrical and electronic engineering series. Princeton University
+  series. McGraw-Hill, 1965.
+
+\bibitem{Monroe18}
+Don Monroe.
+\newblock {AI,} explain yourself.
+\newblock {\em AI Communications}, 61(11):11--13, 2018.
+\newblock \href {https://doi.org/10.1145/3276742} {\path{doi:10.1145/3276742}}.
+
+\bibitem{Murthy98}
+Sreerama~K. Murthy.
+\newblock Automatic construction of decision trees from data: {A}
+  multi-disciplinary survey.
+\newblock {\em Data Min. Knowl. Discov.}, 2(4):345--389, 1998.
+\newblock \href {https://doi.org/10.1023/A:1009744630224}
+  {\path{doi:10.1023/A:1009744630224}}.
+
+\bibitem{Oum08}
+{Sang-il} Oum.
+\newblock Approximating rank-width and clique-width quickly.
+\newblock {\em ACM Transactions on Algorithms}, 5(1), 2008.
+
+\bibitem{DBLP:journals/talg/Oum08}
+Sang{-}il Oum.
+\newblock Approximating rank-width and clique-width quickly.
+\newblock {\em {ACM} Trans. Algorithms}, 5(1):10:1--10:20, 2008.
+
+\bibitem{OumSeymour06}
+{Sang-il} Oum and Paul~D. Seymour.
+\newblock Approximating clique-width and branch-width.
+\newblock {\em J. Combin. Theory Ser. B}, 96(4):514--528, 2006.
+
+\bibitem{Quinlan86}
+J.~Ross Quinlan.
+\newblock Induction of decision trees.
+\newblock {\em Machine Learning}, 1(1):81--106, 1986.
+\newblock \href {https://doi.org/10.1023/A:1022643204877}
+  {\path{doi:10.1023/A:1022643204877}}.
+
+\bibitem{DBLP:conf/icalp/ReidlRVS14}
+Felix Reidl, Peter Rossmanith, Fernando~S{\'{a}}nchez Villaamil, and Somnath
+  Sikdar.
+\newblock A faster parameterized algorithm for treedepth.
+\newblock In Javier Esparza, Pierre Fraigniaud, Thore Husfeldt, and Elias
+  Koutsoupias, editors, {\em Automata, Languages, and Programming - 41st
+  International Colloquium, {ICALP} 2014, Copenhagen, Denmark, July 8-11, 2014,
+  Proceedings, Part {I}}, volume 8572 of {\em Lecture Notes in Computer
+  Science}, pages 931--942. Springer, 2014.
+
+\bibitem{stanley2015catalan}
+Richard Stanley and Eric~W. Weisstein.
+\newblock Catalan number, from mathworld--a wolfram web resource, 2015.
+
+\bibitem{Wanke94}
+Egon Wanke.
+\newblock {$k$}-{NLC} graphs and polynomial algorithms.
+\newblock {\em Discr. Appl. Math.}, 54(2-3):251--266, 1994.
+\newblock Efficient algorithms and partial $k$-trees.
+
+\end{thebibliography}
