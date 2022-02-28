@@ -2755,7 +2755,7 @@ opens up a wide range of new research directions to explore. For instance:
 
 \newpage
 \section*{NLC-width}
-We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a (downwards) maximal subtree of $T$ and in $Y$ the root can only have the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
+We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a maximal subtree of $T$ and in $Y$ the root have at most the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
 
 Now we can define two operations on subcubic rooted trees and single pairs. We say that we {\it plug in} a single pair $(Y,S)$ in a left (right) edge $uv$ as follows: we make the root $y$ of $Y$ the left (right) child of $u$, $Y\setminus \{y\}$ to be the $S$ subtree of $y$ and $v$ to be the $H\in \{left,right\}\setminus S$ child of $y$. See Figure~\ref{fig:plugin} for the corresponding drawings. Note after a plug in of a single pair in an edge, the node $v$ belongs in the same side of the subtree rooted at $u$ as it was before the plug in.
 
@@ -2889,7 +2889,7 @@ Suppose we have a DT such that some feature label~$i$ occurs twice on a path fro
 
 Suppose we have a feature template labelled~$A$ in our decision tree. Let $A_1,\ldots,A_\ell$ be the sequence of feature templates on the path from the root to~$A$ in order (not including~$A$). Let $A_i'=A_i$ if~$A$ is in the right sub-tree of~$A_i$ and let $A_i'=\overline{A_i}$ otherwise. If $\overline{A} \subseteq A_1' \cup \ldots \cup A_\ell'$, then we remove the subtree rooted at the left child of~$A$. If $A\subseteq \overline{A_1'} \cup \ldots \cup \overline{A_\ell'}$, then we remove the subtree rooted at the right child of~$A$. In this case we say we have done a {\it template removal}. If this procedure has been applied to a record exhaustively, we say that the DT is {\it reduced}.
 
-To be short, for a DT $T$ and a node $v$, we write $v\in T$ instead of $v\in V(T)$ and $v\not\in T$ otherwise.
+To be short, for a DT $T$ and a node $v$, we write $v\in T$ instead of $v\in V(T)$ and $v\not\in T$ otherwise. In a DT $T$ we say that path $p$ is a {\it downward} pard path if it is contained in a path having the root as endpoint.
 
 We now formally define two important operations. Given a DT $T$, we say that we {\it reduce} $T$ if we exhaustively do actual removals and template removals. Call $r(T)$ the resulting DT.
 
@@ -3016,27 +3016,31 @@ For $H\in \{L,R\}$, we define maps $x_H$ and $y_H$ as follows. Let $x_H~:~V(T_H)
 \end{tikzpicture}
 \end{figure}
 
-Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H=\{x^H_1,\ldots,x^H_\ell\}$ and $Y^*_H=\{y^H_1,\ldots,y^H_r\}$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  In addition, for every $i$, let $Y^H_i$ be the maximal subtree of $T'_H$ rooted at $y^H_i$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y^H_i\}$; let $(Y^H_i,S^H_i)$ the corresponding single pair. In a similar way, for every $i$, let $X^H_i$ be the maximal subtree of $T$ rooted at $x^H_i$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x^H_i\}$; let $(X^H_i,S^H_i)$ the corresponding single pair. Finally, for any $i$, let $p^H_i$ be the shortest downwards path in $T'_H$ that contains $y^H_i$ and with both endpoints in $Im(y_H)$, say $y_H(v_1)$ and $y_H(v_2)$. 
+Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  
+In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the maximal subtree of $T'_H$ rooted at $y$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
+%GP: add figure
+In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x\}$; let $(X^H_x,S^H_x)$ the corresponding single pair. 
+Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest downwards path in $T'_H$ that contains $y$ and with both endpoints in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$. 
 
 \smallskip
 \noindent
-{\it Claim 1: For every $H\in \{L,R\}$ and for every $i,j\in [r]$, the paths $p^H_i$ and $p^H_j$ are either edge disjoint or $p^H_i=p^H_j$.}
+{\it Claim 1: For every $H\in \{L,R\}$ and for every $y,y'\in Y^*_H$, the paths $P^H_{y}$ and $P^H_{y'}$ are either edge disjoint or $P^H_{y}=P^H_{y'}$.}
 
 \noindent
-{\it Proof.} If $p^H_i$ and $p^H_j$ are edge disjoint, then the statement is proven immediately. Suppose $p^H_i$ and $p^H_j$ share an edge. By minimality and the fact they are downwards paths, $p^H_i$ and $p^H_j$ share the endpoint towards the root. If they also share the other endpoint, then the statement is proven immediately. Suppose now their endpoints towards the leaves is different, say $v_i$ and $v_j$, and consider the last edge those paths have in common in a descending order, say $uv$. 
+{\it Proof.} If $P^H_{y}$ and $P^H_{y'}$ are edge disjoint, then the statement is proven immediately. Suppose $P^H_{y}$ and $P^H_{y'}$ share an edge. By minimality and the fact they are downwards paths, $P^H_{y}$ and $P^H_{y'}$ share the endpoint towards the root. If they also share the other endpoint, then the statement is proven immediately. Suppose now their endpoints towards the leaves is different, say $w$ and $w'$, and consider the last edge those paths have in common in a root-to-leaf order, say $uv$. 
 
-Without loss of generality, we can assume $v_i$ belongs to the left branch of $v$ and $v_j$ belongs to the right branch of $v$. Note that $v\in V(T'_H)\setminus Im(y_H)$, or we get a contradiction due the minimality of $p^H_i$.
-Now we get the following contradiction: by construction, $v_i$ and $v_j$ are both elements of $Im(y_H)$ but at least one of them must be in $V(T'_H)\setminus Im(y_H)$ since it is an element of either $Y^H_i$ or of $Y^H_j$. This proves Claim 1.
+Without loss of generality, we can assume $w$ belongs to the left branch of $v$ and $w'$ belongs to the right branch of $v$. Note that $v\in V(T'_H)\setminus Im(y_H)$, or we get a contradiction due the minimality of $P^H_y$.
+Now we get the following contradiction: by construction, $w$ and $w'$ are both elements of $Im(y_H)$ but at least one of them must be in $V(T'_H)\setminus Im(y_H)$ since it is an element of either $Y^H_{y}$ or of $Y^H_{y'}$. This proves Claim 1.
 
 \smallskip
-Now we consider the path $q^H_i$ in $T$ having endpoints $x_H(v_1)$ and $x_H(v_2)$.
+Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
 
 \smallskip
 \noindent
-{\it Claim 2: For every $H\in \{L,R\}$ and for every $i\in [r]$, every internal vertex of $q^H_i$ is an element of $X^*_H$.}
+{\it Claim 2: For every $H\in \{L,R\}$ and for every $y\in Y^*_H$, every internal vertex of $Q^H_y$ is an element of $X^*_H$.}
 
 \noindent
-{\it Proof.} Suppose that $q^H_i$ has an internal vertex $t\not\in X^*_H$. By definition, there exists a vertex $v\in V(T_H)$ such that $x_H(v)=t$. Since $x_H$ is injective then $v\not\in \{v_1,v_2\}$. Since $y_H$ is injective $y_H(v)\not\in \{y_H(v_1),y_H(v_2)\}$ and belongs to $p_i$, which contradicts the minimality of $p_i$. This proves Claim 2.
+{\it Proof.} Suppose that $Q^H_y$ has an internal vertex $t\not\in X^*_H$. By definition, there exists a vertex $v\in V(T_H)$ such that $x_H(v)=t$. Since $x_H$ is injective then $v\not\in \{v_1,v_2\}$. Since $y_H$ is injective $y_H(v)\not\in \{y_H(v_1),y_H(v_2)\}$ and belongs to $P^H_y$, which contradicts the minimality of $P^H_y$. This proves Claim 2.
 
 \smallskip
 Before we describe how to obtain a witness $T'$ of $T$ for $b$, we must make an observation. We note that $Im(x_L)\cup Im(x_R)=V(T)$: the idea is that every node of $T$ must originate from either $T_L$ or $T_R$.
@@ -3046,7 +3050,8 @@ Before we describe how to obtain a witness $T'$ of $T$ for $b$, we must make an 
 %$Suppose there is a node $v^*\in r(v) \circ r(u)$ but $v^*\not\in r(u) \circ r(v)$. If $v^*\not\in r(v)$ then, since $v^*\in r(v) \circ r(u)$, $r(u)$ has removed some nodes that allowed to remove $v^*$ and so $v^*$ could be removed as well, that is $v^*\not\in r(u)$ which is a contraddiction. If $v^*\in r(v)$ then $v^*\not\in r(u)$ which is again a contraddiction. By symmetry we have that, for any $u,v,v^*\in T$, $v^*\in r(v) \circ r(u)$ if and only if $v^*\in r(u) \circ r(v)$ and so $r(u)$ and $r(v)$ commute.
 
 \smallskip
-Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. For every $i\in [r]$, we consider the internal vertices $\{y_{i_1},\ldots,y_{i_t}\}$ of $p^L_i$, that we recall belong to $Y^*_L$, in a descending order. In the path $q^L_i$, we plug in, in sequence, every single pair $(Y^L_{i_j},S^L_{i_j})$ rooted at $y_{i_j}$ with $j\in [t]$ in the last edge of the path $q^L_i$. Note that, in the case an element of $Y^*_L$ is present in more than one $p^L_i$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{i_j},S^L_{i_j})$ in a DT, the tree $Y^L_{i_j}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $p^R_i$ in the last edge of the path $q^R_i$. Again, in the case an element of $Y^*_R$ is present in more than one $p^R_i$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
+Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
+For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
 
 \smallskip
 To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a real DT for $b$. We start proving $(i)$: by construction $T'$ is obtained from $T$ after adding $s_L$ elements from $T'_L$ and $s_R$ elements from $T'_R$, and so with $s_L+s_R=s$ more elements. 
@@ -3054,7 +3059,7 @@ To conclude this part of the proof we have to show two things: $(i)$ $T$ is obta
 Before considering statement $(ii)$, we consider the following relabelling $p_+$ of $T'$: every real feature in $feat(b_R)$ is a assigned to a feature with its label at node $b_R$ and every other feature is assigned to itself. The real DT $T'_L$ can be obtained from $T'$ by the application of the composition $r \circ p_* \circ p_+$.
 
 Now we consider statement $(ii)$. We show that given an example $e\in exam(b_L)$, $e$ is correctly classified by $T'$ and to do so we show that $e$ ends in a leaf of $T'$ that corresponds to the leaf where $e$ ends in $T'_L$. 
-Say that $e$ goes along a path $P$ of $T'_L$ from the root to a leaf $\ell$ and let $Q$ be the corresponding path $T'$, i.e. the from the root $r$ to $\ell$ (note that by construction $\ell$ is present in $T'$ and is still a leaf). 
+Say that $e$ goes along a path $P$ of $T'_L$ from the root to a leaf $\ell$ and let $Q$ be the corresponding path in $T'$, i.e. the path from $r$ to $\ell$ (note that by construction $\ell$ is present in $T'$ and is still a leaf). 
 Let $v$ be a node of $Q$, we can have the following different cases.
 
 \begin{itemize}
