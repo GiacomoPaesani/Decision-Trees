@@ -93,22 +93,11 @@ Wolfgang Espelage, Frank Gurski, and Egon Wanke.
 \newblock Deciding clique-width for graphs of bounded tree-width.
 \newblock {\em J. Graph Algorithms Appl.}, 7(2):141--180, 2003.
 
-\bibitem{DBLP:journals/dam/GanianH10}
-Robert Ganian and Petr Hlin\v{e}n{\'y}.
-\newblock On parse trees and {Myhill-Nerode}-type tools for handling graphs of
-  bounded rank-width.
-\newblock {\em Discr. Appl. Math.}, 158(7):851--867, 2010.
-
 \bibitem{GoodmanFlaxman17}
 Bryce Goodman and Seth~R. Flaxman.
 \newblock European union regulations on algorithmic decision-making and a
   ``right to explanation''.
 \newblock {\em AI Magazine}, 38(3):50--57, 2017.
-
-\bibitem{HlinenyOum08}
-Petr Hlin\v{e}n{\'y} and Sang{-}il Oum.
-\newblock Finding branch-decompositions and rank-decompositions.
-\newblock {\em SIAM J. Comput.}, 38(3):1012--1032, 2008.
 
 \bibitem{HyafilRivest76}
 Laurent Hyafil and Ronald~L. Rivest.
@@ -121,21 +110,11 @@ Toshihide Ibaraki, Yves Crama, and Peter~L. Hammer.
 \newblock Encyclopedia of Mathematics and its Applications. Cambridge
   University Press, 2011.
 
-\bibitem{DBLP:journals/dam/KaminskiLM09}
-Marcin Kaminski, Vadim~V. Lozin, and Martin Milanic.
-\newblock Recent developments on graphs of bounded clique-width.
-\newblock {\em Discret. Appl. Math.}, 157(12):2747--2761, 2009.
-
 \bibitem{Larose05}
 Daniel~T. Larose.
 \newblock {\em Discovering knowledge in data}.
 \newblock Wiley-Interscience [John Wiley \& Sons], Hoboken, NJ, 2005.
 \newblock An introduction to data mining.
-
-\bibitem{Lewis78}
-Harry~R. Lewis.
-\newblock Renaming a set of clauses as a {Horn} set.
-\newblock {\em J. of the ACM}, 25(1):134--135, January 1978.
 
 \bibitem{Lipton18}
 Zachary~C. Lipton.
@@ -166,16 +145,6 @@ Sreerama~K. Murthy.
 {Sang-il} Oum.
 \newblock Approximating rank-width and clique-width quickly.
 \newblock {\em ACM Transactions on Algorithms}, 5(1), 2008.
-
-\bibitem{DBLP:journals/talg/Oum08}
-Sang{-}il Oum.
-\newblock Approximating rank-width and clique-width quickly.
-\newblock {\em {ACM} Trans. Algorithms}, 5(1):10:1--10:20, 2008.
-
-\bibitem{OumSeymour06}
-{Sang-il} Oum and Paul~D. Seymour.
-\newblock Approximating clique-width and branch-width.
-\newblock {\em J. Combin. Theory Ser. B}, 96(4):514--528, 2006.
 
 \bibitem{Quinlan86}
 J.~Ross Quinlan.

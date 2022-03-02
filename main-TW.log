@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  24 FEB 2022 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  2 MAR 2022 11:26
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1239,32 +1239,32 @@ Package: boxedminipage 2020/04/19 v1.1 Boxed LaTeX2e minipages
 ) (main-TW.aux)
 \openout1 = `main-TW.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 297.
-LaTeX Font Info:    ... okay on input line 297.
-LaTeX Info: Redefining \microtypecontext on input line 297.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Info: Redefining \microtypecontext on input line 294.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 297.
+LaTeX Info: Redefining \showhyphens on input line 294.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1295,7 +1295,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
 \c@lstlisting=\count356
-Package hyperref Info: Link coloring OFF on input line 297.
+Package hyperref Info: Link coloring OFF on input line 294.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1309,9 +1309,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count357
 )
-LaTeX Info: Redefining \ref on input line 297.
-LaTeX Info: Redefining \pageref on input line 297.
-LaTeX Info: Redefining \nameref on input line 297.
+LaTeX Info: Redefining \ref on input line 294.
+LaTeX Info: Redefining \pageref on input line 294.
+LaTeX Info: Redefining \nameref on input line 294.
  (main-TW.out) (main-TW.out)
 \@outlinefile=\write6
 \openout6 = `main-TW.out'.
@@ -1321,7 +1321,7 @@ Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
-11.
+08.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1331,36 +1331,36 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
-11.
+08.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
-11.
+08.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-311.
+308.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-311.
+308.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 311.
+(Font)              <10> on input line 308.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 311.
+(Font)              <7> on input line 308.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 311.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 311
+(Font)              <5> on input line 308.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 308
 .
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1369,7 +1369,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 311
+LaTeX Font Info:    Trying to load font information for U+msb on input line 308
 .
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1380,9 +1380,9 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 \openout3 = `main-TW.vtc'.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 328.
+(Font)              <9> on input line 312.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 328.
+(Font)              <6> on input line 312.
 [1.1
 
 {C:/Users/Giacomo/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
@@ -1393,93 +1393,42 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.561 
+l.388 
        [1.2
 
 ] [2.3]
 
-LaTeX Warning: Citation `GW05' on page 3 undefined on input line 667.
+LaTeX Warning: Citation `GW05' on page 3 undefined on input line 425.
 
 
-LaTeX Warning: Citation `OS06' on page 3 undefined on input line 670.
+LaTeX Warning: Citation `OS06' on page 3 undefined on input line 426.
 
 
-LaTeX Warning: Citation `HO08' on page 3 undefined on input line 670.
+LaTeX Warning: Citation `HO08' on page 3 undefined on input line 426.
 
-
-LaTeX Warning: Citation `FRRS09' on page 3 undefined on input line 676.
-
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 676.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.5> on input line 676.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.94997> on input line 676.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.25> on input line 676.
-
-LaTeX Warning: Citation `ACP87' on page 3 undefined on input line 676.
-
-
-LaTeX Warning: Citation `GW05' on page 3 undefined on input line 676.
-
-
-LaTeX Warning: Citation `HO08' on page 3 undefined on input line 676.
-
-
-LaTeX Warning: Citation `SV16' on page 3 undefined on input line 676.
-
-
-LaTeX Warning: Citation `HMR10' on page 3 undefined on input line 677.
-
-
-LaTeX Warning: Citation `OS06' on page 3 undefined on input line 678.
-
-
-LaTeX Warning: Citation `OS06' on page 3 undefined on input line 680.
-
-
-LaTeX Warning: Citation `HO08' on page 3 undefined on input line 680.
-
-Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
-input line 796.
 [3.4]
-Package hyperref Info: bookmark level for unknown observation defaults to 0 on 
-input line 1041.
- [4.5]
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 1119.
- [5.6]
+line 450.
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
-t line 1237.
+t line 489.
+ [4.5]
+Package hyperref Info: bookmark level for unknown observation defaults to 0 on 
+input line 502.
+ [5.6] [6.7]
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 563.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8.5> on input line 563.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5.94997> on input line 563.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.25> on input line 563.
+Missing character: There is no ; in font nullfont!
 
+Overfull \hbox (59.79388pt too wide) in paragraph at lines 637--638
+ [][] 
+ []
 
-LaTeX Warning: Reference `pro:courrw' on page 6 undefined on input line 1255.
-
-
-LaTeX Warning: Reference `pro:courrw' on page 6 undefined on input line 1272.
-
-
-LaTeX Warning: Reference `lem:twformula' on page 6 undefined on input line 1280
-.
-
-[6.7] [7.8] [8.9] [9.10] [10.11]
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 1690.
-
-LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1690
-.
- [11.12] [12.13] [13.14] [14.15] [15.16]
-[16.17] [17.18] [18.19] [19.20]
-
-LaTeX Warning: Reference `the:trac-tw-b-td' on page 20 undefined on input line 
-2700.
-
-
-LaTeX Warning: Reference `pro:comp-ntd' on page 20 undefined on input line 2712
-.
-
-[20.21] [21.22] (main-TW.bbl
+[7.8] [8.9] [9.10] [10.11] [11.12] [12.13] [13.14] (main-TW.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
 0.
 
@@ -1491,19 +1440,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[22.23]) [23.24]
-Missing character: There is no ; in font nullfont!
+[14.15] [15.16])
 
-Overfull \hbox (59.79388pt too wide) in paragraph at lines 2849--2850
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[24.25] [25.26] [26.27] [27.28] [28.29] [29.30]
-
-Package caption Warning: Unused \captionsetup[algorithm] on input line 297.
+Package caption Warning: Unused \captionsetup[algorithm] on input line 294.
 See the caption package documentation for explanation.
 
 
@@ -1513,62 +1452,59 @@ FiXme Summary: Number of notes: 0,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 0.
 
-[30.31] (main-TW.aux)
+[16.17] (main-TW.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main-TW.out' has not changed.
-(rerunfilecheck)             Checksum: 862D2A6E07EF92A210262ECA045B6690;2583.
+(rerunfilecheck)             Checksum: C830555D063B32ED15B4041498E85C9F;2221.
  ) 
 Here is how much of TeX's memory you used:
- 38220 strings out of 479618
- 742719 string characters out of 2864076
- 1078284 words of memory out of 3000000
- 54021 multiletter control sequences out of 15000+200000
- 581337 words of font info for 367 fonts, out of 3000000 for 9000
+ 38059 strings out of 479618
+ 740276 string characters out of 2864076
+ 1066924 words of memory out of 3000000
+ 53959 multiletter control sequences out of 15000+200000
+ 567379 words of font info for 340 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,13n,102p,1170b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 98i,13n,102p,1495b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
-c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.
-enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathe
-x.enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.
+c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
+c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.
 enc}<C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
 x12.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mbx9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmcsc10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-lm/lmex10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/lm/lmmi10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/lm/lmmi5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/lm/lmmi6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/lm/lmmi7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/lm/lmmi9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/lm/lmr10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmri10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/lm/lmri9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/lm/lmro10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/lm/lmro8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/font
-s/type1/public/lm/lmss10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/lm/lmss8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/lm/lmss9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/lm/lmssbo10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Giacomo/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Giacomo/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Giacomo/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacomo
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main-TW.pdf (31 pages, 799224 bytes).
+mcsc10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmex10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmmi10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmmi5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/lm/lmmi6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmmi7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/lm/lmmi9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmr10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmr5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmr6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmr7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmr9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmri10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/lm/lmri9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/lm/lmro10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/lm/lmro8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/lm/lmss10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/lm/lmss8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/lm/lmssbx10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Giacomo/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacomo/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main-TW.pdf (17 pages, 600486 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 137 named destinations out of 1000 (max. 500000)
- 96973 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 418 PDF objects out of 1000 (max. 8388607)
+ 88 named destinations out of 1000 (max. 500000)
+ 88773 words of extra memory for PDF output out of 89155 (max. 10000000)
 
