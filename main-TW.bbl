@@ -141,6 +141,12 @@ Sreerama~K. Murthy.
 \newblock \href {https://doi.org/10.1023/A:1009744630224}
   {\path{doi:10.1023/A:1009744630224}}.
 
+\bibitem{OrdyniakSzeider21}
+Sebastian Ordyniak and Stefan Szeider.
+\newblock Parameterized complexity of small decision tree learning.
+\newblock In {\em Proceedings of AAAI'21, the Thirty-Fifth {AAAI} Conference on
+  Artificial Intelligence}, pages 6454--6462. {AAAI} Press, 2021.
+
 \bibitem{Oum08}
 {Sang-il} Oum.
 \newblock Approximating rank-width and clique-width quickly.
