@@ -1167,6 +1167,7 @@ Denote with $T_L$ the DT template obtained from $T'_L$ by standard reduction and
 Now we note that $T_L$ is obtained from $T$ after the application of the composition $r \circ p_*$. In a symmetric way, we construct $T'_R$, $T_R$ and the record $(T_R,s_R)\in \mathcal{R}(b_R)$. Then $(T,s_L+s_R)\in \mathcal{R}(b)$.
 \end{proof}
 
+<<<<<<< HEAD
 \begin{lemma}[relabel node]\label{lem:relabel}
 Let $b\in V(B)$ be relabel node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{3k+1})$.
 \end{lemma}
@@ -1210,6 +1211,10 @@ Finally we note that $T$ is obtained from $T_C$ by the application of $r \circ p
 
 \subsection{Formal Definition of Records and Preliminary Results}
 
+=======
+\newpage
+\section*{NLC-width}
+>>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a maximal subtree of $T$ and in $Y$ the root have at most the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
 
 Now we can define two operations on subcubic rooted trees and single pairs. We say that we {\it plug in} a single pair $(Y,S)$ in a left (right) edge $uv$ as follows: we make the root $y$ of $Y$ the left (right) child of $u$, $Y\setminus \{y\}$ to be the $S$ subtree of $y$ and $v$ to be the $H\in \{left,right\}\setminus S$ child of $y$. See Figure~\ref{fig:plugin} for the corresponding drawings. Note after a plug in of a single pair in an edge, the node $v$ belongs in the same side of the subtree rooted at $u$ as it was before the plug in.
@@ -1465,6 +1470,10 @@ For $H\in \{L,R\}$, we define maps $x_H$ and $y_H$ as follows. Let $x_H~:~V(T_H)
 
 Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  
 In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the maximal subtree of $T'_H$ rooted at $y$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
+<<<<<<< HEAD
+=======
+%GP: add figure
+>>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x\}$; let $(X^H_x,S^H_x)$ the corresponding single pair. 
 Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest downwards path in $T'_H$ that contains $y$ and with both endpoints in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$. 
 
@@ -1482,6 +1491,23 @@ Now we get the following contradiction: by construction, $w$ and $w'$ are both e
 Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
 
 \smallskip
+<<<<<<< HEAD
+=======
+\noindent
+{\it Claim 2: For every $H\in \{L,R\}$ and for every $y\in Y^*_H$, every internal vertex of $Q^H_y$ is an element of $X^*_H$.}
+
+\noindent
+{\it Proof.} Suppose that $Q^H_y$ has an internal vertex $t\not\in X^*_H$. By definition, there exists a vertex $v\in V(T_H)$ such that $x_H(v)=t$. Since $x_H$ is injective then $v\not\in \{v_1,v_2\}$. Since $y_H$ is injective $y_H(v)\not\in \{y_H(v_1),y_H(v_2)\}$ and belongs to $P^H_y$, which contradicts the minimality of $P^H_y$. This proves Claim 2.
+
+\smallskip
+Before we describe how to obtain a witness $T'$ of $T$ for $b$, we must make an observation. We note that $Im(x_L)\cup Im(x_R)=V(T)$: the idea is that every node of $T$ must originate from either $T_L$ or $T_R$.
+
+%We, now, show that when there is a sequence of relabelling and consequent reductions, these can be done in any order without affecting the resulting DT and total score of the reductions. To do so, we consider the operation of relabelling two nodes and applying the reduction algorithm in a DT: by repeating this operation the proper amount of times, this gives proof for the general case. Suppose $T$ is a reduced DT and let $u$ and $v$ be two of his nodes. Recall that a relabel and reduce operation at a node $w$, in short call it  $r(w)$, influences only the nodes in $T_w$, that is the subtree of $T$ rooted at $w$. To be short, we write that $v'\in r(v)$ if a node $v'$ is present after $r(v)$ and write $v'\notin r(v)$ otherwise.
+%If $u$ is neither a descendant or an ancestor of $v$ then $T_u$ and $T_v$ are disjoint an so $r(u)$ and $r(v)$ commutes. Without loss of generality we can suppose $v$ is a node of $T_u$, that is $u$ is an ancestor of $v$. 
+%$Suppose there is a node $v^*\in r(v) \circ r(u)$ but $v^*\not\in r(u) \circ r(v)$. If $v^*\not\in r(v)$ then, since $v^*\in r(v) \circ r(u)$, $r(u)$ has removed some nodes that allowed to remove $v^*$ and so $v^*$ could be removed as well, that is $v^*\not\in r(u)$ which is a contraddiction. If $v^*\in r(v)$ then $v^*\not\in r(u)$ which is again a contraddiction. By symmetry we have that, for any $u,v,v^*\in T$, $v^*\in r(v) \circ r(u)$ if and only if $v^*\in r(u) \circ r(v)$ and so $r(u)$ and $r(v)$ commute.
+
+\smallskip
+>>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
 For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
 
