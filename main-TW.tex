@@ -1627,12 +1627,16 @@ Now we look at the root node $r$ of $B$. We go through all the records of $\math
 
 In the following, let $E$ be a CI and $q\not\in feat(E)$. A {\it pattern} is a pair $(T,\phi)$ where $T=(V(T),A(T))$ is a rooted subcubic tree, every leaf-node is either a {\it positive} or {\it negative} leaf and $\phi$ maps every inner-node $v\in V(T)$ to an element of $feat(E)\cup \{q\}$. We say that $\phi$ is the {\it trait} function of $T$ and $\phi(v)$ is the trait of node $v\in V(T)$.
 
-We refer to pattern $T$ insteat of $(T,\phi)$ only in the cases where there is no ambiguity. %Note a pattern $(T,\phi)$ is a decision tree if and only if pattern $(T,\phi)$.
+%We refer to pattern $T$ insteat of $(T,\phi)$ only in the cases where there is no ambiguity. %Note a pattern $(T,\phi)$ is a decision tree if and only if pattern $(T,\phi)$.
 
 A pattern $(T,\phi^*)$ is an {\it improvement} for a pattern $(T,\phi)$ if $\phi^*(v)=\phi(v)$ for every $v$ such that $\phi(v)\in feat(E)$. 
 A {\it complete improvement} $(T,\phi^*)$ for $(T,\phi)$ is an improvement such that $Im(\phi^*)\subseteq feat(E)$. 
-We say that $(T,\phi)$ can classify $E$ if there is a complete improvement $(T,\phi^*)$ for $(T,\phi)$ which can be extended to a DT for $E$.
+Note that any complete improvement of a pattern is a decision tree.
+Given a pattern $(T,\phi)$, an {\it threshold assignment} of $(T,\phi)$ is a function $\psi$ that maps every node $v\in V(T)$ such that $\phi(v)\in feat(E)$ to a rational number $\psi(v)$.
 
+Given a threshold assignment $\psi$ for a decision tree $(T,\phi)$, for each node $v$ of $T$ we define the set of examples that arrives at node $v$, $E_T(v)$ as follows: $E_T(v)$ is the set of all examples $e\in E$ such that for each left (right, respectively) arc $(u,w)$ on the unique path from the root of $T$ to~$v$ we have $(\phi(u))(e)\leq \psi(u)$ ($(\phi(u))(e)> \psi(u)$, respectively). A decision tree $(T,\phi)$ {\it correctly classifies} an example $e\in E$ given $\psi$ if $e$ is a positive (negative) example and $e\in E_T(v)$ for a positive (negative) leaf. We say that $(T,\phi)$ {\it classifies} $E$ given $\psi$ if $T$ correctly classifies every example $e \in E$ given $\psi$. 
+
+We say that $(T,\phi)$ can classify $E$ if there exists a complete improvement $(T,\phi^*)$ for $(T,\phi)$ and there exists a threshold assignment $\psi$ for $(T,\phi^*)$ such that $(T,\phi^*)$ classifies $E$ given $\psi$.
 
 \begin{comment}
 Given a CI $E$, our aim it to construct a support set $S^*$ for $E$ such that there is a DT $T^*$ for $E$ of size at most $s$ with $feat(T^*)=S^*$.
@@ -1673,26 +1677,36 @@ For every $v\in V(T)$, we define the set of {\it expected examples} $E_v$ as fol
 Node that the definition of $E_v$ is strictly related with the following: if $\phi(v)\in feat(E)$, let $c_{\ell}$ and $c_r$ be the left, risp. right, child of $v$, we define two values $th_L(v)$ and $th_R(v)$ as follows:
 
 \begin{itemize}
-\item let $th_L(v)$ be the maximum value in $D_E(\phi(v))$ such that every example in $E_v[\phi(v)\leq th_L(v)]$ is correctly classified in $T_{c_{\ell}}$;
-\item let $th_R(v)$ be the minimum value in $D_E(\phi(v))$ such that every example in $E_v[\phi(v)> th_R(v)]$ is correctly classified in $T_{c_r}$.
+\item let $th_L(v)$ be the maximum value in $D_E(\phi(v))$ such that $(T_{c_{\ell}},\phi)$ can classify every example in $E_v[\phi(v)\leq th_L(v)]$;
+\item let $th_R(v)$ be the minimum value in $D_E(\phi(v))$ such that $(T_{c_r},\phi)$ can classify every example in $E_v[\phi(v)> th_R(v)]$.
 \end{itemize}
 
-Before formally proving in Lemma~\ref{lem:LR} that we are able to compute $E_v$ and $th_L(v)$, $th_R(v)$ (when $v$ has a supported feature) for every $v\in V(T)$, we want to describe the role of $E_v$ in the proof of Lemma~\ref{lem:comp-branch}.
+Before formally proving in Lemma~\ref{lem:LR} that we are able to compute $E_v$ and $th_L(v)$, $th_R(v)$ (when $\phi(v)\in feat(E)$) for every $v\in V(T)$, we want to describe the role of $E_v$ in the proof of Lemma~\ref{lem:comp-branch}.
 
 Let us consider the following situation. Suppose we are trying to find a DT of minimum size for a CI $E$ using at least the features in a given support set $S$. 
-The first step would be to compute a minimum  size DT $T^*$ for $E$ such that $feat(T^*)=S$ (note this can be done by Theorem~\ref{lem:dtthres}).
+The first step would be to compute a minimum  size DT $T^*$ for $E$ such that $feat(T^*)=S$.
+%(note this can be done by Theorem~\ref{lem:dtthres}).
 Next we analyse the case an optimal DT for $E$ uses not only every feature from $S$ but some additional 
-feature: for this reason we consider partial DTs $T$ of size at most $s$ such that the set of supported features of $T$ is exactly $S$.
+feature: for this reason we consider patterns $(T,\phi)$ with $T$ of size at most $s$ and such that $S\cup \{q\}=Im(\phi)$.
 
-To understand the properties of an unknown feature of $T$, we suppose $u\in V(T)$ has an unknown feature that does not distinguish any pair of examples.
-Clearly $T$ can be extended to a DT for $E$ only if the smaller $T'$, obtained from $T$ by removing $u$ and the subtree of $T_u$ that receives no example, can. So let us suppose $T$ can not be extended to a DT for $E$. 
+Let us recall a definition. Let $(T,\phi)$ be a pattern and $v \in V(T)$ be an inner node of $T$ with left child $\ell$, right child $r$, and parent $p$. We say that $T'$ is obtained from $T$ after {\it left/right-contracting $v$} if $T'$ is a rooted subcubic tree obtained from $T$ after removing $v$ together with all nodes in $T_r$/$T_{\ell}$ and adding the edge between $p$ and $l$/$r$; if $v$ has no parent then no edge is added.
+
+In order to argue that a pattern $(T,\phi)$ can classify $E$, we have first to compute a complete improvement (or a series of improvements that ends up in a complete improvement) of $(T,\phi)$.
+%To understand how we can compute an improvement 
+%To understand the properties of an unknown feature of $T$, we suppose $u\in V(T)$ has an unknown feature that does not distinguish any pair of examples. Clearly $T$ can be extended to a DT for $E$ only if the smaller $T'$, obtained from $T$ by removing $u$ and the subtree of $T_u$ that receives no example, can. 
+%So let us suppose $T$ can not be extended to a DT for $E_v$. 
+Let $v\in V(T)$ such that $\phi(v)=q$. If the pattern $(T',\phi)$, where $T'$ is obtained after left/right-contracting $v$, can classify every example in $E_v$, then we discard the pattern $(T,\phi)$: $(T',\phi)$ is equivalent to $(T,\phi)$ but of smaller size. TO EXPAND.
 
 \medskip
 \noindent
-{\bf Claim 1.} {\it For every node $v\in V(T)$, the set $E_v$ is a set of examples such that $T_v$ can not be extended to a DT for $E$.}
+{\bf Claim 1.} {\it Let $(T,\phi)$ be a pattern. For every node $v\in V(T)$, $(T_v,\phi)$ can not classify every example in $E_v$.}
 
 \smallskip
 \noindent
+We prove this claim by induction on the height of $T$. 
+
+
+
 Let us first consider the case in which $v$ is the root of $T$. Here we have that $T_v=T$ and $E_v=E$ and so the claim directly follows from the assumption that $T$ can not be extended to a DT for $E$. Now let $v$ be the child of an unknown feature node $v_p$. Recall that, by assumption, $v_p$ does not distinguish any pair of examples and so it is safe to assume that $E_{v_p}$ is a set of examples that can not be classified by extending $T_v$. 
 
 Finally suppose now that $v$ is the left child of a supported feature node $v_p$. By the maximality of $th_L(v_p)$, the set $E_v=E_{v_p}[f_p\leq th_L(v_p)+1]$ necessarily contains examples that can not be classified by extending $T_v$. In a similar way, the minimality of $th_R(v)$ shows that the claim holds when $v$ is the right child of a supported feature node. This proves the Claim 1.
