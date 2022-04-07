@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  6 APR 2022 12:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  7 APR 2022 13:24
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1477,48 +1477,52 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <4.25> on input line 1100.
 FiXme Note: ' proof of minimality of $T'$ is still missing' on input line 1100.
 
- [11.12] [12.13] [13.14] [14.15]
+ [11.12] [12.13] [13.14] [14.15] [15.16]
 Missing character: There is no ; in font nullfont!
 
-Overfull \hbox (59.79388pt too wide) in paragraph at lines 1304--1305
+Overfull \hbox (59.79388pt too wide) in paragraph at lines 1309--1310
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15.16] [16.17] [17.18] [18.19] [19.20] [20.21]
+[16.17] [17.18] [18.19] [19.20] [20.21] [21.22] [22.23]
 
-LaTeX Warning: Reference `the:trac-tw-b' on page 21 undefined on input line 155
-4.
+LaTeX Warning: Reference `the:trac-tw-b' on page 23 undefined on input line 158
+0.
 
-[21.22]
 
-LaTeX Warning: Reference `the:trac-tw-b' on page 22 undefined on input line 156
-9.
+LaTeX Warning: Reference `the:trac-tw-b' on page 23 undefined on input line 159
+5.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1600.
+(Font)              <12> on input line 1626.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 1600.
+(Font)              <8> on input line 1626.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1600.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 1600.
+(hyperref)                removing `math shift' on input line 1626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1600.
+(hyperref)                removing `\delta' on input line 1626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1600.
+(hyperref)                removing `subscript' on input line 1626.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1626.
+
+[23.24]
+
+LaTeX Warning: Reference `lem:dtthres' on page 24 undefined on input line 1683.
+
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-614.
+708.
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1527,14 +1531,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[22.23] [23.24]
+[24.25]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/9'.
 (microtype)             Ignoring protrusion settings for this character.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 1687.
+(Font)              using `T1/lmr/bx/n' instead on input line 1727.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1545,15 +1549,28 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[24.25] [25.26] [26.27]
+[25.26] [26.27]
 
-LaTeX Warning: Reference `obs:dt-ss' on page 27 undefined on input line 1849.
+LaTeX Warning: Reference `lem:dtthres' on page 27 undefined on input line 1887.
+
+
+[27.28]
+
+LaTeX Warning: Reference `obs:dt-ss' on page 28 undefined on input line 1889.
 
 
 Underfull \vbox (badness 1189) has occurred while \output is active []
 
- [27.28]
-[28.29] (main-TW.bbl [29.30])
+ [28.29]
+
+LaTeX Warning: Reference `the:dt-opt-var' on page 29 undefined on input line 18
+91.
+
+
+LaTeX Warning: Reference `lem:dtthres' on page 29 undefined on input line 1927.
+
+
+[29.30] (main-TW.bbl [30.31])
 
 FiXme Summary: Number of notes: 13,
 (FiXme)        Number of warnings: 0,
@@ -1561,7 +1578,7 @@ FiXme Summary: Number of notes: 13,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 13.
 
-[30.31] (main-TW.aux)
+[31.32] (main-TW.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1575,11 +1592,11 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: 6F5844502C48505355CC19D35D9B23AD;3406.
  ) 
 Here is how much of TeX's memory you used:
- 38406 strings out of 479618
- 744818 string characters out of 2864076
- 1094406 words of memory out of 3000000
- 54154 multiletter control sequences out of 15000+200000
- 598798 words of font info for 402 fonts, out of 3000000 for 9000
+ 38400 strings out of 479618
+ 744702 string characters out of 2864076
+ 1095471 words of memory out of 3000000
+ 54152 multiletter control sequences out of 15000+200000
+ 598827 words of font info for 402 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1876b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1623,9 +1640,9 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (31 pages, 848240 bytes).
+Output written on main-TW.pdf (32 pages, 848113 bytes).
 PDF statistics:
- 638 PDF objects out of 1000 (max. 8388607)
- 146 named destinations out of 1000 (max. 500000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 142 named destinations out of 1000 (max. 500000)
  107245 words of extra memory for PDF output out of 128383 (max. 10000000)
 

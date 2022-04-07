@@ -1624,6 +1624,17 @@ Now we look at the root node $r$ of $B$. We go through all the records of $\math
 
 
 \section{An FPT-Algorithm for bounded solution size and $\delta_{max}$.}
+
+In the following, let $E$ be a CI and $q\not\in feat(E)$. A {\it pattern} is a pair $(T,\phi)$ where $T=(V(T),A(T))$ is a rooted subcubic tree, every leaf-node is either a {\it positive} or {\it negative} leaf and $\phi$ maps every inner-node $v\in V(T)$ to an element of $feat(E)\cup \{q\}$. We say that $\phi$ is the {\it trait} function of $T$ and $\phi(v)$ is the trait of node $v\in V(T)$.
+
+We refer to pattern $T$ insteat of $(T,\phi)$ only in the cases where there is no ambiguity. %Note a pattern $(T,\phi)$ is a decision tree if and only if pattern $(T,\phi)$.
+
+A pattern $(T,\phi^*)$ is an {\it improvement} for a pattern $(T,\phi)$ if $\phi^*(v)=\phi(v)$ for every $v$ such that $\phi(v)\in feat(E)$. 
+A {\it complete improvement} $(T,\phi^*)$ for $(T,\phi)$ is an improvement such that $Im(\phi^*)\subseteq feat(E)$. 
+We say that $(T,\phi)$ can classify $E$ if there is a complete improvement $(T,\phi^*)$ for $(T,\phi)$ which can be extended to a DT for $E$.
+
+
+\begin{comment}
 Given a CI $E$, our aim it to construct a support set $S^*$ for $E$ such that there is a DT $T^*$ for $E$ of size at most $s$ with $feat(T^*)=S^*$.
 
 First of all, we note that we can enumerate all the minimal support sets in fpt-time parametrized by $\delta_{max}$ as follows.
@@ -1643,24 +1654,27 @@ Let $E$ be a CI, $S \subseteq \feat(E)$ be a support set for $E$, and let $s$ an
 \begin{lemma}[\cite{OrdyniakSzeider21}]\label{lem:dtthres}
 Let $E$ be a CI, let $T$ be DT for $S$ of depth $d$ and let $\alpha$ be a feature assignment for $T$. Then, there is an algorithm that runs in time $\bigoh(2^{d^2/2}\|E\|^{1+\littleoh(1)}\log \|E\|)$ and decides whether the pair $(T,\alpha)$ can be extended to a DT for~$E$. 
 \end{lemma}
+\end{comment}
 
 \subsection{Preprocess}
-
-Let $T$ be a pseudo DT and $S$ be a support set for $E$. An {\it $S$-feature assigment} of $T$ is a mapping from a subset of the non-leaf nodes of $T$ to $S$. 
+Let $E$ be a CI, 
+%$S$ be a support set for $E$ 
+and $(T,\phi)$ be a pattern. 
+%such that $Im(\phi)\subseteq S\cup \{q\}$.
 For every $v\in V(T)$, we define the set of {\it expected examples} $E_v$ as follows:
 
 \begin{itemize}
 \item if $v$ is the root, then $E_v=E$;
-\item if $v$ is the left child of a supported feature node $v_p$ with feature $f_p\in S$, then $E_v=E_{v_p}[f_p\leq th_L(v_p)+1]$;
-\item if $v$ is the right child of a supported feature node $v_p$ with feature $f_p\in S$, then $E_v=E_{v_p}[f_p> th_R(v_p)-1]$;
-\item if $v$ is a child of an unknown feature node $v_p$, then $E_v=E_{v_p}$.
+\item if $v$ is the left child of a node $v_p$ such that $\phi(v_p)\in feat(E)$, then $E_v=E_{v_p}[\phi(v_p)\leq th_L(v_p)+1]$;
+\item if $v$ is the right child of a node $v_p$ such that $\phi(v_p)\in feat(E)$, then $E_v=E_{v_p}[\phi(v_p)> th_R(v_p)-1]$;
+\item if $v$ is a child of a $v_p$ such that $\phi(v_p)=q$, then $E_v=E_{v_p}$.
 \end{itemize}
 
-Node that the definition of $E_v$ is strictly related with the following: if $v$ has a supported feature $f$, let $c_{\ell}$ and $c_r$ be the left, risp. right, child of $v$, we define two values $th_L(t)$ and $th_R(T)$ as follows:
+Node that the definition of $E_v$ is strictly related with the following: if $\phi(v)\in feat(E)$, let $c_{\ell}$ and $c_r$ be the left, risp. right, child of $v$, we define two values $th_L(v)$ and $th_R(v)$ as follows:
 
 \begin{itemize}
-\item let $th_L(v)$ be the maximum value in $D_E(f)$ such that every example in $E_v[f\leq th_L(v)]$ is correctly classified in $T_{c_{\ell}}$;
-\item let $th_R(v)$ be the minimum value in $D_E(f)$ such that every example in $E_v[f> th_R(v)]$ is correctly classified in $T_{c_r}$.
+\item let $th_L(v)$ be the maximum value in $D_E(\phi(v))$ such that every example in $E_v[\phi(v)\leq th_L(v)]$ is correctly classified in $T_{c_{\ell}}$;
+\item let $th_R(v)$ be the minimum value in $D_E(\phi(v))$ such that every example in $E_v[\phi(v)> th_R(v)]$ is correctly classified in $T_{c_r}$.
 \end{itemize}
 
 Before formally proving in Lemma~\ref{lem:LR} that we are able to compute $E_v$ and $th_L(v)$, $th_R(v)$ (when $v$ has a supported feature) for every $v\in V(T)$, we want to describe the role of $E_v$ in the proof of Lemma~\ref{lem:comp-branch}.
