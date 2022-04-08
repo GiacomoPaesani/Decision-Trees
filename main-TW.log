@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  7 APR 2022 18:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  8 APR 2022 12:41
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1583,11 +1583,11 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: 6F5844502C48505355CC19D35D9B23AD;3406.
  ) 
 Here is how much of TeX's memory you used:
- 38399 strings out of 479618
- 744685 string characters out of 2864076
- 1092471 words of memory out of 3000000
+ 38401 strings out of 479618
+ 744707 string characters out of 2864076
+ 1093471 words of memory out of 3000000
  54152 multiletter control sequences out of 15000+200000
- 598697 words of font info for 401 fonts, out of 3000000 for 9000
+ 598827 words of font info for 402 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1876b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1631,7 +1631,7 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (33 pages, 851857 bytes).
+Output written on main-TW.pdf (33 pages, 851433 bytes).
 PDF statistics:
  632 PDF objects out of 1000 (max. 8388607)
  143 named destinations out of 1000 (max. 500000)
