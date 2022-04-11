@@ -1636,7 +1636,7 @@ Given a pattern $(T,\phi)$, a {\it threshold assignment} of $(T,\phi)$ is a func
 
 Given a threshold assignment $\psi$ for a decision tree $(T,\phi)$, for each node $v$ of $T$ we define the set of examples that arrive at node $v$, $E_T(v)$ as follows: $E_T(v)$ is the set of all examples $e\in E$ such that for each left (right, respectively) arc $(u,w)$ on the unique path from the root of $T$ to~$v$ we have $(\phi(u))(e)\leq \psi(u)$ ($(\phi(u))(e)> \psi(u)$, respectively). A decision tree $(T,\phi)$ {\it correctly classifies} an example $e\in E$ given $\psi$ if $e$ is a positive (negative) example and $e\in E_T(v)$ for a positive (negative) leaf. We say that $(T,\phi)$ {\it classifies} $E$ given $\psi$ if $T$ correctly classifies every example $e \in E$ given $\psi$. 
 
-We say that $(T,\phi)$ can classify $E$ if there exists a complete improvement $(T,\phi^*)$ for $(T,\phi)$ and there exists a threshold assignment $\psi$ for $(T,\phi^*)$ such that $(T,\phi^*)$ classifies $E$ given $\psi$.
+We say that a pattern $(T,\phi)$ can classify $E$ if there exists a complete improvement $(T,\phi^*)$ for $(T,\phi)$ and there exists a threshold assignment $\psi$ for $(T,\phi^*)$ such that $(T,\phi^*)$ classifies $E$ given $\psi$.
 
 \begin{comment}
 Given a CI $E$, our aim it to construct a support set $S^*$ for $E$ such that there is a DT $T^*$ for $E$ of size at most $s$ with $feat(T^*)=S^*$.
@@ -1687,23 +1687,30 @@ Let us consider the following situation. Suppose we are trying to find a DT of m
 The first step would be to compute a minimum  size DT $T^*$ for $E$ such that $feat(T^*)=S$.
 %(note this can be done by Theorem~\ref{lem:dtthres}).
 Next we analyse the case an optimal DT for $E$ uses not only every feature from $S$ but some additional 
-feature: for this reason we consider patterns $(T,\phi)$ with $T$ of size at most $s$ and such that $S\cup \{q\}=Im(\phi)$.
+feature: for this reason we consider patterns $(T,\phi)$ with $T$ of size at most $s$ and such that $Im(\phi)=S\cup \{q\}$.
 
 Let us recall a definition. Let $(T,\phi)$ be a pattern and $v \in V(T)$ be an inner node of $T$ with left child $\ell$, right child $r$, and parent $p$. We say that $T'$ is obtained from $T$ after {\it left/right-contracting $v$} if $T'$ is a rooted subcubic tree obtained from $T$ after removing $v$ together with all nodes in $T_r$/$T_{\ell}$ and adding the edge between $p$ and $\ell$/$r$; if $v$ has no parent then no edge is added.
 
 In order to argue that a pattern $(T,\phi)$ can classify $E$, we have first to compute a complete improvement (or a series of improvements that ends up in a complete improvement) of $(T,\phi)$.
+
+\begin{comment}
 %To understand how we can compute an improvement 
 %To understand the properties of an unknown feature of $T$, we suppose $u\in V(T)$ has an unknown feature that does not distinguish any pair of examples. Clearly $T$ can be extended to a DT for $E$ only if the smaller $T'$, obtained from $T$ by removing $u$ and the subtree of $T_u$ that receives no example, can. 
 %So let us suppose $T$ can not be extended to a DT for $E_v$. 
-Let $v$ be a non-fixed node of $T$. If the pattern $(T',\phi)$, where $T'$ is obtained after left/right-contracting $v$, can classify every example in $E_v$, then we discard the pattern $(T,\phi)$: $(T',\phi)$ is equivalent to $(T,\phi)$ but of smaller size. TO EXPAND.
+%Let $v$ be a non-fixed node of $T$. If the pattern $(T',\phi)$, where $T'$ is obtained after left/right-contracting $v$, can classify every example in $E_v$, then we discard the pattern $(T,\phi)$: $(T',\phi)$ is equivalent to $(T,\phi)$ but of smaller size. TO EXPAND.
 
 \medskip
 \noindent
-{\bf Claim 1.} {\it Let $(T,\phi)$ be a pattern. For every node $v\in V(T)$, $(T_v,\phi)$ can not classify every example in $E_v$.}
+{\bf Claim 1.} {\it Let $(T,\phi)$ be a pattern. For every node $v\in V(T)$, 
+either $(T_v,\phi)$ can not classify every example in $E_v$
+or there is a non-fixed node $w$ in $(T_v,\phi)$ such that distinguishes two examples in $E_v$.
+.}
 
 \smallskip
 \noindent
-We prove this claim by induction on the height of $T$. 
+We prove this claim by induction on the depth of $T$. Let $r$ be the root of $T$. First suppose $(T,\phi)$ is a pattern of depth zero, that is $T$ has only $r$ as node. Since $E$ is not uniform, then $(T_r\phi)$ does not classify every example of $E_r=E$.
+
+Now, let $(T,\phi)$ be a pattern of height at least one and let $\ell$ and $r$ be the left and right child of $r$.
 
 
 
@@ -1713,19 +1720,22 @@ Finally suppose now that $v$ is the left child of a supported feature node $v_p$
 
 \smallskip
 Thanks to Claim 1, it follows that for every node $v$ that has a supported feature, $th_L(v)<th_R(v)$. Suppose that for some node $v$ with supported feature $f$ we have $th_L(v)\geq th_R(v)$. Setting $(feat(v)=th_L(v))$ generates a DT for $E_v$, which is a contraddiction.
+\end{comment}
+
+TO ADD ARGUMENTS
 
 \begin{lemma}\label{lem:LR}
-Let $E$ be a CI, let $T$ be a partial DT of depth at most $d$ and let $\overline{\alpha}$ be a $S$-feature assignment of $T$ for a support set $S$. Then there is an algorithm that runs in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$ and computes the set $E_v$ and thresholds $th_L(v)$ and $th_R(v)$ for every node $v\in V(T)$.
+Let $E$ be a CI, let $(T,\phi)$ be a pattern of depth at most $d$. Then there is an algorithm that runs in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$ and computes the set $E_v$ and thresholds $th_L(v)$ and $th_R(v)$ for every node $v\in V(T)$.
 \end{lemma}
 
 \begin{proof}
-The idea is to use the recursive algorithm {\bf findLR} illustrated in Algorithm~\ref{alg:findLR}. That is, given $E$, $T$, $\overline{\alpha}$, the algorithm {\bf findLR} attempts to find the triples $(E_v,th_L(v),th_R(v))$ for every node $v\in V(T)$. Lines~\ref{findLRLS} to~\ref{findLRLE}: if $T$ consists of a leaf node, the algorithm just report $(E,\NULL{},\NULL{})$. Let $c_{\ell}$ and $c_r$ be the left, risp. right, child of the root $v$. Lines~\ref{findLRUFS} to~\ref{findLRUFE}: if the root of $T$ has an unknown feature, the algorithm calls itself recursively to compute the triple for $(E,T_{c_\ell},\alpha)$ and $(E,T_{c_r},\alpha)$. Lines~\ref{findLRBS} to~\ref{findLRSF}: if the root of $T$ has a supported feature $f$, the algorithm computes the pair $(t_\ell,t_r)$ for the root using the algorithm {\bf binarySearch} and then calls itself recutsively to compute the triple for $(E[f\leq t_\ell+1],T_{c_\ell},\alpha)$ and $(E[f>t_r-1],T_{c_r},\alpha)$.
+The idea is to use the recursive algorithm {\bf findLR} illustrated in Algorithm~\ref{alg:findLR}. That is, given $E$, $(T,\phi)$, the algorithm {\bf findLR} attempts to find the triples $(E_v,th_L(v),th_R(v))$ for every node $v\in V(T)$. Lines~\ref{findLRLS} to~\ref{findLRLE}: if $T$ consists of a leaf node, the algorithm just report $(E,\NULL{},\NULL{})$. Let $c_{\ell}$ and $c_r$ be the left, risp. right, child of the root $v$. Lines~\ref{findLRUFS} to~\ref{findLRUFE}: if the root of $T$ is a non-fixed node, the algorithm calls itself recursively to compute the triple for $(E,T_{c_\ell},\alpha)$ and $(E,T_{c_r},\alpha)$. Lines~\ref{findLRBS} to~\ref{findLRSF}: if the root of $T$ is a fixed node $v$, the algorithm computes the pair $(t_\ell,t_r)$ for the root using the algorithm {\bf binarySearch} and then calls itself recutsively to compute the triple for $(E[\phi(v)\leq t_\ell+1],T_{c_\ell},\alpha)$ and $(E[\phi(v)>t_r-1],T_{c_r},\alpha)$.
 
-A key element for the correctness of {\bf findLR} is the algorithm {\bf binarySearch} illustrated in Algorithm~\ref{alg:BS}. Given $E$, $T$, $\alpha$, $f$, $c_\ell$ and $c_r$, this algorithm computes the pair $(t_\ell,t_r)$ for the root of $T$. This sub-routine performs a standard binary search procedure on the array $D$ containing all the values in $D_E(f)$ in ascending order to find maximum $t_\ell$ and minimum $t_r$ such that $(T_{c_\ell},\alpha)$ and $(T_{c_r},\alpha)$ can be extended to DT for $E[f\leq t_\ell]$ and for $E[f>t_r]$ respectively. To achieve this, the sub-routine makes at most $log|E|$ calls to {\bf findTH}; note that each of those calls is made for a tree of smaller depth. Lines~\ref{BSS} to~\ref{return0}: the algorithm finds the maximum $t_\ell$ by calling algorithm {\bf findTH} in Line~\ref{BSfindTH} repeatedly. Lines~\ref{BST} to~\ref{return1}: the algorithm finds the minimum $t_r$ by calling algorithm {\bf findTH} in Line~\ref{BSfindTH1} repeatedly.
+A key element for the correctness of {\bf findLR} is the algorithm {\bf binarySearch} illustrated in Algorithm~\ref{alg:BS}. Given $E$, $(T,\phi)$, $f$, $c_\ell$ and $c_r$, this algorithm computes the pair $(t_\ell,t_r)$ for the root of $T$ that has feature $f$. This sub-routine performs a standard binary search procedure on the array $D$ containing all the values in $D_E(f)$ in ascending order to find maximum $t_\ell$ and minimum $t_r$ such that $(T_{c_\ell},\alpha)$ and $(T_{c_r},\alpha)$ can be extended to DT for $E[f\leq t_\ell]$ and for $E[f>t_r]$ respectively. To achieve this, the sub-routine makes at most $log|E|$ calls to {\bf findTH}; note that each of those calls is made for a tree of smaller depth. Lines~\ref{BSS} to~\ref{return0}: the algorithm finds the maximum $t_\ell$ by calling algorithm {\bf findTH} in Line~\ref{BSfindTH} repeatedly. Lines~\ref{BST} to~\ref{return1}: the algorithm finds the minimum $t_r$ by calling algorithm {\bf findTH} in Line~\ref{BSfindTH1} repeatedly.
 
 A sub-routine used for {\bf binarySearch} is the algorithm {\bf findTH} illustrated in Algorithm~\ref{alg:findTH}. This algorithm is very similar to Algorithm~\ref{alg:findLR} but the output is some way much simpler.
 
-The running time of Algorithm~\ref{alg:findLR} can now be obtained by multiplying the number of recursive calls to {\bf findLR} with the time required for one recursive call. To obtain the number of recursive calls first note that if {\bf findLR} is called with a pseudo DT of depth $d$, then it makes at most $(2\log n)+2$ recursive calls to {\bf findLR} with a pseudo DT of depth at most $d-1$, where $n=|E|$. Therefore the number $T(n,d)$ of recursive calls for a pseudo DT of depth $d$ is given by the recursion relation $T(n,d)=(2(\log n)+2)T(n,d-1)$ starting with $T(n,0)=0$. This implies that $T(n,d)\in \bigoh((\log n)^d)$. Finally, the runtime for one recursive call is easily seen to be at most $\bigoh(n\log n)$. Hence, the total runtime of the algorithm is at most $\bigoh((\log n)^dn\log n)$, which because (see also~\cite[Exercise 3.18]{CyganFKLMPPS15}): 
+The running time of Algorithm~\ref{alg:findLR} can now be obtained by multiplying the number of recursive calls to {\bf findLR} with the time required for one recursive call. To obtain the number of recursive calls first note that if {\bf findLR} is called with pattern of depth $d$, then it makes at most $(2\log n)+2$ recursive calls to {\bf findLR} with a pattern of depth at most $d-1$, where $n=|E|$. Therefore the number $T(n,d)$ of recursive calls for a pattern of depth $d$ is given by the recursion relation $T(n,d)=(2(\log n)+2)T(n,d-1)$ starting with $T(n,0)=0$. This implies that $T(n,d)\in \bigoh((\log n)^d)$. Finally, the runtime for one recursive call is easily seen to be at most $\bigoh(n\log n)$. Hence, the total runtime of the algorithm is at most $\bigoh((\log n)^dn\log n)$, which because (see also~\cite[Exercise 3.18]{CyganFKLMPPS15}): 
 \begin{equation*}
 (\log n)^d \leq 2^{d^2/2}2^{\log \log d^2/2}=2^{d^2/2}n^{\littleoh(1)}
 \end{equation*}
@@ -1736,26 +1746,26 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 \caption{Algorithm to compute the triple $(E_v,th_L(v),th_R(v))$ for every node $v\in V(T)$.}\label{alg:findLR}
 \small
 \begin{algorithmic}[1]
-\INPUT CI $E$, pseudo DT $T$, $S$-feature assignment $\alpha$ for $T$
+\INPUT CI $E$, pattern $(T,\phi)$
 \OUTPUT a triple $(E_v,th_L(v),th_R(v))$ for every node $v\in V(T)$.
-\Function{\textbf{findLR}}{$E$, $T$, $\alpha$}
+\Function{\textbf{findLR}}{$E$, $(T,\phi)$}
 \State $r \gets$ ``root of $T$''
 \If{$r$ is a leaf}\label{findLRLS}
 \State \Return $(E,\NULL{},\NULL{})$ %\Comment{``$()$'' is the empty assignment}
 \EndIf\label{findLRLE}
 \State $c_{\ell},c_r \gets$ ``left child and right child of $r$''
-\If{$r$ has an unknown feature} \label{findLRUFS}
-\State $\thres_{\ell} \gets$ \Call{findLR}{$E$, $T_{c_{\ell}}$, $\alpha$}
-\State $\thres_r \gets$ \Call{findLR}{$E$, $T_{c_r}$, $\alpha$}
+\If{$r$ is a non-fixed node} \label{findLRUFS}
+\State $\thres_{\ell} \gets$ \Call{findLR}{$E$, $(T_{c_{\ell}},\phi)$}
+\State $\thres_r \gets$ \Call{findLR}{$E$, $(T_{c_r},\phi)$}
 \If{$\thres_{\ell}\neq$ \NULL{} and $\thres_r\neq$ \NULL{}}
 \State \Return $(E,\NULL{},\NULL{})\cup \thres_{\ell}\cup \thres_r$
 \EndIf
 \State \Return \NULL{}
 \EndIf \label{findLRUFE}
-\State $f\gets \alpha(r)$
-\State $(t_\ell,t_r) \gets$ \Call{binarySearch}{$E$, $T$, $\alpha$, $c_{\ell}$, $c_r$, $f$}\label{findLRBS}
-\State $\thres_\ell \gets$ \Call{findLR}{$E[f\leq t_\ell+1]$, $T_{c_{\ell}}$, $\alpha$}
-\State $\thres_r \gets$ \Call{findLR}{$E[f>t_r-1]$, $T_{c_r}$, $\alpha$}\label{findLRSF}
+\State $f\gets \phi(r)$
+\State $(t_\ell,t_r) \gets$ \Call{binarySearch}{$E$, $(T,\phi)$, $f$, $c_{\ell}$, $c_r$}\label{findLRBS}
+\State $\thres_\ell \gets$ \Call{findLR}{$E[f\leq t_\ell+1]$, $(T_{c_{\ell}},\phi)$}
+\State $\thres_r \gets$ \Call{findLR}{$E[f>t_r-1]$, $(T_{c_r},\phi)$}\label{findLRSF}
 \State \Return $(E,t_\ell,t_r) \cup \thres_\ell\cup\thres_r$
 \EndFunction
 \end{algorithmic}
@@ -1765,15 +1775,15 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 \caption{Algorithm to compute the pair $(th_L(r),th_R(r))$ for the root $r$ of $T$} \label{alg:BS}
 \small
 \begin{algorithmic}[1]
-\INPUT CI $E$, pseudo DT $T$, $S$-feature assignment $\alpha$ for $T$, feature $f$ of the root of $T$, left child $c_\ell$ of the root of $T$, right child $c_r$ of the root of $T$
-\OUTPUT maximum threshold $t_\ell$ in $D_E(f)$ for $f$ such that $(T_{c_\ell},\alpha)$ can be extended to a DT for $E[f\leq t_\ell]$ and minimum threshold $t_r$ in $D_E(f)$ for $f$ such that $(T_{c_r},\alpha)$ can be extended to a DT for $E[f>t_r]$
-\Function{\textbf{binarySearch}}{$E$, $T$, $\alpha$, $f$, $c_\ell$, $c_r$}
+\INPUT CI $E$, pattern $(T,\phi)$, feature $f$ of the root of $T$, left child $c_\ell$ of the root of $T$, right child $c_r$ of the root of $T$
+\OUTPUT maximum threshold $t_\ell$ in $D_E(f)$ for $f$ such that $(T_{c_\ell},\alpha)$ can classify every example in $E[f\leq t_\ell]$ and minimum threshold $t_r$ in $D_E(f)$ for $f$ such that $(T_{c_r},\alpha)$ can classify $E[f>t_r]$
+\Function{\textbf{binarySearch}}{$E$, $(T,\phi)$, $f$, $c_\ell$, $c_r$}
 \State $D\gets$ ``array containing all elements in $D_E(f)$ in
 \Statex \quad \quad \quad \quad ascending order''
 \State $L \gets 0$; $R \gets |D_E(f)|-1$; $b\gets 0$ \label{BSS}
 \While{$L \leq  R$}
 \State $m \gets \lfloor(L + R) / 2\rfloor$
-\If{\Call{findTH}{$E[f \leq D[m]]$, $T_{c_\ell}$, $\alpha$} $=$ \TRUE} \label{BSfindTH}
+\If{\Call{findTH}{$E[f \leq D[m]]$, $(T_{c_\ell},\phi)$} $=$ \TRUE} \label{BSfindTH}
 \State $L \gets m + 1$; $b \gets 1$
 \Else
 \State $R \gets m - 1$; $b \gets 0$
@@ -1786,7 +1796,7 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 \State $L \gets 0$; $R \gets |D_E(f)|-1$; $b\gets 0$\label{BST}
 \While{$L \leq  R$}
 \State $m \gets \lfloor(L + R) / 2\rfloor$
-\If{\Call{findTH}{$E[f > D[m]]$, $T_{c_r}$, $\alpha$} $=$ \TRUE}\label{BSfindTH1}
+\If{\Call{findTH}{$E[f > D[m]]$, $(T_{c_r},\phi)$} $=$ \TRUE}\label{BSfindTH1}
 \State $R \gets m - 1$; $b \gets 1$
 \Else
 \State $L \gets m + 1$; $b \gets 0$
@@ -1802,12 +1812,13 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 \end{algorithm}
 
 \begin{algorithm}[h]
-\caption{Algorithm to compute the threshold assignment for a pseudo DT and a feature assignment.}\label{alg:findTH}
+\caption{%Algorithm to compute the threshold assignment for a pseudo DT and a feature assignment.
+}\label{alg:findTH}
 \small
 \begin{algorithmic}[1]
-\INPUT CI $E$, pseudo DT $T$, $S$-feature assignment $\alpha$ for $T$
-\OUTPUT \TRUE~if all examples in $E$ can be correctly classified by $(T,\alpha)$, \FALSE~otherwise
-\Function{\textbf{findTH}}{$E$, $T$, $\alpha$}
+\INPUT CI $E$, pattern $(T,\phi)$
+\OUTPUT \TRUE~if $(T,\phi)$ can classify all examples in $E$, \FALSE~otherwise
+\Function{\textbf{findTH}}{$E$, $(T,\phi)$}
 \State $r \gets$ ``root of $T$''
 \If{$r$ is a leaf}\label{findTHRSS}
 \If{$E$ is not uniform}
@@ -1816,17 +1827,18 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 \State \Return \TRUE
 \EndIf\label{findTHRSE}
 \State $c_\ell,c_r \gets$ ``left child and right child of $r$''
-\If{$r$ has an unknown feature} \label{findTHUFS}
-\State $\thres_\ell \gets$ \Call{findTH}{$E$, $T_{c_\ell}$, $\alpha$}
-\State $\thres_r \gets$ \Call{findTH}{$E$, $T_{c_r}$, $\alpha$}
+\If{$r$ is a non-fixed} \label{findTHUFS}
+\State $\thres_\ell \gets$ \Call{findTH}{$E$, $(T_{c_\ell},\phi)$}
+\State $\thres_r \gets$ \Call{findTH}{$E$, $(T_{c_r},\phi)$}
 \If{$\thres_\ell=$~\TRUE~and $\thres_r=$~\TRUE}
 \State \Return \TRUE
 \EndIf
 \State \Return \FALSE
 \EndIf \label{findTHUFE}
-\State $f\gets \alpha(r)$
-\State $t \gets$ \Call{binarySearch}{$E$, $T$, $\alpha$, $c_\ell$, $f$}\label{findTHBS}
-\State $\thres_r \gets$ \Call{findTH}{$E[f>t]$, $T_{c_r}$, $\alpha$}
+\State $f\gets \phi(r)$
+\State $t \gets$ \Call{binarySearch}{$E$, $(T,\phi)$, $f$, $c_\ell$, $c_r$}\label{findTHBS}
+\State $\thres_\ell \gets$ \Call{findLR}{$E[f\leq t_\ell+1]$, $(T_{c_{\ell}},\phi)$}
+\State $\thres_r \gets$ \Call{findLR}{$E[f>t_r-1]$, $(T_{c_r},\phi)$}\label{findTHSF}
 \If{$\thres_r=$~\FALSE}
 \State \Return \FALSE \label{findTHNu}
 \EndIf
@@ -1837,21 +1849,14 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 
 \subsection{The algorithm}
 
-Now we have computed a set $E_v$ for every node $v\in V(T)$, whether it is a leaf or has a supported or unknown feature. A {\it pool set} for node $v\in V(T)$ is a set $\Pi(v)\subseteq E_v$, such that if every example of $\Pi(v)$ arrives at node $v$ then either
+Now we have computed a set $E_v$ for every node $v\in V(T)$, whether it is a leaf, fixed or non-fixed node. A {\it pool set} for node $v\in V(T)$ is a set $\Pi(v)\subseteq E_v$, such that if every example of $\Pi(v)$ arrives at node $v$ then either
 
 \begin{itemize}
-\item $T$ can not be extended to a DT for $E$, or
-\item there is an node $u\in V(T_v)$ with unknown feature $f_u$ and two elements $e,e'\in \Pi(v)$ such that $f_u$ must distinguish $e$ and $e'$.
+\item $(T_v,\phi)$ can not classify $E_v$, or
+\item for any complete extension $(T_v,\phi^*)$ for $(T_v,\phi)$ that allow to classify $E_v$, there are two elements $e,e'\in \Pi(v)$ and there is a non-fixed node $u$ for $(T,\phi)$ such that $\phi^*(v)$ must distinguish $e$ and $e'$.
 \end{itemize}
 
-For every node $v\in V(T)$, we define $\Pi(v)$ in a leaves-to-root fashion as follows:
-
-\begin{itemize}
-\item[(a)] if $v$ is a negative leaf then $\Pi(v)=\{e^+\}$, where $e^+$ is any example in $E^+\cap E_v$;
-\item[(b)] if $v$ is a positive leaf then $\Pi(v)=\{e^-\}$, where $e^-$ is any example in $E^-\cap E_v$;
-\item[(c)] if $v$ is a supported feature node. Let $c_{\ell}$ and $c_r$ be the left, resp. right, child of $v$, then $\Pi(v)=\Pi(c_{\ell})\cup \Pi(c_r)$;
-\item[(d)] if $t$ is an unknown feature node. Let $c_{\ell}$ and $c_r$ be the left, resp. right, child of $v$, then $\Pi(v)=\Pi(c_{\ell})\cup \Pi(c_r)$.
-\end{itemize}
+For every node $v\in V(T)$, we define $\Pi(v)$ in a leaves-to-root fashion as follows. If $v$ is a negative leaf then $\Pi(v)=\{e^+\}$, where $e^+$ is any example in $E^+\cap E_v$; similarly, if $v$ is a positive leaf then $\Pi(v)=\{e^-\}$, where $e^-$ is any example in $E^-\cap E_v$. Let $c_{\ell}$ and $c_r$ be the left, resp. right, child of $v$, then $\Pi(v)=\Pi(c_{\ell})\cup \Pi(c_r)$.
 
 Now we want to show that the construction of $\Pi$ is correct, that is:
 
@@ -1861,7 +1866,11 @@ Now we want to show that the construction of $\Pi$ is correct, that is:
 
 \smallskip
 \noindent
-We start proving $(a)$: let $v$ be a negative leaf and suppose there is an element $e^+\in E^+\cap E_v$, then there is no threshold assignment for $T$ that would correctly classify $e$. The correctness for $(b)$ is obtained by a symmetric argument. Let us consider $(c)$ and let $f\in S$ be the feature at $v$: thanks to the preprocessing, for every $e_{\ell}\in \Pi(c_{\ell})$ and $e_r\in \Pi(c_r)$, we know that $f(e_{\ell})<f(e_r)$. This means that either every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is sent to $c_r$: by induction the statement is proven. Finally we consider statement $(d)$. If every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is set to $c_r$, the statement is proven by induction. Otherwise, there is an example $e_{\ell}\in \Pi(c_{\ell})$ that ends in $c_r$ and an example $e_r\in \Pi(c_r)$ that ends in $c_{\ell}$. This means $v$ is an unknown feature node in $T_t$ that distinguishes two examples in $\Pi(v)$, namely $e_{\ell}$ and $e_r$. This proves Claim 2.
+We show this by induction on the depth of $(T,\phi)$. We start proving the base case: let $(T,\phi)$ be a pattern of depth 0. Let $v$ be node of $T$ and suppose it is negative leaf. Since $E_v=E$ is not uniform, there is an example $e^+\in E^+\cap E_v$ and there is no threshold assignment for $T_v$ that would classify $e$. The case $v$ is a positive leaf is similar. 
+
+Now, let $(T,\phi)$ be a pattern of depth at least one and left $v$ root of $T$ with $c_{\ell}$ and $c_r$ as the left and right child.
+Suppose first that $v$ is a fixed node and let $f=\phi(v)$. Thanks to Lemma(ADD REFERENCE), for every $e_{\ell}\in \Pi(c_{\ell})$ and $e_r\in \Pi(c_r)$, we know that $f(e_{\ell})<f(e_r)$. This means that either every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is sent to $c_r$: the statement is proven by induction since $(T_{c_{\ell}},\phi)$ and $(T_{c_r},\phi)$ have smaller depth. 
+Finally suppose $v$ is a non-fixed node. Let us consider any complete extension $(T_v,\phi^*)$ of $(T_v,\phi)$. For any threshold possible for $\phi^*(v)$, we have one of the following three cases: every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is set to $c_r$ or there is an example $e_{\ell}\in \Pi(c_{\ell})$ that ends in $c_r$ and an example $e_r\in \Pi(c_r)$ that ends in $c_{\ell}$. In the first two cases the statement is again proven by induction since $(T_{c_{\ell}},\phi)$ and $(T_{c_r},\phi)$ have smaller depth. In the third case, $v$ is a non-fixed node for $(T,\phi)$ such that $\phi^*(v)$ distinguishes $e_{\ell}$ and $e_r$. This proves Claim 2.
 
 \smallskip
 In particular, let us consider the pool set $\Pi(r)$ for the root $r$ of $T$, we define $\Pi(T):=\Pi(r)$. In this way given $T$, we are able to compute the corresponding pool set.
@@ -1873,13 +1882,13 @@ There is a $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$ time algorithm th
 \end{lemma}
 
 \begin{proof}
-Let $E$ be a CI, a support set $S$ for $E$ and an integer $s$. We start by enumerating all partial DTs of size at most $s$ such that the set of supported features is exactly $S$. For every such partial DT $T$, thanks to Lemma~\ref{lem:LR}, we are able to obtain the set $E_v$ for every node $v\in V(T)$ in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$. In a leaves-to-root fashion, we are able to compute the set $\Pi(v)$ for every node $v\in V(T)$ and ultimately $\Pi(T)$.
+Let $E$ be a CI, a support set $S$ for $E$ and an integer $s$. We start by enumerating all patterns $(T,\phi)$ of size at most $s$ such that $Im(\phi)=S\cup \{q\}$. For every such pattern $(T,\phi)$, thanks to Lemma~\ref{lem:LR}, we are able to obtain the set $E_v$ for every node $v\in V(T)$ in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$. In a leaves-to-root fashion, we are able to compute the set $\Pi(v)$ for every node $v\in V(T)$ and ultimately $\Pi(T)$.
 
-Let $R(T)$ be the set of all the features in $feat(E)\setminus S$ that distinguish at least two examples in $\Pi(T)$. The algorithm returns the set of features $R_0$ obtained by considering the union of the sets $R(T)$ over all these partial DTs $T$ for $S$ of size at most $s$. By Lemma~\ref{lem:enum-dt-fund} this algorithm runs in time $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$.
+Let $R(T)$ be the set of all the features in $feat(E)\setminus S$ that distinguish at least two examples in $\Pi(T)$. The algorithm returns the set of features $R_0$ obtained by considering the union of the sets $R(T)$ over all these patterns $(T,\phi)$ of size at most $s$. By Lemma~\ref{lem:enum-dt-fund} this algorithm runs in time $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$.
 
 Now we show the size of $R_0$ is bounded. By construction $|\Pi(T)|\leq |T|\leq s$; for every two distinct elements of $\Pi(T)$, by definition, there are at most $\delta_{\max}$ features that distinguish such two examples. This means that $|R(T)|\leq s^2\delta_{\max}$ and so $R_0$ has size at most $s^{2s+3}\delta_{\max}$.
 
-We are left to show that $R_0$ is a branching set for $S$. Let $T$ be a minimal DT for $E$ such that $S\subset feat(T)$ and suppose by contradiction that $R_0\cap (feat(T)\setminus S=\emptyset$. In particular we have that $R(T)\cap (feat(T)\setminus S=\emptyset$. This means that every unknown feature of $T$ does not distinguish any two elements in $\Pi(T)$. By Claim 2, $\Pi(T)=\Pi(r)$, where $r$ is the root of $T$, is a pool set and so $T$ can not be extended to a DT for $E$, which is a contradiction.
+We are left to show that $R_0$ is a branching set for $S$. Let $(T,\phi)$ be a minimal DT for $E$ such that $S\subset feat(T)$ and suppose by contradiction that $R_0\cap (feat(T)\setminus S)=\emptyset$. In particular we have that $R(T)\cap (feat(T)\setminus S)=\emptyset$. This means that every non-fixed node of $(T,\phi)$ does not distinguish any two elements in $\Pi(T)$. By Claim 2, $\Pi(T)=\Pi(r)$, where $r$ is the root of $T$, is a pool set and so $(T,\phi)$ can not classify $E$, which is a contradiction.
 \end{proof}
 
 \begin{lemma}[\cite{OrdyniakSzeider21}]\label{cor:mss-enum}
