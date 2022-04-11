@@ -1625,11 +1625,9 @@ Now we look at the root node $r$ of $B$. We go through all the records of $\math
 
 \section{An FPT-Algorithm for bounded solution size and $\delta_{max}$.}
 
-In the following, let $E$ be a CI and $q\not\in feat(E)$. A {\it pattern} is a pair $(T,\phi)$ where $T=(V,A)$ is a rooted subcubic tree, every leaf-node is either a {\it positive} or {\it negative} leaf and $\phi$ maps every inner-node $v\in V(T)$ to an element of $feat(E)\cup \{q\}$. We say that $\phi$ is the {\it trait} function of $T$ and $\phi(v)$ is the trait of node $v\in V(T)$. Finally we say that a node $v\in V(T)$ is a {\it fixed node} if $\phi(v)\in feat(E)$.
+In the following, let $E$ be a CI and $q\not\in feat(E)$. A {\it decision tree pattern}, or simply a {\it DT pattern}, $T$ is a rooted subcubic tree, where every leaf-node is either a {\it positive} or {\it negative} leaf and every non-leaf node is labelled with a feature in $feat(E)\cup \{q\}$. Finally we say that a node $v\in V(T)$ is a {\it fixed node} if $\phi(v)\in feat(E)$.
 
-%We refer to pattern $T$ insteat of $(T,\phi)$ only in the cases where there is no ambiguity. %Note a pattern $(T,\phi)$ is a decision tree if and only if pattern $(T,\phi)$.
-
-A pattern $(T,\phi^*)$ is an {\it improvement} for a pattern $(T,\phi)$ if $\phi^*(v)=\phi(v)$ for every fixed node $v$ of $(T,\phi)$. 
+A DT pattern $T^*)$ is an {\it improvement} for a pattern $T$ if $lab_{T}(v)=lab_{T^*}(v)$ for every fixed node $v$ of $T$. 
 A {\it complete improvement} $(T,\phi^*)$ for $(T,\phi)$ is an improvement such that $Im(\phi^*)\subseteq feat(E)$. 
 Note that any complete improvement of a pattern is a decision tree.
 Given a pattern $(T,\phi)$, a {\it threshold assignment} of $(T,\phi)$ is a function $\psi$ that maps every fixed node $v\in V(T)$ to a rational number $\psi(v)$.

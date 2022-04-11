@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  11 APR 2022 13:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  11 APR 2022 16:38
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1518,7 +1518,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [23.24]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-732.
+730.
  (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1533,7 +1533,7 @@ Package microtype Info: Character `029' is missing
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 1751.
+(Font)              using `T1/lmr/bx/n' instead on input line 1749.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1543,19 +1543,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [25.26] [26.27] [27.28]
 
-LaTeX Warning: Reference `lem:dtthres' on page 28 undefined on input line 1910.
+LaTeX Warning: Reference `lem:dtthres' on page 28 undefined on input line 1908.
 
 
 
-LaTeX Warning: Reference `obs:dt-ss' on page 28 undefined on input line 1912.
+LaTeX Warning: Reference `obs:dt-ss' on page 28 undefined on input line 1910.
 
 [28.29]
 
 LaTeX Warning: Reference `the:dt-opt-var' on page 29 undefined on input line 19
-14.
+12.
 
 
-LaTeX Warning: Reference `lem:dtthres' on page 29 undefined on input line 1950.
+LaTeX Warning: Reference `lem:dtthres' on page 29 undefined on input line 1948.
 
 
 [29.30] (main-TW.bbl [30.31])
@@ -1580,11 +1580,11 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: 6F5844502C48505355CC19D35D9B23AD;3406.
  ) 
 Here is how much of TeX's memory you used:
- 38404 strings out of 479618
- 744749 string characters out of 2864076
+ 38402 strings out of 479618
+ 744727 string characters out of 2864076
  1087924 words of memory out of 3000000
  54154 multiletter control sequences out of 15000+200000
- 598920 words of font info for 403 fonts, out of 3000000 for 9000
+ 598790 words of font info for 402 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1876b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1628,7 +1628,7 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (32 pages, 849159 bytes).
+Output written on main-TW.pdf (32 pages, 848876 bytes).
 PDF statistics:
  628 PDF objects out of 1000 (max. 8388607)
  142 named destinations out of 1000 (max. 500000)
