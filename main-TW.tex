@@ -455,7 +455,7 @@ the same label in $(G_b,\lab_b)$ and $w \in V(G) \setminus V_b$, then~$u$ is adj
 
 %KD: TODO: Compare to clique-width/rank-width.
 Computing the NLC-width of a graph is NP-hard~\cite{GW05}.
-However, it is sufficient to use the algorithm of Seymour and Oum~\cite{OS06}, which returns a $c$-expression for some $c\leq 2^{3\cw(G)+2}-1$ in $O(n^9\log n)$ time, or the later improvements of Oum~\cite{Oum08} and Hlin\v{e}n\'y and Oum~\cite{HO08} that provide cubic-time algorithms which yield a $c$-expression for some $c\leq 8^{\cw(G)}-1$ and $c\leq 2^{\cw(G)+1}-1$, respectively.
+However, it is sufficient to use the algorithm of Seymour and Oum~\cite{OS06}, which returns a $c$-expression for some $c\leq 2^{3\cw(G)+2}-1$ in $O(n^9\log n)$ time, or the later improvements of Oum~\cite{Oum08} and Hlin\v{e}n\'y and Oum~\cite{HO08} that provide cubic-time algorithms which yield a $c$-expression for some $c\leq 8^{\cw(G)}-1$ and $c\leq 2^{\cw(G)+1}-1$, respectively.\todo{should it be $\nlcw$, or should we define $\cw$ and say it's approximation?}
 
 \subsection{Classification Problems} 
 An {\it example} $e$ is a function $e:\feat(e) \rightarrow \{0,1\}$ defined on a finite set $\feat(e)$ of {\it features}. For a set $E$ of examples, we put $\feat(E)=\bigcup_{e\in E} \feat(e)$. We say that two examples $e_1,e_2$ {\it agree} on a feature $f$ if $f \in \feat(e_1)$, $f\in \feat(e_2)$ and $e_1(f)=e_2(f)$. If $f \in \feat(e_1)$, $f \in \feat(e_2)$ but $e_1(f)\neq e_2(f)$, we say that the examples {\it disagree on $f$}.
@@ -612,8 +612,6 @@ $V_b$.
 \newcommand{\anc}{\textit{\textup{anc}}}
 \newcommand{\AL}{A}
 
-\note{definition of new features}
-
 Consider a node $b$ of $B$. 
 Let $L$ be a set of labels (usually $L=[k]$). For a subset
 $L'\subseteq L$, we denote by $\overline{L'}$ the set $L\setminus L'$.
@@ -627,50 +625,50 @@ call an \emph{future (or introduce) feature}. Let $\SoFF{L}=\SB f_l \SM l \in L\
 set of all forgotten features and let $\SoIF{L}=\SB f_{L'} \SM L' \subseteq
 L\SE$ be the set of all future features w.r.t. $L$. To distinguish
 features in $\feat(E)$ from forgotton and future features, we will
-refer to them as \emph{real features}.
+sometimes refer to them as \emph{real features}.
 
 
-Let $T$ be a decision tree and $t \in V(T)$. We say that a node $t_A$
-is a \emph{left/right anchestor} of $t$ if $t$ is contained in the
-subtree of $T$ rooted at the left/right child of $t_A$. We denote by
-$\anc_L(t)$/$\anc_R(t)$ the set of all left/right ancestors of $t$ in
+Let $T$ be a DT and $t \in V(T)$. We say that a node $t_A$
+is a \emph{left (right) anchestor} of $t$ if $t$ is contained in the
+subtree of $T$ rooted at the left (right) child of $t_A$. We denote by
+$\anc_T^L(t)$ ($\anc_T^R(t)$), or simply $\anc^L(t)$ ($\anc^R(t)$) if
+$T$ is clear from the context, the set of all left (right) ancestors of $t$ in
 $T$. We denote by $\anc(t)$ the set of all \emph{ancestors} of $t$ in
-$T$, i.e., $\anc(t)=\anc_L(t)\cup\anc_R(t)$.
+$T$, i.e., $\anc(t)=\anc^L(t)\cup\anc^R(t)$.
 
-Let $T$ be a decision tree and $t \in V(T)$ be an inner node of
+Let $T$ be a DT and $t \in V(T)$ be an inner node of
 $T$ with left child $l$, right child $r$, and parent $p$.
 We say that $T'$ is obtained from $T$ after
-\emph{left/right-contracting $t$} if $T'$ is the decision tree
+\emph{left (right) contracting $t$} if $T'$ is the DT
 obtained from $T$ after removing $t$ together with all nodes in $T_r$/$T_l$
 and adding the edge between $p$ and $l$/$r$; if $t$ has no parent then no
 edge is added.
 
-We say that $T$ is a \emph{decision tree}
-for $b$, if $T$ is a decision tree for $\exam(b)$ that uses only the
+We say that $T$ is a \emph{DT for $b$}, if $T$ is a DT for $\exam(b)$ that uses only the
 features in $\feat(b)$. We say that an inner node $t \in V(T)$ is
-\emph{left/right redundant} in $T$ if $\feat(t) \in
-\feat(\anc_L(t))$/$\feat(t) \in \feat(\anc_R(t))$. We say that $t$ is
+\emph{left (right) redundant} in $T$ if $\feat(t) \in
+\feat(\anc^L(t))$ ($\feat(t) \in \feat(\anc^R(t))$). We say that $t$ is
 redundant if it is either left redundant or right redundant. Intuitively, a node $t$
-is left/right redundant if all examples that end up at $t$, i.e., the
-examples $E_T(t)$, go the left/right child of $t$ in $T$. Therefore,
-if $t$ is left/right redundant in $T$, then the tree obtained after
-left/right-contracting $t$ is still a decision tree. 
+is left (right) redundant if all examples that end up at $t$, i.e., the
+examples in $E_T(t)$, go the left (right) child of $t$ in $T$. Therefore,
+if $t$ is left (right) redundant in $T$, then the tree obtained after
+left (right) contracting $t$ is still a DT. 
 
-We say that $T$ is a \emph{decision tree
-  template} for $b$ if $T$ is a decision tree for $\exam(b)$ that can
-additionally use the future features in $I_{[k]}$. Here, we assume that a
-future feature $f_{L'}\in I_{[k]}$ for some $L'\subseteq [k]$
+We say that $T$ is a \emph{DT
+  template} for $b$ if $T$ is a DT for $\exam(b)$ that can
+additionally use the future features in $\SoIF{[k]}$. Here, we assume that a
+future feature $f_{L'}\in \SoIF{[k]}$ for some $L'\subseteq [k]$
 is $1$ at an example $e \in \exam(b)$ if $\lab_b(e) \in L'$ and
-otherwise it is $0$. We say that a decision tree template is
-\emph{complete} if it does not use any features in $I_{[k]}$,
+otherwise it is $0$. We say that a DT template is
+\emph{complete} if it does not use any features in $\SoIF{[k]}$,
 otherwise we say that it is \emph{incomplete}. Informally, the role of
-the future features in a decision tree template is provide
+the future features in a DT template is to provide
 spaceholders for the features in $\feat(E)\setminus \feat(b)$. Because
 all of those features behave the same w.r.t. to examples in $\exam(b)$
 having the same label, they can be charactericed by the set of labels
 for which those features are $1$.
-Let $T$ be a decision
-tree template for $b$ and let $t \in V(T)$. We denote by $\AL(t)$ the
+Let $T$ be a DT template for $b$ and let $t \in V(T)$. We denote by $\AL_T(t)$
+(or short $\AL(t)$ if $T$ is clear from the context) the
 set of \emph{filtered labels} for $t$, i.e.,
 $\AL(t)=(\bigcap_{f_{L'} \in \feat(\anc_L(t))\cap \SoIF{[k]}}\overline{L'})
 \cap (\bigcap_{f_{L'} \in \feat(\anc_R(t))\cap
@@ -678,121 +676,273 @@ $\AL(t)=(\bigcap_{f_{L'} \in \feat(\anc_L(t))\cap \SoIF{[k]}}\overline{L'})
 \in [k]$ such that an example $e$ with label $l$ would end up at $t$,
 if only the effect of the future features on the path to $t$ is
 considered. We say that $t$ with $f_{L'}=\feat(t) \in \SoIF{[k]}$ is
-\emph{left/right redundant} in $T$ if $\AL(t) \subseteq
-L'$/$\AL(t)\subseteq \overline{L'}$. We say that $t$ is
-\emph{redundant} if it is either left-redundant or
-right-redundant. Intuitively, $t$ is left/right redundant if all
+\emph{left (right) redundant} in $T$ if $\AL(t) \subseteq
+L'$ ($\AL(t)\subseteq \overline{L'}$). We say that $t$ is
+\emph{redundant} if it is either left redundant or
+right redundant. Intuitively, $t$ is left (right) redundant if all
 examples that can reach $t$ (considering the influence of the future
-features only) end up in the left/right child of $t$. This also
-implies that if $t$ is left/right redundant then the decision tree
-obtained after left/right contracting $t$ is equivalent with $T$ (all examples
-end up in the same leaves).
+features only) end up in the left (right) child of $t$. This also
+implies that if $t$ is left (right) redundant, then the DT template
+obtained after left (right) contracting $t$ is equivalent with $T$ (all examples
+end up in the same leaves). Finally, let us extend the definition
+$E_T(t)$ from DTs to DT templates.
+\newcommand{\DTnass}{\tau}
+That is, for a DT template $T$ for a
+node $b$, a node $t \in V(T)$, and a set of examples $E' \subseteq
+\exam(b)$, we denote by $E_T(E',t)$ (or $E_T(t)$ if $E'=\exam(b)$) the set of examples $e \in E'$
+with $\lab_b(e) \in A(t)$ and $e \in E'[\DTnass(t)]$, where $\DTnass(t)$ is
+the assignment of the features in $\feat(b)$ along the path from the
+root of $T$ to $t$.\note{define $\tau$ in prelims}
 
-We say that $T$ is a \emph{decision tree skeleton} for $b$ if $T$ is a
-decision tree that can only use features in $\SoFF{[k]}\cup
+We say that $T$ is a \emph{DT skeleton} for $b$ if $T$ is a
+DT that can only use features in $\SoFF{[k]}\cup
 \SoIF{[k]}$. Note that because of the features $\SoFF{[k]}$, whose
 behaviour w.r.t. the examples in $\exam(b)$ is not defined, the
 behaviour w.r.t. the examples in $\exam(b)$ of such a DT skeleton is
 not necessarily defined. Nevertheless, the behaviour of a feature $f_l$
 in $\SoFF{[k]}$ is well-defined w.r.t. to the examples in
 $\exam(E)\setminus \exam(b)$, i.e., it behaves the same as any feature
-in $\feat(b)$ with label $l$. Intuitively, decision tree skeletons are
-obtained from decision tree templates after replacing every feature
-$f$ in $\feat(b)$ with its label $\lab_b(f)$. This allows us to
-further compress the information contained in decision tree templates,
-while still keeping the information about how the decision tree
-template behaves w.r.t. future examples in $\exam(b)$. In particular,
-decision tree skeletons will form the main information stored by our
+in $\feat(b)$ with label $l$. Intuitively, DT skeletons are
+obtained from DT templates after replacing every feature
+$f$ in $\feat(b)$ with the forgotten feature $f_{\lab_b(f)}$. This allows us to
+further compress the information contained in DT templates,
+while still keeping the information about how the DT
+template behaves w.r.t. future examples in $E$. In particular,
+DT skeletons will form the main information stored by our
 records. 
 
-Let $T$ be a decision tree skeleton and $t \in V(T)$. Similarily as we
-did for decision tree templates, we say that $T$ is \emph{complete} if
+Let $T$ be a DT skeleton and $t \in V(T)$. Similarily as we
+did for DT templates, we say that $T$ is \emph{complete} if
 it uses no future features and otherwise we say that it is
 incomplete. We say that an inner node $t$ with $f_l=\feat(t)\in
-\SoFF{[k]}$ is \emph{left/right redundant} in $T$ if $f_l \in
-\feat(\anc_L(t))$/$f_l \in \feat(\anc_R(t))$. Similarily, as for
-decision tree (templates), if $t$ is left/right redundant, then we can
-left/right contract $t$ without changing the properties of $T$.
+\SoFF{[k]}$ is \emph{left (right) redundant} in $T$ if $f_l \in
+\feat(\anc^L(t))$ ($f_l \in \feat(\anc^R(t))$). Similarily, as for
+DT (templates), if $t$ with $\feat(t) \in \SoFF{[k]}$ is left (right) redundant, then we can
+left (right) contract $t$ without changing the properties of $T$.
 
 \newcommand{\red}{r}
 
-Let $T$ be a decision tree (skeleton/template). Then, we denote by
-$\red(T)$ the decision tree obtained from $T$ after left/right
-contracting every left/right redundant node of $T$. Note that if $T$
-is a decision tree (skeleton/template) for $b$, then so is $\red(T)$.
-\begin{observation}
-  Let $T$ be a decision tree skeleton/template for $b$. Then, so is $\red(T)$.
-\end{observation}
-\begin{proof}
-  \note{a short proof}
-\end{proof}
-We say that $T$ is \emph{reduced} if $\red(T)=T$.
-\begin{lemma}\label{lem:sizeofreduced}
-  Let $T$ be a reduced decision tree (skeleton/template) using at most
-  $a$ real features, $b$ forgotten features, and $c$ future
-  features. Then, $T$ has size at most $?$.
+Let $T$ be a DT (skeleton/template). Then, we denote by
+$\red(T)$ the DT obtained from $T$ after left (right)
+contracting every left (right) redundant node of $T$. The following
+lemma shows that $\red(T)$ is well-defined, i.e., the order in
+which the left (right) contractions are performed does not influence the
+result.
+\begin{lemma}\label{lem:red-welldef}
+  Let $T$ be a DT (skeleton/template), let $t \in V(T)$ be a
+  left (right) redundant node in $T$, and let $T'$ be the DT
+  (skeleton/template) obtained from $T$ after left (right) contracting
+  $t$. Then, a node $t' \in V(T')$ is left (right) redundant in $T'$ if
+  and only if $t'$ is left (right) redundant in $T$.
 \end{lemma}
 \begin{proof}
-  \note{todo}
+  Clearly, if $t'$ is left (right) redundant in $T'$, then the same is
+  true in $T$; this is because if $t''$ is a left (right) ancestor of
+  $t'$ in $T'$, then the same holds in $T$. So suppose that $t'$ is
+  left (right) redundant in $T$. If $\feat(t')$ is a real or forgotton
+  feature, then $t'$ is left (right) redundant in $T$ because of
+  some left (right) ancestor $t_A$ of $t'$ in $T$ with
+  $\feat(t_A)=\feat(t')$. If $t_A\neq t$, then $t'$ is also left (right)
+  redundant in $T'$ (because $t_A$ is also in $T'$). Otherwise, $t_A=t$ and
+  therefore $t$ must also be left (right) redundant in $T$; because
+  otherwise $t'$ was removed when $t$ was contracted. Therefore, $t$
+  is left (right) redundant in $T$ because of some left (right) ancestor $t_A'$ of
+  $t$ in $T$ with $\feat(t_A')=\feat(t)=\feat(t')$, which implies that
+  $t'$ is left (right) redundant in $T'$ because of $t_A'$.
+
+  If, on the other hand, $\feat(t')$ is a future feature $f_{L'}$, then $A_T(t')
+  \subseteq \overline{L'}$ ($A_T(t') \subseteq L'$). We will show that
+  $A_T(t')=A_{T'}(t')$, which shows that $t'$ remains left (right)
+  redundant in $T'$. This clearly holds if $\feat(t)$ is not a
+  future feature. So suppose that $\feat(t)=f_L$. Then, because $t$ is
+  left (right) redundant in $T$ (because otherwise $t'$ would have been
+  removed from $T$ when contracting $t$), we have that $A_T(t)
+  \subseteq \overline{L}$ ($A_T(t) \subseteq L$). Therefore,
+  $A_T(t)=A_T(t)\cap \overline{L}$ ($A_T(t)=A_T(t)\cap L)$, which
+  shows that $t$ has no influence on $A_T(t')$ and therefore
+  implies that $A_T(t')=A_{T'}(t')$.
 \end{proof}
 
-\note{definition of relabelling}
+We now show that $\red(T)$ shares certain properties with $T$. In
+particular, the first observation shows that if $T$
+is a DT template for $b$, then so is $\red(T)$.
+\begin{observation}\label{obs:dttred}
+  Let $T$ be a DT template for $b$, then so is
+  $\red(T)$. 
+\end{observation}
+\begin{proof}
+  It suffices to show that if $t$ is left (right) redundant in $T$ and
+  $e$ is in $E_T(t)$, then $e$ goes to the left (right) child of $t$ in
+  $T$. If $\feat(t)\in \feat(b)$, then $t$ is left (right) redundant
+  because of some left (right) ancestor $t'$ with
+  $\feat(t')=\feat(t)$. Moreover, because $e\in E_T(t)$, $e$ went to
+  the left (right) child of $t'$ and therefore $e$ goes to the
+  left (right) child of $t$ (because $\feat(t)=\feat(t')$). If, on the
+  other hand, $\feat(t)$ is some future feature $f_L$, then $A(t)
+  \subseteq \overline{L}$ ($A(t)\subseteq L$) and because $e \in
+  E_T(t)$, also $\lab_b(e) \in A(t)$. Therefore, $e$ goes to the left
+  (right) child of $t$. 
+\end{proof}
+
+The second observation shows the similarity in behaviour of $T$ and
+$\red(T)$ with respect to future examples in $E\setminus \exam(b)$.
+\begin{observation}\label{obs:dtsred}
+  Let $T$ be a DT (skeleton/template) for $b$, and let $e$ be an
+  example in $E\setminus \exam(b)$ that is correctly classified by
+  $T$. Then, $e$ is also correctly classified by $\red(T)$. 
+\end{observation}
+\begin{proof}
+  The proof is very similar to the proof of
+  Observation~\ref{obs:dttred}. That is, again it suffices to show
+  that if $t$ is left (right) redundant in $T$ and
+  $e$ goes to $t$, then $e$ goes to the left (right) child of $t$ in
+  $T$. The proof is essentially the same as the proof in 
+  Observation~\ref{obs:dttred} for the case that $\feat(t)$ is a real
+  feature or a future feature. Moreover, if $\feat(t)$ is a forgotten
+  feature $f_l$, then $t$ is left (right) redundant
+  because of some left (right) ancestor $t'$ with
+  $\feat(t')=\feat(t)=f_l$. Moreover, because $e$ goes to $t$, $e$ went to
+  the left (right) child of $t'$ and therefore $e$ goes to the
+  left (right) child of $t$ (because $e$ behaves in the same way
+  w.r.t. every feature in $V_b$ that has the same label).
+\end{proof}
+
+
+Before we define our records and their semantics, we first show a
+bound on the number of DT skeletons (and the time to enumerate those)
+as this will allow us to obtain a similar bound for the number of records.
+We say that $T$ is \emph{reduced} if $\red(T)=T$.
+\begin{observation}\label{obs:DTSsize}
+  Let $T$ be a reduced DT skeleton whose forgotton features use a set
+  of at most $k_F$ labels and whose future features use a set of at
+  most $k_I$ labels. Then, $T$
+  has height at most $k_F+k_I+1$ and size at most $2^{k_F+k_I+1}$.
+\end{observation}
+\begin{proof}
+  Consider a root-to-leaf path $P$ in $T$. Then, every forgotten
+  feature appears at most once on $P$; because the
+  second occurrence of such a feature would necessarily be
+  redundant. Therefore, $P$ can contain at most $k_F$ forgotten
+  features. Similarily, $P$ can contain at most $k_I$ future features,
+  since otherwise one of the future features on $P$ would be
+  redundant. Therefore, $T$ has height at most $k_F+k_I+1$ and therefore
+  size at most $2^{k_F+k_I+1}$.
+\end{proof}
+We obtain the following corollary as a special case.
+\begin{corollary}\label{cor:DTSsize}
+  Let $T$ be a reduced DT skeleton for a node $b \in V(B)$. Then, $T$
+  has height at most $2k+1$ and size at most $2^{2k+1}$.
+\end{corollary}
+
+\newcommand{\tfDTsenumE}{(k_F+2^{k_I})^{2^{k_F+k_I+2}+1}}
+\begin{observation}\label{obs:sizeofreduced}
+  The are at most $\tfDTsenumE$ reduced DT skeletons whose forgotton features use a set
+  of at most $k_F$ labels and whose future features use a set of at
+  most $k_I$ labels. Moreover, those can
+  be enumerated in time $\bigoh(\tfDTsenumE)$.
+\end{observation}
+\begin{proof}
+  Because of Observation~\ref{obs:DTSsize} such a DT skeleton has height at most $k_F+k_I+1$ and size
+  at most $2^{k_F+k_I+1}$. Therefore, the statement of the
+  lemma follows from Lemma~\ref{lem:enum-dt-fund} by setting $a=k_F+2^{k_I}$
+  and $s=2^{k_F+k_I+1}$.
+\end{proof}
+We obtain the following corollary as a special case.
+\newcommand{\tfDTsenum}{(k+2^k)^{2^{2k+2}+1}}
+\begin{corollary}\label{cor:sizeofreduced}
+  The are at most $\tfDTsenum$ reduced DT skeletons for a node $b \in V(B)$ and those can
+  be enumerated in time $\bigoh(\tfDTsenum)$.
+\end{corollary}
+
 
 \newcommand{\frf}{\alpha}
 \newcommand{\rel}{\eta}
 \newcommand{\rlstan}[1]{\alpha^s_{#1}}
 
-Let $T$ be a decision tree. A \emph{feature relabeling} for $T$ is a function
-$\frf : F' \rightarrow \feat(E) \cup \SoFF{L}\cup \SoIF{L}$, where $F'
-\subseteq \feat(T)$ and $L$ is some set of
-labels (usually $L=[k]$). With a slight abuse of notation, we denote by $\frf(T)$, the decision
-tree obtained after relabeling all features in $F'$ (used by $T$) according to
+Let $T$ be a DT (template/skeleton) using only features in
+$\feat(E)\cup \SoFF{L}\cup SoIF{L}$ for some set $L$ of labels
+(usually $L=[k]$).
+A \emph{feature relabeling} is a function
+$\frf : \feat(E) \cup \SoFF{L} \rightarrow \SoFF{L'}\cup \SoIF{L'}$,
+where $L'$ is some set of labels (usually $L'=L$). With a slight abuse of notation, we denote by $\frf(T)$, the decision
+tree obtained after relabeling all features used by $T$ according to
 $\frf$, i.e., $\frf(T)$ is obtained from $T$ after replacing
 the feature assignment function $\feat_T(t)$ for $T$ with the function
-$\feat_{\frf(T)}(t)$ defined by setting $\feat_{\frf(T)}(t)=\frf(\feat_T(t))$ if $\feat(t)
-\in F'$ and $\feat_{\frf(T)}(t)=\feat_T(t)$, otherwise.
-We say that two feature relabellings $\alpha_1 : F_1 \rightarrow
-\feat(E) \cup \SoFF{L}\cup \SoIF{L}$ and $\alpha_2 : F_2 \rightarrow
-\feat(E) \cup \SoFF{L}\cup \SoIF{L}$ are \emph{compatible} if they
-agree on their shared domain $F_1\cap F_2$.
+$\feat_{\frf(T)}(t)$ defined by setting
+$\feat_{\frf(T)}(t)=\frf(\feat_T(t))$ if $\frf$ is defined for $\feat(t)$
+and $\feat_{\frf(T)}(t)=\feat_T(t)$, otherwise.
+We say that two feature relabellings $\alpha_1$ and $\alpha_2$ are \emph{compatible} if they
+agree on their shared domain.
 % and we denote by
 % $\alpha_1\cup \alpha_2$
 % the feature labelling $\alpha_1\circ \alpha_2=\alpha_2\circ \alpha_2$.
 
 We denote by
 $\rlstan{b}$ the \emph{standard feature relabelling} for $b$, i.e., the function $\rlstan{b} : \feat(b)\rightarrow
-[k]$ defined by setting $\rlstan{b}(f)=\lab_b(f)$ for every $f \in \feat(b)$.
+\SoFF{[k]}$ defined by setting $\rlstan{b}(f)=f_{\lab_b(f)}$ for every $f \in \feat(b)$.
 
-\note{Semantics of records}
+We now show an important property on the interchangebility of feature relabelings and
+reductions. That is, we show in Lemma~\ref{lem:frlred} below that the effect
+of any sequence of feature relabellings and reductions that ends with
+the reduction operation ($\red()$) is the same as the effect of the
+sequence that contains the same relabelling operations followed by one
+reduction operation at the end. To show this property, we need the
+following auxiliary lemma.
+\begin{lemma}\label{lem:relabRed}
+  Let $T$ be a DT (template/skeleton) for a node $b \in
+  V(B)$ and let $\alpha$ be a feature relabelling. If a node
+  $t\in V(T)$ is left (right) redudant in $T$, then it is also
+  left (right) redundant in $\alpha(T)$.
+\end{lemma}
+\begin{proof}
+  We distinguish the following two cases. If $\feat(t) \in \feat(b) \cup \SoFF{[k]}$, then
+  $t$ is left (right) redundant in $T$ because of some left (right) ancestor $t'$ of $t$ in $T$
+  with $\feat(t)=\feat(t')$. Because
+  $\alpha(\feat(t))=\alpha(\feat(t'))$, we obtain that $t$ is also
+  left (right) redundant in $\alpha(T)$ because of $t'$. If, on the other
+  hand, $\feat(t) \in \SoIF{[k]}$, then $t$ is left (right) redundant in
+  $T$ because of some set $A$ of ancestors $t_A$ with $\feat(t_A) \in
+  \SoIF{[k]}$. Because the domain of $\alpha$ does
+  not include future features, it follows that $\alpha$ does not change the feature assignment
+  for $t$ nor for its ancestors in $A$, and therefore $t$ is also
+  left (right) redundant in $\alpha(T)$.
+\end{proof}
+
+\begin{lemma}\label{lem:frlred}
+  Let $T$ be a DT (template/skeleton) and let $\alpha$ be a
+  feature relabelling. Then, $\red(\alpha(T))=\red(\alpha(\red(T)))$.
+\end{lemma}
+\begin{proof}
+  Let $T'$ be the DT (template/skeleton) obtained from $\alpha(T)$
+  after left (right) contracting every node $t$ that is left (right)
+  redundant in $T$; note that such a node $t$ is also left (right)
+  redundant in $\alpha(T)$ because of Lemma~\ref{lem:relabRed}. Then,
+  $T'=\alpha(red(T))$ and moreover because of
+  Lemma~\ref{lem:red-welldef} (and using the fact that every node $t$
+  that is left (right) redundant in $T$ is so in $\alpha(T)$), a node
+  $t \in V(T')$ is left (right) redundant in $T'$ if and only if it is
+  so in $\alpha(T)$. Therefore, a node $t$ is left (right) redundant
+  in $\alpha(T)$ if and only if it is left (right) redundant in $T$ or
+  in $\alpha(\red(T))=T'$, which shows that $\red(\alpha(T))=\red(\alpha(\red(T)))$.
+\end{proof}
+
 
 We are now ready to define the records and their semantics. A
 \emph{record} for $b$ is a pair $(T,s)$ such that $T$ is a reduced decision
-tree skeleton for $b$ and $s$ is a natural number. We say that a
+tree skeleton for $b$ and $s$ is a natural number.
+We say that a
+record $(T,s)$ is \emph{semi-valid} for $b$ if there is a (reduced) DT template $T'$ for $b$
+such that $\red(\rlstan{b}(T'))=T$ and $s=|V(T')\setminus V(T)|$.
+We say that a
 record $(T,s)$ is \emph{valid} for $b$ if $s$ is the minimum number
-such that there is a (reduced) decision tree template $T'$ for $b$
-such that $\red(\rlstan{b}(T'))=T$ and $s=|V(T')\setminus V(T)|$. We
+such that $(T,s)$ is semi-valid. We
 denote by $\RRR(b)$ the set of all valid records for $b$. The
-following corollary follows immediately from Lemma~\ref{lem:sizeofreduced}.
+following corollary follows immediately from Corollary~\ref{cor:sizeofreduced}.
 \begin{corollary}
-  $|\RRR(b)|\leq ?$
+  $|\RRR(b)|\leq \tfDTsenum$
 \end{corollary}
 Note that $E$ has a DT of size at most $s$ if and only if $\RRR(r)$
-contains a record $(T,s)$ such that $T$ is complete, where $r$ is the
-root of $B$. \dots
-
-\note{auxilariary properties of feature relabelings and reductions}
-
-\begin{lemma}
-  Let $T$ be a decision tree and let $\alpha$ be a feature relabelling
-  for $T$. Then, $\red(\alpha(T))=\red(\alpha(\red(T)))$.
-\end{lemma}
-
-\begin{observation}
-  Let $T$ be a decision tree and let $\alpha_1$ and $\alpha_2$ be two
-  compatible feature relabelling
-  for $T$. Then, $\alpha_1\alpha_2(T))=\alpha_2\alpha_1(T))$.
-\end{observation}
-
+for the root $r$ of $B$ contains a record $(T,s)$ such that $T$ is complete.
 
 \subsection{Proof to the Main Result}
 
@@ -800,41 +950,40 @@ We will now show that we can compute $\RRR(b)$ for every of the $3$
 node types of a nice $k$-NLC expression tree provided that $\RRR(c)$
 has already been computed for every child $c$ of $b$.
 
+\newcommand{\tfDTsenumLN}{(1+2^{k})^{2^{k+3}+1}}
 \begin{lemma}[leaf node]\label{lem:leaf}
   Let $b\in V(B)$ be a leaf node. Then $\RRR(b)$
-  can be computed in time $??$. %\mathcal{O}(k(2^k+3)2^{k+2})$.
+  can be computed in time $\bigoh(k\tfDTsenumLN)$. 
 \end{lemma}
-
 \begin{proof}
   Let $i(v)$ be the initial $k$-graph associated with $b$. If $v$ is a
   feature, then $\RRR(b)$ contains all records $(T,0)$ such that $T$
-  is a reduced decision tree skeleton for $b$ using only the features in
+  is a reduced DT skeleton for $b$ using only the features in
   $\{f_{\lab(v)}\}\cup \SoIF{[k]}$. The correctness in this case
   follows because $V_b$ contains no examples and therefore every
-  reduced decision tree skeleton constitutes a valid record for
-  $b$. Moreover, the run-time follows from Lemma~\ref{}, since the
-  time required to enumerate all those reduced decision tree skeletons
-  is at most $\bigoh(?)$.
+  reduced DT skeleton constitutes a valid record for
+  $b$. Moreover, the run-time follows from Observation~\ref{obs:sizeofreduced}, since the
+  time required to enumerate all those reduced DT skeletons
+  is at most $\bigoh(\tfDTsenumLN)$.
 
   If, on the other hand $v$ is an example, then $\RRR(b)$ contains all
   records $(T,0)$ such that $T$
-  is a reduced decision tree skeleton for $b$ using only the features in
-  $\SoIF{[k]}$ and which correctly classify $v$. Because of Lemma~\ref{?}, those
-  can be enumerated in time $\bigoh(?)$ and checking for each of those whether it
-  correctly classifies $v$ can be achieved in time $\bigoh(?)$.
-
-  \note{todo: show correctness}
+  is a reduced DT skeleton for $b$ using only the features in
+  $\SoIF{[k]}$ and which correctly classify $v$. Because of Observation~\ref{obs:sizeofreduced}, those
+  can be enumerated in time $\bigoh(\tfDTsenumLN)$ and checking for each of those whether it
+  correctly classifies $v$ can be achieved in time $\bigoh(k)$ because
+  of Observation~\ref{obs:DTSsize}.
 \end{proof}
 
+\newcommand{\tfDTsenumJN}{(2k+2^{k})^{2^{3k+2}+1}}
 \begin{lemma}[join node]\label{lem:join}
-  Let $b\in V(B)$ be a join node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{6k+1})$.
+  \note{todo: simplify the run-time expression}
+  Let $b\in V(B)$ be a join node. Then $\RRR(b)$ can be computed in
+  time $\mathcal{O}(2^{3k+1}\tfDTsenumJN)$.
 \end{lemma}
-
 \begin{proof}
   Let $b_L$ and $b_R$ be the left and right child of $b$ in $B$,
-  respectively.
-
-  Let $M_b$ be the join matrix for the node $b$, i.e., $M_b$ is a
+  respectively. Let $M_b$ be the join matrix for the node $b$, i.e., $M_b$ is a
   $k\times k$ binary matrix. For every label $i\in [k]$, let
   $A_{i,*}=\SB j\in [k] \SM M_b[i,j]=1\SE$ and $A_{*,i}=\SB j\in [k] \SM M_b[j,i]=1\SE$.
 
@@ -844,12 +993,11 @@ has already been computed for every child $c$ of $b$.
   denote by $[k_L]$ be the set $\{1_L,\dotsc,k_L\}$ of (left) labels and
   we denote by $[k_R]$ be the set $\{1_R,\dotsc,k_R\}$ of (right) labels.
 
-  To compute the set $\RRR(b)$ of valid record for $b$, we first
+  To compute the set $\RRR(b)$ of valid records for $b$, we first
   enumerate all reduced DT skeletons $T$ using features in $[k_L]\cup [k_R]
-  \cup \SoIF{[k]}$. Because of Lemma~\ref{lem:reduced-tree-number},
-  those can be enumerated in time $\mathcal{O}((2k+2^k+2)2^{3k+1})$.
-
-  \newcommand{\rltb}{\alpha^{LR\rightarrow}}
+  \cup \SoIF{[k]}$. Because of Observation~\ref{obs:sizeofreduced},
+  those can be enumerated in time $\bigoh(\tfDTsenumJN)$.
+  \newcommand{\rltb}{\alpha_{LR\rightarrow}}
   For every such reduced DT skeleton $T$, we now do the following in
   order to decide whether $T$ gives rise to a valid record for
   $b$. Let $\rltb : \SoFF{[k_L]} \cup \SoFF{[k_R]} \rightarrow \SoFF{[k]}$ 
@@ -859,8 +1007,8 @@ has already been computed for every child $c$ of $b$.
   % We now check whether $\hat{T}=\rltb(T)$ contains any redundant
   % nodes. If it does, then we discard $T$ and otherwise we continue as follows.
 
-  \newcommand{\rlL}{\alpha^L}
-  \newcommand{\rlR}{\alpha^R}
+  \newcommand{\rlL}{\alpha_L}
+  \newcommand{\rlR}{\alpha_R}
   Let $\rlL : \SoFF{[k_R]} \rightarrow \SoIF{[k]}$ be the feature relabeling
   that relabels every forgotten feature $f_{i_R} \in \SoFF{[k_R]}$ to the future
   feature $f_{A_{*,i}}$. Let $T_L$ be the reduced DT skeleton obtained
@@ -875,22 +1023,26 @@ has already been computed for every child $c$ of $b$.
   $\rltb$ and then reducing the
   resulting DT skeleton, i.e., $T_R=\red(\rltb(\rlR(T)))$.
 
-  Let $\hat{T}=\rltb(T)$ and $\hat{s}=|V(T)\setminus V(\hat{T})|$.
+  Let $\hat{T}=\red(\rltb(T))$ and $\hat{s}=|V(T)\setminus V(\hat{T})|$.
   We now check whether there are records $(T_L,s_L) \in \RRR(b_L)$ and
   $(T_R,s_R) \in \RRR(b_R)$. If not we discard $T$ and if yes, then we
   add the record $(\hat{T},s_L+s_R+\hat{s})$ to $\RRR(b)$. This completes the
   description about how the records $\RRR(b)$ are computed. Moreover,
   the run-time for computing $\RRR(b)$ can be obtained as
-  follows. First, because of Lemma~\ref{lem:reduced-tree-number}, we
+  follows. First, because of Observation~\ref{obs:sizeofreduced}, we
   can enumerate all reduced DT skeletons $T$ in time
-  $\bigoh((2k+2^k+2)2^{3k+1})$. Moreover, computing $\hat{T}$ and $\hat{s}$
-  can be done in time $\bigoh(|T|)=\bigoh(s)$. Finally, computing $T_L$ and $T_R$ and
+  $\bigoh(\tfDTsenumJN)$.
+  Moreover, computing $\hat{T}$ and $\hat{s}$
+  can be done in time $\bigoh(|T|)=\bigoh(2^{3k+1})$ (using
+  Observation~\ref{obs:DTSsize}).
+  Finally, computing $T_L$ and $T_R$ and
   checking the existence of the records $(T_L,s_L)\in \RRR(b_L)$ and
   $(T_R,s_R)\in \RRR(b_R)$ can be achieved in time
-  $\bigoh(?)$. Therefore, we obtain $\bigoh(?)$ as the total run-time
+  $\bigoh(|T|)=\bigoh(2^{3k+1})$; here we assume that the records in
+  $\RRR(b)$ are stored in an array whose key is $\hat{T}$.
+  Therefore, we obtain $\bigoh(|T|\tfDTsenumJN)=\bigoh(2^{3k+1}\tfDTsenumJN)$ as the total run-time
   for computing $\RRR(b)$.
 
-  \note{old run-time argument below, should be replaced above}
   % Now we want to evaluate the running time of computing
   % $\mathcal{R}(b)$. Every reduced DT $T$ can be enumerated in time
   % $\mathcal{O}((2k+2^k+2)2^{3k+1})$ by
@@ -902,85 +1054,90 @@ has already been computed for every child $c$ of $b$.
   % This means $r \circ p_*$ and $r \circ p'_*$ can be done in $\mathcal{O}(k2^{3k})$ time.
   % % GP: $r$ can be done together with $p_*$ as we can relabel nodes top-to-bottom and check at the same time if it can be reducde.
 
-  
+
+  % continue here
   We now show the correctness of our construction for $\RRR(b)$, i.e.,
-  we have to show that a record $(T,s)$ is valid if and only if we
+  we have to show that a record is valid if and only if we
   have added such a record according to our construction
-  above.
+  above. For this it suffices to show that a record is
+  semi-valid if and only if we have added such a record according to
+  our construction above. This is because, a valid record $(T,s)$ can
+  be obtained from the set of all semi-valid records $(T,s')$, where
+  $s$ is the minimum $s'$ among all semi-valid records for $T$.
 
   Towards showing the forward direction, suppose that $(\hat{T},s)$ is a
-  valid record in $\RRR(b)$. Therefore, there is a DT template $T'$
-  for $b$ such that $\hat{T}=\red(\rel_{\rlstan{b}}(T'))$ and
+  semi-valid record for $b$. Therefore, there is a DT template $T'$
+  for $b$ such that $\hat{T}=\red(\rlstan{b}(T'))$ and
   $s=|V(T')\setminus V(T)|$.
 
-  Because $\hat{T}$ is obtained from $T'$ by reduction, every node in $\hat{T}$
-  corresponds to a unique node in $T'$. Therefore, there is an
-  injective function $z_H : V(\hat{T}) \rightarrow V(T')$ mapping every
-  node in $\hat{T}$ to its original node in $T'$. Let $T$ be the DT
-  obtained from $\hat{T}$ after by setting $\feat_T(t)=i_H$ if
-  $\feat_{\hat{T}}(t)=i$ and $\feat_{T'}(t)\in \feat(b_H)$ for $H \in
-  \{L,B\}$.
-
-  Note that $\hat{T}=\rel_{\rltb}(T)$ and $\hat{T}$ is reduced because
-  $(\hat{T},s) \in \RRR(b)$.
-
-  \newcommand{\rltbiR}{\alpha^{\rightarrow R}}
-  \newcommand{\rltbiL}{\alpha^{\rightarrow L}}
+  \newcommand{\rltbiR}{\alpha_{\rightarrow R}}
+  \newcommand{\rltbiL}{\alpha_{\rightarrow L}}
   Let $\rltbiR : \SoFF{[k]} \rightarrow \SoFF{[k_R]}$ ($\rltbiL : \SoFF{[k]} \rightarrow \SoFF{[k_L]}$) be the feature relabeling
   that relabels every forgotten feature $f_{i} \in \SoFF{[k]}$ to its
   corresponding forgotten feature in $[k_R]$ ($[k_L]$), i.e.,
   $\rltbiR(i)=i_R$ ($\rltbiL(i)=i_L$) for every $i \in [k]$.
 
-  % is the following really true and do I need it?
-  Note that $T=\red(\rel_{\rltbiL}(\rel_{\rlstan{b_L}}(\rel_{\rltbiR}(\rel_{\rlstan{b_R}}(T')))))$.
+  Let $T=\red(\rltbiR(\rlstan{b_R}(\rltbiL(\rlstan{b_L}(T')))))$ and
+  let $\hat{s}=|V(T)\setminus V(\hat{T})|$. Because $\rlstan{b}=\rltb \circ \rltbiR \circ \rlstan{b_R} \circ \rltbiL
+  \circ \rlstan{b_L}$, we obtain from Lemma~\ref{lem:frlred} that $\hat{T}=\red(\rltb(T))$.
 
-  Let $T_L=\red(\rel_{\rlL}(T))$ and
-  $T_R=\red(\rel_{\rlR}(T))$.
-  It remains to show that there are $s_L$ and $s_R$ with $s=s_L+s_R$
+  Let $T_L=\red(\rltb(\rlL(T)))$ and $T_R=\red(\rltb(\rlR(T)))$.
+  It remains to show that there are $s_L$ and $s_R$ with $s=s_L+s_R+\hat{s}$
   such that $(T_L,s_L) \in \RRR(b_L)$ and $(T_R,s_R) \in \RRR(b_R)$.
-
   
   Let
-  $T_L'=\red(\rel_{\rlL}(\rel_{\rltbiR}(\rel_{\rlstan{b_R}}(T'))))$ and
-  $T_R'=\red(\rel_{\rlR}(\rel_{\rltbiL}(\rel_{\rlstan{b_L}}(T'))))$.
+  $T_L'=\red(\rlL(\rltbiR(\rlstan{b_R}(T'))))$ and
+  $T_R'=\red(\rlR(\rltbiL(\rlstan{b_L}(T'))))$. Note that $T_H'$ is a
+  DT template for $b_H$ because so is $T'$. \note{maybe a longer explanation}
 
-  Note that $T_L=\red(\rel_{\rlstan{b_L}}(T_L'))$ because of
-  Lemma~\ref{} and the observation that $\rel_{\rlstan{b_L}} \circ \rel_{\rlL} \circ
-  \rel_{\rltbiR} \circ \rel_{\rlstan{b_R}}=?$.
-  
+  Note that $T_L=\red(\rlstan{b_L}(T_L'))$ because of Lemma~\ref{lem:frlred}
+  and the observation that the sequence
+  $\rltb \circ \rlL \circ \rltbiR \circ \rlstan{b_R} \circ \rltbiL
+  \circ \rlstan{b_L}$ of relabellings to obtain $T_L$ via $T$ has the
+  same total effect as the sequence $\rlstan{b_L}\circ \rlL \circ
+  \rltbiR \circ \rlstan{b_R}$ of relabellings to obtain $T_L$
+  via $T_L'$. Using a similar argument, we obtain that
+  $T_R=\red(\rlstan{b_R}(T_R'))$. Let $s_H=|V(T_H')\setminus V(T_H)|$
+  for every $H \in \{L,R\}$. Then,
+  $T_H'$ shows that $(T_H,s_H)$ is a semi-valid record for $b_H$.
+
+  It remains to show that $s_L+s_R+\hat{s}=s$.
+  Note first that $s=|V(T')\setminus V(\hat{T})|=|V(T')\setminus
+  V(T)|+|V(T)\setminus V(\hat{T})|=|V(T')\setminus V(T)|+\hat{s}$ and
+  it therefore suffices to show that $s_L+s_R=|V(T')\setminus
+  V(T)|$. Towards showing this, let $t$ be a node in $|V(T')\setminus
+  V(T)|$. First note that $\feat_{T'}(t) \in \feat(b_H)$ for some $H
+  \in \{L,R\}$, because all nodes with future features in $T'$ are
+  also in $T$. Therefore, $t$ is in $V(T_H')\setminus V(T_H)$, which
+  shows that $t$ is either in $V(T_L')\setminus V(T_L)$ or in
+  $V(T_R')\setminus V(T_R)$, as required.
+
   Towards showing the reverse direction, suppose that our
-  construction adds the record $(\hat{T},s_L+s_R)$ and let $T$, $T_L$,
-  $T_R$ be as defined in the construction. Recall that:
+  construction adds the record $(\hat{T},s_L+s_R+\hat{s})$ and let $T$, $T_L$,
+  and $T_R$ be as defined in the construction. Recall that:
   \begin{itemize}
-  \item $\hat{T}$ is reduced and $\hat{T}=\rel_{\rltb}(T)$,
-  \item $T_L=\red(\rel_{\rlL}(T))$ and $(T_L,s_L) \in \RRR(b_L)$,
-  \item $T_R=\red(\rel_{\rlR}(T))$ and $(T_R,s_R) \in \RRR(b_R)$.
+  \item $T$ is reduced and $\hat{T}=\red(\rltb(T))$,
+  \item $T_L=\red(\rlL(T))$ and $(T_L,s_L)$ is semi-valid for $b_L$,
+  \item $T_R=\red(\rlR(T))$ and $(T_R,s_R)$ is semi-valid for $b_R$.
   \end{itemize}
 
   Let $T_L'$ be the reduced DT template for $b_L$ such that
-  $T_L=\red(\rel_{\rlstan{b_L}}(T_L'))$ and $s_L=|V(T_L')\setminus V(T_L)|$,
-  which exists because $(T_L,s_L) \in \RRR(b_L)$. Similarily, let
+  $T_L=\red(\rlstan{b_L}(T_L'))$ and $s_L=|V(T_L')\setminus V(T_L)|$,
+  which exists because $(T_L,s_L)$ is semi-valid for $b_L$. Similarily, let
   $T_R'$ be the reduced DT template for $b_R$ such that
-  $T_R=\red(\rel_{\rlstan{b_L}}(T_R'))$ and $s_R=|V(T_R')\setminus V(T_R)|$,
-  which exists because $(T_R,s_R) \in \RRR(b_R)$.
+  $T_R=\red(\rlstan{b_R}(T_R'))$ and $s_R=|V(T_R')\setminus V(T_R)|$,
+  which exists because $(T_R,s_R)$ is semi-valid for $b_R$.
 
   We now show how to construct a witness $T'$ (from $T$, $T_L'$, and
-  $T_R'$) for the validity of the record $(\hat{T},s_L+s_R)$, i.e., $T'$ is a reduced DT template for $b$
+  $T_R'$) for the semi-validity of the record $(\hat{T},s_L+s_R+\hat{s})$, i.e., $T'$ is a reduced DT template for $b$
   such that
-  $\hat{T}=\red(\rlstan{b}(T'))$ and $s_L+s_R=|V(T')\setminus
+  $\hat{T}=\red(\rlstan{b}(T'))$ and $s_L+s_R+\hat{s}=|V(T')\setminus
   V(\hat{T})|$.
 
-  \note{todo:show minimality here! maybe it can be done using the
-    forward direction?}
-  Suppose that there is a reduced DT template $T'$ for $b$ such that
-  $\hat{T}=\red(\rlstan{b}(T'))$ and $|V(T')\setminus V(\hat{T})|<
-  s_L+s_R$.
-  
-  
   Informally, we obtain $T'$ from $T$ after
   reversing the relabelling and reduction operations applied to $T_L'$
   and $T_R'$ to obtain $T_L$ and $T_R$, respectively; recall that
-  $T_H=\red(\rel_{\rlstan{b_H}}(T_H'))$ for $H \in \{L,R\}$. That is, we will reverse
+  $T_H=\red(\rlstan{b_H}(T_H'))$ for $H \in \{L,R\}$. That is, we will reverse
   the labelling for the nodes in $T$ and add back the nodes to $T$ that
   have been removed from $T_L'$ and $T_R'$.
 
@@ -1014,13 +1171,55 @@ has already been computed for every child $c$ of $b$.
     \label{fig:DPjoinmap}
   \end{figure}
 
+  In order to obtain $T'$ from $T$, we will essentially need to be able to reverse the
+  reduction operation $T_H=\red(\rlstan{b_H}(T_H')$ that has been
+  applied to $T_H'$ to obtain $T_H$ for every $H \in \{L,B\}$. To do so we
+  first need to introduce the so-called plugin operation and notions around this
+  operation. We will do so in the next two
+  paragraphs.
+  
+  Let $D$ and $D'$ be two DT (templates/skeletons). Let $P=(d,p_1,\dotsc,p_\ell,d')$ be the path
+  from $d$ to $d'$ in $D$ such that $d$ is an ancestor of $d'$ in
+  $D$, for some integer $\ell$. Moreover, let $e=(p,c)$ be an edge in $D'$ such that $p$ is the
+  parent of $c$ in $D'$. We say that the DT (template/skeleton) $D''$
+  is obtained by \emph{pluging in the path $P$ into $D'$ at edge $e$} if $D''$
+  is obtained from $D'$ by doing the following. For an inner vertex
+  $p_i$ of $P$, let $D(P,p_i)$ be the subtree of $D$ rooted at the
+  unique child $c$ of $p_i$ that is not on $P$. Let $P'$ be the induced subtree of $D$
+  containing all vertices of $P$ plus all vertices of $D(P,p_i)$ for
+  every $i$ with $1 \leq i \leq \ell$. Then, $D''$ is obtained from
+  $D'$ by removing the edge $e=(p,c)$, adding $P'$, and adding the edge
+  from $p$ to $p_1$ as well as the edge from $p_\ell$ to
+  $c$. Moreover, $D''$ inherents all feature assignments as well as
+  the left (right) child relation from $D$ and $D'$.
+
+  The significance
+  of the plugin operation comes from the fact that it allows us to
+  reverse the reduction that has been applied to a DT
+  (template/skeleton). For instance, consider $T_H'$ and $T_H$. Then,
+  $T_H=\red(\rlstan{b}(T_H')$ and we can use the plugin operation to
+  obtain $T_H'$ from $T_H$ as follows. Let $z_H : V(T_H) \rightarrow
+  V(T_H')$ be the injective function mapping every
+  node in $T_H$ to its original node in $T_H'$. Then, we first use
+  $z_H$ to reverse the relabelling given by $\rlstan{b}(T_H')$, i.e.,
+  let $T_H^0$ be the DT template obtained from $T_H$ by setting
+  $\feat_{T_H^0}(t)=\feat_{T_H'}(z_H(t))$ for every $t \in V(T_H^0)$. We now add back the nodes in
+  $V(T_H')\setminus V(T_H)$ with the help of our plugin operation. In
+  particular, for every edge $e=(p,c)$ in $T_H^0$, where $p$ is the
+  parent of $c$ in $T_H^0$, let $P(e)$ be the path in $T_H'$ between
+  $z_H(p)$ and $z_H(c)$. Let $T_H^1$ be the DT template obtained from
+  $T_H^0$ after plugin in the path $P(e)$ into $T_H^0$ at edge $e$,
+  for every edge $e=(p,c)$ of $T_H^0$. Then, it is easy to see that $T_H^1=T_H'$.
+  We will now use the plugin operation to obtain $T'$ from $T_L'$,
+  $T_R'$, $T_L$, and $T_R$ in a very similar manner.
+  
   Our first order of business is to rename all forgotten features in
   $T$ to their real features as given by $T_L'$ and $T_R'$. That is,
   for every node $t$ in $T$ assigned to a forgotten feature, i.e.,
-  $\feat(t) \in \SoFF{[k_L]}\cup\SoFF{[k_R]}$, we do the following.
-  If $\feat(t) \in \SoFF{[k_H]}$ for $H\in \{L,R\}$, then $t$ is also
-  in $T_H$ and hence also in $T_H'$\note{todo: explain}. Therefore, we
-  can change $\feat(t)$ to the real feature assigned to $t$ in
+  $\feat_T(t) \in \SoFF{[k_L]}\cup\SoFF{[k_R]}$, we do the following.
+  If $\feat_T(t) \in \SoFF{[k_H]}$ for $H\in \{L,R\}$, then $t$ is also
+  in $T_H$ and hence also in $T_H'$. Therefore, we
+  can change $\feat_T(t)$ to the real feature assigned to $t$ in
   $T_H'$. Let $T^0$ be the DT obtained from $T$ after renaming all
   forgotten features to real features in this manner.
   
@@ -1031,13 +1230,11 @@ has already been computed for every child $c$ of $b$.
 
   Our next order of business is now to add all nodes to $T^0$ that have been
   removed when going from $T_L'$ to $T_L$ (via the reduction
-  $\red(\rel_{\rlstan{b_L}}(T_L'))$). To achieve this, we go over
+  $\red(\rlstan{b_L}(T_L'))$). To achieve this, we go over
   every edge $e=(p,c)$ of $T_L$ such that $p$ is the parent of $c$ in
   $T_L$ and plugin the path $P_L'(e)$ (from $T_L'$) into the last edge
   on the path $P_L(e)$ (from $T^0$). Let $T^1$ be the tree obtained from
   $T^0$ after doing this operation for every edge of $T_L$.
-  
-  % define the operation of pluging-in a path into an edge
 
   Consider an edge $e=(p,c)$ in $T_R$ such that $p$ is the parent of $c$
   in $T_R$. Then, $e$ corresponds to a path $P_R'(e)$ between
@@ -1045,129 +1242,98 @@ has already been computed for every child $c$ of $b$.
   path $P_R(e)$ between $x_R(p)$ and $x_R(c)$ in $T^1$. 
   Similarily to above, we now add all nodes to $T^1$ that have been
   removed when going from $T_R'$ to $T_R$ (via the reduction
-  $\red(\rel_{\rlstan{b_R}}(T_R'))$). To achieve this, we go over
+  $\red(\rlstan{b_R}(T_R'))$). To achieve this, we go over
   every edge $e=(p,c)$ of $T_R$ such that $p$ is the parent of $c$ in
   $T_R$ and plugin the path $P_R'(e)$ (from $T_R'$) into the last edge
   on the path $P_R(e)$ (from $T^1$). Let $T'$ be the tree obtained from
   $T^1$ after doing this operation for every edge of $T_R$.
 
-  We now show that $T'$ is indeed a witness for the validity of the record
-  $(\hat{T},s_L+s_R)$, i.e., $T'$ is a reduced DT template for $b$
+  We now show that $T'$ is indeed a witness for the semi-validity of the record
+  $(\hat{T},s_L+s_R+\hat{s})$, i.e., $T'$ is a reduced DT template for $b$
   such that
-  $\hat{T}=\red(\rlstan{b}(T'))$ and $s_L+s_R=|V(T')\setminus V(\hat{T})|$.
-  % continue here
+  $\hat{T}=\red(\rlstan{b}(T'))$ and $s_L+s_R+\hat{s}=|V(T')\setminus V(\hat{T})|$.
 
-  We start by showing that $\hat{T}=\red(\rel_{\rlstan{b}}(T'))$.
-  Because $\hat{T}=\rlstan{b}(T^0)$, it suffices to show that the only
-  nodes removed from $T'$ are the ones that we added to $T^0$ to
-  obtain $T'$. Or in other words, we need to show that only the nodes
-  that are redundant in $\rel_{\rlstan{b}}(T')$ are the nodes 
-  in $V(T')\setminus V(T^0)$.
+  We start by showing that $T'$ is reduced. First note that because
+  $T$ is reduced so is $T^0$. Consider a node $t \in V(T')$. If
+  $\feat_{T'}(t)\in \feat(b_H)$ for some $H \in \{L,R\}$, then $t$ is
+  also in $V(T_H')$. Therefore, if $t$ were redundant in $T'$, it
+  would also be redundant in $T_H'$, which cannot be the case because
+  $T_H'$ is reduced. Moreover, if on the other hand, $\feat_{T'}(t)
+  \in \SoIF{[k]}$, then $t$ is in $T^0$ and therefore cannot be
+  redundant because $T^0$ is reduced. Therefore, $T'$ is reduced and
+  it obviously only uses features in $\feat(b)\cup \SoFF{[k]}$. We
+  show next that $T'$ is a DT template for $b$, i.e., $T'$ classifies all examples in
+  $\exam(b)$ correctly. Towards showing this, let $e \in
+  \exam(b)$, then $e \in \exam(b_H)$ for some $H\in
+  \{L,R\}$. Because $T_H'$ is a DT template for $b_H$, we know that
+  $e$ is correctly classified by $T_H'$. Let $l$ be the leaf in $T_H'$
+  that contains $e$, i.e., $e \in E_{T_H'}(l)$ and let $Q$ be the path
+  from the root of $T_H'$ to $l$. Then, $l$ also exists
+  in $T'$ and moreover the path $P$ from the root of $T'$ to $l$
+  contains all nodes of $Q$. Note furthermore that if a node $t$ in
+  $Q$ has its left/right child on $Q$, then the same holds on $P$.
+  We will show that $e$ follows
+  along the path $P$ in $T'$ and therefore ends up in $l$, which shows
+  that $e$ is correctly classified by $T'$.
 
-  % Consider a node $t \in V(T')\setminus V(\hat{T})$. Because $T'$ is
-  % reduced and $t$ is redudant in $\rlstan{b}(T')$, we obtain that $t$
-  % is assigned a real feature in $T'$, i.e., $\feat_{T'}(t) \in
-  % \feat(b)$. Moreover, there must exists an ancestor $t'$ of $t$ in
-  % $T'$ such that
-  % $\rlstan{b}(\feat_{T'}(t))=\rlstan{b}(\feat_{T'}(t'))$, i.e., $t'$
-  % is the reason why $t$ is redundant in $\rlstan{b}(T')$. 
-
-  Consider a node $t \in
-  V(T')\setminus V(T^0)$, i.e., $t$ is a node that we added to $T^0$
-  to obtain $T'$. Then, $t \in V(T_H')\setminus V(T_H)$ for
-  some $H \in \{L,B\}$. Because $T_H=\red(\rel_{\rlstan{b_H}}(T_H'))$,
-  $t$ is redundant in $\rel_{\rlstan{b_H}}(T_H')$, because of some node
-  $t' \in V(T_H)$ with
-  $\rlstan{b_H}(\feat_{T_H'}(t))=\rlstan{b_H}(\feat_{T_H'}(t'))$.
-  Since $t' \in
-  V(T_H)$ also $t' \in V(T')$ and therefore $t$ is also redundant in 
-  $\rel_{\rlstan{b}}(T')$ (because of $t'$), as required.
-
-  Now consider a node $t \in V(T^0)$ and assume for a contradiction
-  that $t$ is redundant in $\rlstan{b}(T')$ because of some node $t'
-  \in V(T')$ with
-  $\rlstan{b}(\feat_{T'}(t))=\rlstan{b}(\feat_{T'}(t'))$. Then,
-  because $\hat{T}=\rlstan{b}(T^0)$ is reduced, we obtain that $t' \in
-  V(T')\setminus V(T^0)$. Therefore, $t' \in V(T_H')\setminus V(T_H)$
-  for some $H \in \{L,R\}$. But then, $t'$ is redundant in
-  $\rel_{\rlstan{b}}(T_H')$ because of some node $t'' \in V(T_H)$ with
-  $\rlstan{b}(\feat_{T'}(t''))=\rlstan{b}(\feat_{T_H'}(t'))$, which
-  implies that also $t$ is redundant in $\hat{T}$ because of $t''$ a
-  contradiction to our assumption that $\hat{T}$ is reduced. This
-  shows that $\hat{T}=\red(\rel_{\rlstan{b}}(T'))$. Moreover, because
-  $|V(T^0)|=|V(\hat{T})|$ and $|V(T')\setminus V(T^0)|=s_L+s_R$, it
-  also follows that $s_L+s_R=|V(T')\setminus V(\hat{T})|$.
-  \note{ proof of minimality of $T'$ is still missing}
-
+  Let $t$ be a node of
+  $P$. If $t$ is also in $Q$, then $e$ will be send to the child of
+  $t$ in $P$. Otherwise, $t$ is either
+  in $V(T)\setminus V(T_H)$ or $t$ is in $T_{\overline{H}}'\setminus
+  T_{\overline{H}}$, where $\overline{H}=L$ if $H=R$ and
+  $\overline{H}=R$ otherwise.
   
+  In the former case, $\feat_{T'}(t) \in \SoIF{[k]}$ or $\feat_{T'}(t)
+  \in \feat(b_{\overline{H}})$, which implies that $t$ behaves towards
+  $e$ in the same manner as some future feature $f_{L} \in
+  \SoIF{[k]}$, i.e., if $\feat_{T'}(t) \in \SoIF{[k]}$, then
+  $f_L=\feat_{T'}(t)$ and if $\feat_{T'}(t)
+  \in \feat(b_{\overline{H}})$, then $f_L=\rlL(\feat_T(t))$. Moreover,
+  $t$ is redundant in $\rlL(T)$ because of its ancestors in $T_H$,
+  i.e., either $A_{\rlL{T}}(t) \subseteq L $ or
+  $A_{\rlL{T}}(t) \subseteq \overline{L}$. Because all these ancestors
+  are in $T_H$ and therefore on $Q$, $\lab_{b_L}(e) \in
+  A_{\rlL{T}}(t)$, which implies that $e$ is send to the non-redundant
+  child of $t$. Finally, since $P$ contains $l$ it follows that $P$
+  contains also the non-redundant child of $t$ in $\rlL(T)$ and
+  therefore $e$ is send to the child of
+  $t$ on $P$, as required. 
   
+  In the latter case, i.e., the case that $t$ is in $V(T_{\overline{H}}')\setminus
+  V(T_{\overline{H}})$, $t$ is redundant in
+  $\rlstan{b_{\overline{H}}}(T_{\overline{H}}')$ because of some
+  ancestor $t' \in V(T_{\overline{H}})$ with
+  $\rlstan{b_{\overline{H}}}(\feat_{T'}(t))=\rlstan{b_{\overline{H}}}(\feat_{T'}(t'))$.
+  Therefore, $\feat_{T'}(t')$ behaves in the same manner towards $e$
+  as $\feat_{T'}(t)$, which because $t'$ is on $Q$ (because $t' \in
+  V(T_{\overline{H}})$) implies that $e$ is
+  send to the (non-redundant) child of $t$ on $P$.
 
 
-
-
-  
-  
-  Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can
-  be partitioned into subtrees that have been deleted after the
-  application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard
-  reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of
-  the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus
-  Im(y_H)$ respectively.
-  In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the
-  maximal subtree of $T'_H$ rooted at $y$ with no elements from
-  $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus
-  \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
-  In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the
-  maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$
-  and that does not contain any vertex from $X^*_H\setminus \{x\}$;
-  let $(X^H_x,S^H_x)$ the corresponding single pair.
-  Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest
-  downwards path in $T'_H$ that contains $y$ and with both endpoints
-  in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$.
-
-\smallskip
-\noindent
-{\it Claim 1: For every $H\in \{L,R\}$ and for every $y,y'\in Y^*_H$, the paths $P^H_{y}$ and $P^H_{y'}$ are either edge disjoint or $P^H_{y}=P^H_{y'}$.}
-
-\noindent
-{\it Proof.} If $P^H_{y}$ and $P^H_{y'}$ are edge disjoint, then the statement is proven immediately. Suppose $P^H_{y}$ and $P^H_{y'}$ share an edge. By minimality and the fact they are downwards paths, $P^H_{y}$ and $P^H_{y'}$ share the endpoint towards the root. If they also share the other endpoint, then the statement is proven immediately. Suppose now their endpoints towards the leaves is different, say $w$ and $w'$, and consider the last edge those paths have in common in a root-to-leaf order, say $uv$. 
-
-Without loss of generality, we can assume $w$ belongs to the left branch of $v$ and $w'$ belongs to the right branch of $v$. Note that $v\in V(T'_H)\setminus Im(y_H)$, or we get a contradiction due the minimality of $P^H_y$.
-Now we get the following contradiction: by construction, $w$ and $w'$ are both elements of $Im(y_H)$ but at least one of them must be in $V(T'_H)\setminus Im(y_H)$ since it is an element of either $Y^H_{y}$ or of $Y^H_{y'}$. This proves Claim 1.
-
-\smallskip
-Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
-
-\smallskip
-Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
-For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
-
-\smallskip
-To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a real DT for $b$. We start proving $(i)$: by construction $T'$ is obtained from $T$ after adding $s_L$ elements from $T'_L$ and $s_R$ elements from $T'_R$, and so with $s_L+s_R=s$ more elements. 
-
-Before considering statement $(ii)$, we consider the following relabelling $p_+$ of $T'$: every real feature in $feat(b_R)$ is a assigned to a feature with its label at node $b_R$ and every other feature is assigned to itself. The real DT $T'_L$ can be obtained from $T'$ by the application of the composition $r \circ p_* \circ p_+$.
-
-Now we consider statement $(ii)$. We show that given an example $e\in exam(b_L)$, $e$ is correctly classified by $T'$ and to do so we show that $e$ ends in a leaf of $T'$ that corresponds to the leaf where $e$ ends in $T'_L$. 
-Say that $e$ goes along a path $P$ of $T'_L$ from the root to a leaf $\ell$ and let $Q$ be the corresponding path in $T'$, i.e. the path from $r$ to $\ell$ (note that by construction $\ell$ is present in $T'$ and is still a leaf). 
-Let $v$ be a node of $Q$, we can have the following different cases.
-
-\begin{itemize}
-\item $v$ is a real feature from $feat(b_L)$: $v$ is also present in $T'_L$ as real feature; 
-\item $v$ is a real feature from $feat(b_R)$: $v$ might not be present in $T'_L$ due reductions but if it is present it is a future feature $A_i$ for some $i\in [k]$;
-\item $v$ is a future feature $f_A$: $v$ might not be present in $T'_L$ due reductions but if it is present it is still the same future feature $A_i$.
-\end{itemize}
-
-If $v$ is present in $T'_L$ then the behaviour of $v$ on $e$ in $T'_L$ and in $T'$ is the same. Suppose now $v$ is a node of $Q$ that is being reduced due his label and so it is not present in $T'_L$. This means there is a set of ancestors of $v$ such that their labels allows to remove $v$ and by construction $v$ behaves on $e$ like those ancestors. This proves $e$ goes along $Q$ and in particular it ends at leaf $\ell$ and so $T'$ is a real DT for $b_L$. With symmetric construction, we show that $T'$ is also a real DT for $b_R$.
-
-\medskip
-Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$. In particular, we recall that $T'$ is a real DT for $b$ with actual feature labels in $[k]\cup [k']$ and future feature labels in $\mathcal{P}([k])$. 
-
-We create at real DT $T'_L$ by the application of the composition $r \circ p_* \circ p_+$ to $T'$. By assumption $T'$ is a real DT for $b_L$ and by construction $T'_L$ is a real DT for $b_L$. 
-Denote with $T_L$ the DT template obtained from $T'_L$ by standard reduction and denote with $s_L$ the number of nodes that have been deleted from $T'_L$ to obtain $T$. By induction we have $(T_L,s_L)\in \mathcal{R}(b_L)$.
-Now we note that $T_L$ is obtained from $T$ after the application of the composition $r \circ p_*$. In a symmetric way, we construct $T'_R$, $T_R$ and the record $(T_R,s_R)\in \mathcal{R}(b_R)$. Then $(T,s_L+s_R)\in \mathcal{R}(b)$.
+  \newcommand{\rlTpT}{\alpha_{T'\rightarrow T}}
+  It remains to show that $\hat{T}=\red(\rlstan{b}(T'))$ and
+  $s_L+s_R+\hat{s}=|V(T')\setminus V(\hat{T})|$. Towards showing this,
+  we first show that $T=\red(\rlTpT(T'))$, where $\rlTpT=\rltbiL \circ
+  \rlstan{b_R} \circ \rltbiL \circ \rlstan{b_L}$. In other words, we
+  need to show that the set of redundant nodes in $\rlTpT(T')$ is equal to
+  $V(T')\setminus V(T)=V(T')\setminus V(T^0)$. Because, as shown above
+  $T'$ is reduced, it follows that if a node $t$ is redundant
+  $\rlTpT(T')$, then $t \in \feat_{T'}(b_H)$ for some $H
+  \{L,R\}$. Because all such nodes, i.e., nodes $t$ in $T'$ with $t
+  \in \feat_{T'}(b_H)$ are also in $T_H'$, we obtain that $t$ is
+  redundant in $\rlTpT(T')$ if and only if it is redundant in
+  $\rlstan{b_H}(T_H')$. Therefore, $\bigcup_{H \in
+    \{L,R\}}V(T_H')\setminus V(T_H)$ is the set of all redudant nodes
+  in $\rlTpT(T')$, which is equal to $V(T')\setminus V(T^0)$ by
+  construction of $T'$, as required. Note that $|V(T')\setminus
+  V(T^0)|=s_L+s_R$ because of the construction of $T'$. Now, because
+  $\hat{T}=\red(\rltb(T))$ and $\rlstan{b}=\rltb \circ
+  \rlTpT$, we obtain from Lemma~\ref{lem:frlred} that
+  $\hat{T}=\red(\rlstan{b}(T'))$. Finally, because $|V(T')\setminus
+  V(T^0)|=s_L+s_R$ and $|V(T^0)\setminus V(\hat{T})|=\hat{s}$, it
+  follows that $|V(T')\setminus V(\hat{T})|=s_L+s_R+\hat{s}$, as required.
 \end{proof}
 
-<<<<<<< HEAD
 \begin{lemma}[relabel node]\label{lem:relabel}
 Let $b\in V(B)$ be relabel node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{3k+1})$.
 \end{lemma}
@@ -1211,10 +1377,6 @@ Finally we note that $T$ is obtained from $T_C$ by the application of $r \circ p
 
 \subsection{Formal Definition of Records and Preliminary Results}
 
-=======
-\newpage
-\section*{NLC-width}
->>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a maximal subtree of $T$ and in $Y$ the root have at most the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
 
 Now we can define two operations on subcubic rooted trees and single pairs. We say that we {\it plug in} a single pair $(Y,S)$ in a left (right) edge $uv$ as follows: we make the root $y$ of $Y$ the left (right) child of $u$, $Y\setminus \{y\}$ to be the $S$ subtree of $y$ and $v$ to be the $H\in \{left,right\}\setminus S$ child of $y$. See Figure~\ref{fig:plugin} for the corresponding drawings. Note after a plug in of a single pair in an edge, the node $v$ belongs in the same side of the subtree rooted at $u$ as it was before the plug in.
@@ -1347,7 +1509,7 @@ For a subset of labels $A\subseteq [k]$, we define the feature template $f_A$ by
 \smallskip
 Suppose we have a DT such that some feature label~$i$ occurs twice on a path from the root to the leaves, say~$f_1$ is the instance closer to the root and~$f_2$ is the other instance. If~$f_2$ is in the left (resp. right) subtree of~$f_1$, we remove $f_2$'s right (resp. left) subtree. In this case we say we have done an {\it actual removal}.
 
-Suppose we have a feature template labelled~$A$ in our decision tree. Let $A_1,\ldots,A_\ell$ be the sequence of feature templates on the path from the root to~$A$ in order (not including~$A$). Let $A_i'=A_i$ if~$A$ is in the right sub-tree of~$A_i$ and let $A_i'=\overline{A_i}$ otherwise. If $\overline{A} \subseteq A_1' \cup \ldots \cup A_\ell'$, then we remove the subtree rooted at the left child of~$A$. If $A\subseteq \overline{A_1'} \cup \ldots \cup \overline{A_\ell'}$, then we remove the subtree rooted at the right child of~$A$. In this case we say we have done a {\it template removal}. If this procedure has been applied to a record exhaustively, we say that the DT is {\it reduced}.
+Suppose we have a feature template labelled~$A$ in our DT. Let $A_1,\ldots,A_\ell$ be the sequence of feature templates on the path from the root to~$A$ in order (not including~$A$). Let $A_i'=A_i$ if~$A$ is in the right sub-tree of~$A_i$ and let $A_i'=\overline{A_i}$ otherwise. If $\overline{A} \subseteq A_1' \cup \ldots \cup A_\ell'$, then we remove the subtree rooted at the left child of~$A$. If $A\subseteq \overline{A_1'} \cup \ldots \cup \overline{A_\ell'}$, then we remove the subtree rooted at the right child of~$A$. In this case we say we have done a {\it template removal}. If this procedure has been applied to a record exhaustively, we say that the DT is {\it reduced}.
 
 To be short, for a DT $T$ and a node $v$, we write $v\in T$ instead of $v\in V(T)$ and $v\not\in T$ otherwise. In a DT $T$ we say that path $p$ is a {\it downward} pard path if it is contained in a path having the root as endpoint.
 
@@ -1397,7 +1559,7 @@ then there are at most $(\ell+2^k+2)2^{\ell+k+1}$ reduced DT templates. Furtherm
 
 \begin{proof}
 By Lemma~\ref{lem:reduced-tree-height}, the tree has height at most $\ell+k$.
-Each node of the decision tree could be a feature with label, a future feature, or a leaf: at most $\ell+2^h+2$ different contents. Since there are at most $2^{\ell+h+1}$ nodes in the tree, there are at most $(\ell+2^h+2) 2^{\ell+h+1}$ possible decision trees.
+Each node of the DT could be a feature with label, a future feature, or a leaf: at most $\ell+2^h+2$ different contents. Since there are at most $2^{\ell+h+1}$ nodes in the tree, there are at most $(\ell+2^h+2) 2^{\ell+h+1}$ possible DTs.
 \end{proof}
 
 \smallskip
@@ -1470,10 +1632,6 @@ For $H\in \{L,R\}$, we define maps $x_H$ and $y_H$ as follows. Let $x_H~:~V(T_H)
 
 Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  
 In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the maximal subtree of $T'_H$ rooted at $y$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
-<<<<<<< HEAD
-=======
-%GP: add figure
->>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x\}$; let $(X^H_x,S^H_x)$ the corresponding single pair. 
 Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest downwards path in $T'_H$ that contains $y$ and with both endpoints in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$. 
 
@@ -1491,23 +1649,6 @@ Now we get the following contradiction: by construction, $w$ and $w'$ are both e
 Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
 
 \smallskip
-<<<<<<< HEAD
-=======
-\noindent
-{\it Claim 2: For every $H\in \{L,R\}$ and for every $y\in Y^*_H$, every internal vertex of $Q^H_y$ is an element of $X^*_H$.}
-
-\noindent
-{\it Proof.} Suppose that $Q^H_y$ has an internal vertex $t\not\in X^*_H$. By definition, there exists a vertex $v\in V(T_H)$ such that $x_H(v)=t$. Since $x_H$ is injective then $v\not\in \{v_1,v_2\}$. Since $y_H$ is injective $y_H(v)\not\in \{y_H(v_1),y_H(v_2)\}$ and belongs to $P^H_y$, which contradicts the minimality of $P^H_y$. This proves Claim 2.
-
-\smallskip
-Before we describe how to obtain a witness $T'$ of $T$ for $b$, we must make an observation. We note that $Im(x_L)\cup Im(x_R)=V(T)$: the idea is that every node of $T$ must originate from either $T_L$ or $T_R$.
-
-%We, now, show that when there is a sequence of relabelling and consequent reductions, these can be done in any order without affecting the resulting DT and total score of the reductions. To do so, we consider the operation of relabelling two nodes and applying the reduction algorithm in a DT: by repeating this operation the proper amount of times, this gives proof for the general case. Suppose $T$ is a reduced DT and let $u$ and $v$ be two of his nodes. Recall that a relabel and reduce operation at a node $w$, in short call it  $r(w)$, influences only the nodes in $T_w$, that is the subtree of $T$ rooted at $w$. To be short, we write that $v'\in r(v)$ if a node $v'$ is present after $r(v)$ and write $v'\notin r(v)$ otherwise.
-%If $u$ is neither a descendant or an ancestor of $v$ then $T_u$ and $T_v$ are disjoint an so $r(u)$ and $r(v)$ commutes. Without loss of generality we can suppose $v$ is a node of $T_u$, that is $u$ is an ancestor of $v$. 
-%$Suppose there is a node $v^*\in r(v) \circ r(u)$ but $v^*\not\in r(u) \circ r(v)$. If $v^*\not\in r(v)$ then, since $v^*\in r(v) \circ r(u)$, $r(u)$ has removed some nodes that allowed to remove $v^*$ and so $v^*$ could be removed as well, that is $v^*\not\in r(u)$ which is a contraddiction. If $v^*\in r(v)$ then $v^*\not\in r(u)$ which is again a contraddiction. By symmetry we have that, for any $u,v,v^*\in T$, $v^*\in r(v) \circ r(u)$ if and only if $v^*\in r(u) \circ r(v)$ and so $r(u)$ and $r(v)$ commute.
-
-\smallskip
->>>>>>> e150fdde332112fd1c2acb6bd85a9a5606b79547
 Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
 For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
 
@@ -1620,9 +1761,6 @@ Now we look at the root node $r$ of $B$. We go through all the records of $\math
 
 
 
-
-
-
 \section{An FPT-Algorithm for bounded solution size and $\delta_{max}$.}
 
 In the following, let $E$ be a CI and $q\not\in feat(E)$. A {\it decision tree pattern}, or simply a {\it DT pattern}, $T$ is a rooted subcubic tree, where every leaf node is either a {\it positive} or {\it negative} leaf and every non-leaf node is labelled with a feature in $feat(E)\cup \{q\}$. For every node $v$ of a DT pattern $T$, we indicate with $feat_T(v)$ the label associated to that node. Finally we say that an innder node $v\in V(T)$ is a {\it fixed node} if $feat_T(v)\in feat(E)$ and {\it non-fixed} otherwise.
@@ -1648,10 +1786,6 @@ Let $E$ be a CI and let $k$ be an integer. Then there is an algorithm that in ti
 Let $S$ be a support set for $E$. Consider a DT $T$, we say that a non-leaf node $t$ of $T$ has an {\it unknown feature} for $S$ if $feat(t)\not\in S$; if $feat(t)\in S$ then we say that $t$ has a {\it supported feature}. If a DT $T$ contains an unknown feature for a support set $S$, then it is called a {\it partial DT} for $S$. Otherwise, that is if $T$ does not contain any unknown features for $S$, $T$ is called a {\it supported DT} for $S$. %In a partial DT for $S$, we define $sfeat(T):=feat(T)\cap S$.
 
 The following Lemma express that we can already solve the problem in the case we have a supported DT $T$ for $S$: this is given by the fact a feature assignment $\alpha$ for $T$ is known.
-
-\begin{theorem}[\cite{OrdyniakSzeider21}]\label{the:dt-opt-var}
-Let $E$ be a CI, $S \subseteq \feat(E)$ be a support set for $E$, and let $s$ and $d$ be an integer. Then, there is an algorithm that runs in time $2^{\bigoh(s^2)}\|E\|^{1+\littleoh(1)}\log \|E\|$ and computes a DT of minimum size among all DTs $T$ with $\feat(T)=S$ and $\text{size}(T)\leq s$ if such a DT exists; otherwise \NULL{} is returned.
-\end{theorem} 
 
 \begin{lemma}[\cite{OrdyniakSzeider21}]\label{lem:dtthres}
 Let $E$ be a CI, let $T$ be DT for $S$ of depth $d$ and let $\alpha$ be a feature assignment for $T$. Then, there is an algorithm that runs in time $\bigoh(2^{d^2/2}\|E\|^{1+\littleoh(1)}\log \|E\|)$ and decides whether the pair $(T,\alpha)$ can be extended to a DT for~$E$. 
@@ -1842,28 +1976,34 @@ is at most $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$.
 
 \subsection{The algorithm}
 
-Now we have computed a set $E_v$ for every node $v\in V(T)$, whether it is a leaf, fixed or non-fixed node. A {\it pool set} for node $v\in V(T)$ is a set $\Pi(v)\subseteq E_v$, such that if every example of $\Pi(v)$ arrives at node $v$ then either
+Now we have computed a set $E_v$ for every node $v\in V(T)$, whether it is a leaf, fixed or non-fixed node. A {\it pool set} for node $v\in V(T)$ is a set $\Pi(v)\subseteq E_v$, such that if $\Pi(v)\subseteq E_T(v)$ then either
 
 \begin{itemize}
-\item $(T_v,\phi)$ can not classify $E_v$, or
-\item for any complete extension $(T_v,\phi^*)$ for $(T_v,\phi)$ that allow to classify $E_v$, there are two elements $e,e'\in \Pi(v)$ and there is a non-fixed node $u$ for $(T,\phi)$ such that $\phi^*(v)$ must distinguish $e$ and $e'$.
+\item $T_v$ is not valid for $E_v$, or
+\item for any complete improvement $T_v'$ for $T_v$ that that is valid for $E_v$, there are two elements $e,e'\in \Pi(v)$ and there is a non-fixed node $u$ for $T$ such that $feat_{T'}(u)$ must distinguish $e$ and $e'$.
 \end{itemize}
 
 For every node $v\in V(T)$, we define $\Pi(v)$ in a leaves-to-root fashion as follows. If $v$ is a negative leaf then $\Pi(v)=\{e^+\}$, where $e^+$ is any example in $E^+\cap E_v$; similarly, if $v$ is a positive leaf then $\Pi(v)=\{e^-\}$, where $e^-$ is any example in $E^-\cap E_v$. Let $c_{\ell}$ and $c_r$ be the left, resp. right, child of $v$, then $\Pi(v)=\Pi(c_{\ell})\cup \Pi(c_r)$.
 
 Now we want to show that the construction of $\Pi$ is correct, that is:
 
-\medskip
-\noindent
-{\bf Claim 2.} {\it $\Pi(v)$ is a pool set for $v$ for every node $v\in V(T)$.} 
+\begin{lemma}\label{lem:pool}
+$\Pi(v)$ is a pool set for $v$ for every node $v\in V(T)$.
+\end{lemma}
 
-\smallskip
-\noindent
-We show this by induction on the depth of $(T,\phi)$. We start proving the base case: let $(T,\phi)$ be a pattern of depth 0. Let $v$ be node of $T$ and suppose it is negative leaf. Since $E_v=E$ is not uniform, there is an example $e^+\in E^+\cap E_v$ and there is no threshold assignment for $T_v$ that would classify $e$. The case $v$ is a positive leaf is similar. 
+\begin{proof}
+We show this by induction on the depth of $T$ and let $v$ be the root of $T$. Since $E_T(v)=E$ it is trival to note that $\Pi(v)\subseteq E_T(v)$. We start proving the base case: let $T$ be a pattern of depth 0. Suppose $v$ is negative leaf. Since $E_v=E$ is not uniform, there is an example $e^+\in E^+\cap E_v$. The case where $v$ is a positive leaf can be proved in a symmetrical manner. 
 
-Now, let $(T,\phi)$ be a pattern of depth at least one and left $v$ root of $T$ with $c_{\ell}$ and $c_r$ as the left and right child.
-Suppose first that $v$ is a fixed node and let $f=\phi(v)$. Thanks to Lemma(ADD REFERENCE), for every $e_{\ell}\in \Pi(c_{\ell})$ and $e_r\in \Pi(c_r)$, we know that $f(e_{\ell})<f(e_r)$. This means that either every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is sent to $c_r$: the statement is proven by induction since $(T_{c_{\ell}},\phi)$ and $(T_{c_r},\phi)$ have smaller depth. 
-Finally suppose $v$ is a non-fixed node. Let us consider any complete extension $(T_v,\phi^*)$ of $(T_v,\phi)$. For any threshold possible for $\phi^*(v)$, we have one of the following three cases: every element of $\Pi(c_{\ell})$ is sent to $c_{\ell}$ or every element of $\Pi(c_r)$ is set to $c_r$ or there is an example $e_{\ell}\in \Pi(c_{\ell})$ that ends in $c_r$ and an example $e_r\in \Pi(c_r)$ that ends in $c_{\ell}$. In the first two cases the statement is again proven by induction since $(T_{c_{\ell}},\phi)$ and $(T_{c_r},\phi)$ have smaller depth. In the third case, $v$ is a non-fixed node for $(T,\phi)$ such that $\phi^*(v)$ distinguishes $e_{\ell}$ and $e_r$. This proves Claim 2.
+Now, let $T$ be a pattern of depth at least one and let $c_{\ell}$ and $c_r$ be the left and right child of $v$.
+Suppose first that $v$ is a fixed node and let $f=feat(v)$. Thanks to Lemma~\ref{lem:expe}, for every $e_{\ell}\in \Pi(c_{\ell})$ and $e_r\in \Pi(c_r)$, we know that $f(e_{\ell})<f(e_r)$. 
+This means that either $\Pi(c_{\ell})\subseteq E_T(c_{\ell})$ or $\Pi(c_r)\subseteq E_T(c_r)$, say that $\Pi(c_i)\subseteq E_T(c_i)$, for $i\in \{\ell,r\}$.
+Since $T_{c_i}$ has depth smaller than $T_v=T$, by the inductive hypothesis $\Pi(c_i)$ is a pool set for $c_i$.
+%This means that either $\Pi(c_{\ell})\subseteq E_T(c_{\ell})$ or $\Pi(c_r)\subseteq E_T(c_r)$
+%: since $T_{c_{\ell}}$ and $T_{c_r}$ have depth smaller than $T_v=T$, by the inductive hypothesis $\Pi(c_{\ell})$ and $\Pi(c_r)$ are pool sets for $c_\ell$ and $c_r$ respectively,.
+
+Finally suppose $v$ is a non-fixed node. Let us consider any complete improvement $T_v'$ for $T_v$. For any threshold assignment for $T_v'$, we have one of the following three cases: either $\Pi(c_{\ell})\subseteq E_{T'}(c_{\ell})$ or $\Pi(c_r)\subseteq E_{T'}(c_r)$ or there is an example $e_{\ell}\in \Pi(c_{\ell})$ and an example $e_r\in \Pi(c_r)$ such that $e_\ell\in E_{T'}(c_r)$ and $e_r\in E_{T'}(c_\ell)$.
+In the first two cases the statement is again proven thanks to the inductive hypothesis since $T_{c_{\ell}}$ and $T_{c_r}$ have depth smaller than $T_v$. In the third case, $v$ is a non-fixed node for $T$ such that $feat_{T'}(v)$ distinguishes $e_{\ell}$ and $e_r$.
+\end{proof}
 
 \smallskip
 In particular, let us consider the pool set $\Pi(r)$ for the root $r$ of $T$, we define $\Pi(T):=\Pi(r)$. In this way given $T$, we are able to compute the corresponding pool set.
@@ -1875,13 +2015,13 @@ There is a $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$ time algorithm th
 \end{lemma}
 
 \begin{proof}
-Let $E$ be a CI, a support set $S$ for $E$ and an integer $s$. We start by enumerating all patterns $(T,\phi)$ of size at most $s$ such that $Im(\phi)=S\cup \{q\}$. For every such pattern $(T,\phi)$, thanks to Lemma~\ref{lem:LR}, we are able to obtain the set $E_v$ for every node $v\in V(T)$ in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$. In a leaves-to-root fashion, we are able to compute the set $\Pi(v)$ for every node $v\in V(T)$ and ultimately $\Pi(T)$.
+Let $E$ be a CI, a support set $S$ for $E$ and an integer $s$. We start by enumerating all DT patterns $T$ of size at most $s$ such that $feat(T)=S\cup \{q\}$. For every such DT pattern $T$, thanks to Lemma~\ref{lem:LR}, we are able to obtain the set $E_v$ for every node $v\in V(T)$ in time $\bigoh(2^{d^2/2}n^{1+\littleoh(1)}\log n)$. In a leaves-to-root fashion, we are able to compute the set $\Pi(v)$ for every node $v\in V(T)$ and ultimately $\Pi(T)$.
 
-Let $R(T)$ be the set of all the features in $feat(E)\setminus S$ that distinguish at least two examples in $\Pi(T)$. The algorithm returns the set of features $R_0$ obtained by considering the union of the sets $R(T)$ over all these patterns $(T,\phi)$ of size at most $s$. By Lemma~\ref{lem:enum-dt-fund} this algorithm runs in time $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$.
+Let $R(T)$ be the set of all the features in $feat(E)\setminus S$ that distinguish at least two examples in $\Pi(T)$. The algorithm returns the set of features $R_0$ obtained by considering the union of the sets $R(T)$ over all these DT patterns $T$ of size at most $s$. By Lemma~\ref{lem:enum-dt-fund} this algorithm runs in time $\bigoh(2^{d^2/2}s^{2s+1}n^{1+\littleoh(1)}\log n)$.
 
 Now we show the size of $R_0$ is bounded. By construction $|\Pi(T)|\leq |T|\leq s$; for every two distinct elements of $\Pi(T)$, by definition, there are at most $\delta_{\max}$ features that distinguish such two examples. This means that $|R(T)|\leq s^2\delta_{\max}$ and so $R_0$ has size at most $s^{2s+3}\delta_{\max}$.
 
-We are left to show that $R_0$ is a branching set for $S$. Let $(T,\phi)$ be a minimal DT for $E$ such that $S\subset feat(T)$ and suppose by contradiction that $R_0\cap (feat(T)\setminus S)=\emptyset$. In particular we have that $R(T)\cap (feat(T)\setminus S)=\emptyset$. This means that every non-fixed node of $(T,\phi)$ does not distinguish any two elements in $\Pi(T)$. By Claim 2, $\Pi(T)=\Pi(r)$, where $r$ is the root of $T$, is a pool set and so $(T,\phi)$ can not classify $E$, which is a contradiction.
+We are left to show that $R_0$ is a branching set for $S$. Let $T$ be a minimal DT for $E$ such that $S\subset feat(T)$ and suppose by contradiction that $R_0\cap (feat(T)\setminus S)=\emptyset$. In particular we have that $R(T)\cap (feat(T)\setminus S)=\emptyset$. This means that for every feature $f$ of $T$ that does not belong to $S$, $f$ does not distinguish any two elements in $\Pi(T)$. By Lemma~\ref{lem:pool}, $\Pi(T)=\Pi(r)$, where $r$ is the root of $T$, is a pool set and so $T$ is not valid for $E$, which is a contradiction.
 \end{proof}
 
 \begin{lemma}[\cite{OrdyniakSzeider21}]\label{cor:mss-enum}
@@ -1892,6 +2032,18 @@ Let $E$ be a CI and let $k$ be an integer. Then there is an algorithm that in ti
 Let $T$ be a DT of minimum size for $E$ and let $S$ be a support set contained in $\feat(T)$. Then, the set $R=\feat(T)\setminus S$ is useful.
 \end{lemma}
 
+\begin{observation}[\cite{OrdyniakSzeider21}]\label{obs:dt-ss}
+Let $T$ be a DT for a CI $E$, then $\feat(T)$ is a support set of $E$.
+\end{observation}
+
+\begin{proof}
+Suppose for a contradiction that this is not the case and there is an example $e^+ \in E^+$ and an example $e^- \in E^-$ such that $e^+$ and $e^-$ agree on all features in $\feat(T)$. Therefore, $e^+$ and $e^-$ are contained in the same leaf node of~$T$, contradicting our assumption that $T$ is a DT.
+\end{proof}
+
+\begin{theorem}[\cite{OrdyniakSzeider21}]\label{the:dt-opt-var}
+Let $E$ be a CI, $S \subseteq \feat(E)$ be a support set for $E$, and let $s$ and $d$ be integers. Then, there is an algorithm that runs in time $2^{\bigoh(s^2)}\|E\|^{1+\littleoh(1)}\log \|E\|$ and computes a DT of minimum size among all DTs $T$ with $\feat(T)=S$ and $\text{size}(T)\leq s$ if such a DT exists; otherwise \NULL{} is returned.
+\end{theorem} 
+
 \begin{theorem}
 {\sc Minimum Decision Tree Size} %and DTD are 
 is fixed-parameter tractable prarametrized by $\delta_{\max}+s$.% and $\delta_{\max}+d$ respectively.
@@ -1900,7 +2052,7 @@ is fixed-parameter tractable prarametrized by $\delta_{\max}+s$.% and $\delta_{\
 \begin{proof}
 We start by presenting the algorithm for {\sc Minimum Decision Tree Size}, which is illustrated in Algorithm~\ref{alg:minDT} and Algorithm~\ref{alg:minDTS}. 
 
-Given a CI $E$ and an integer $s$, the algorithm returns a DT of minimum size among all DTs of size at most $s$ if such a DT exists and otherwise the algorithm returns \NULL{}. The algorithm {\bf minDT} starts by computing the set $\SSS$ of all minimal support sets for $E$ of size at most $s$, which because of Lemma~\ref{cor:mss-enum} results in a set $\SSS$ of size at most $()$. In Line~\ref{algminDTFor} the algorithm then interates over all sets $S$ in $\SSS$ and calls the function {\bf minDTS} given in Algorithm~\ref{alg:minDTS} for $E$, $s$, and $S$, which returns a DT of minimum size among all DTs $T$ for $E$ of size at most $s$ such that $S \subseteq \feat(T)$. It then updates the currently best decision tree $B$ if necessary with the DT found by the function {\bf minDTS}. Moreover, if the best DT found after going through all sets in $\SSS$ has size at most $s$, it is returned (in Line~\ref{algminDTret}), otherwise the algorithm returns \NULL{}. Finally, the function \textbf{minDTS} given in Algorithm~\ref{alg:minDTS} does the following. It first computes a DT $T$ of minimum size that uses exactly the features in~$S$ using Lemma~\ref{lem:dtthres}. It then tries to improve upon $T$ with the help of useful sets. That is, it uses Lemma~\ref{lem:comp-branch} to compute the branching set $R_0$. It then interates over all (of the at most $()$) features $f\in R_0$ (using the for-loop in Line~\ref{algminDTSfor}), and calls itself recursively on the feature set $S\cup \{f\}$. If this call finds a smaller DT, then the current best DT $B$ is updated. Finally, after the for-loop the algorithm either returns $B$ if its size is less then $s$ or \NULL{} otherwise.
+Given a CI $E$ and an integer $s$, the algorithm returns a DT of minimum size among all DTs of size at most $s$ if such a DT exists and otherwise the algorithm returns \NULL{}. The algorithm {\bf minDT} starts by computing the set $\SSS$ of all minimal support sets for $E$ of size at most $s$, which because of Lemma~\ref{cor:mss-enum} results in a set $\SSS$ of size at most $()$. In Line~\ref{algminDTFor} the algorithm then interates over all sets $S$ in $\SSS$ and calls the function {\bf minDTS} given in Algorithm~\ref{alg:minDTS} for $E$, $s$, and $S$, which returns a DT of minimum size among all DTs $T$ for $E$ of size at most $s$ such that $S \subseteq \feat(T)$. It then updates the currently best decision tree $B$ if necessary with the DT found by the function {\bf minDTS}. Moreover, if the best DT found after going through all sets in $\SSS$ has size at most $s$, it is returned (in Line~\ref{algminDTret}), otherwise the algorithm returns \NULL{}. Finally, the function \textbf{minDTS} given in Algorithm~\ref{alg:minDTS} does the following. It first computes a DT $T$ of minimum size that uses exactly the features in~$S$ using Lemma~\ref{the:dt-opt-var}. It then tries to improve upon $T$ with the help of useful sets. That is, it uses Lemma~\ref{lem:comp-branch} to compute the branching set $R_0$. It then interates over all (of the at most $()$) features $f\in R_0$ (using the for-loop in Line~\ref{algminDTSfor}), and calls itself recursively on the support set $S\cup \{f\}$. If this call finds a smaller DT, then the current best DT is updated. Finally, after the for-loop the algorithm either returns a solution if its size is less then $s$ or \NULL{} otherwise.
 
 Towards showing the correctness of Algorithm~\ref{alg:minDT}, consider the case that $E$ has a DT of size at most $s$ and let $T$ be a such a DT of minimum size. Because of Observation~\ref{obs:dt-ss}, $\feat(T)$ is a support set for $E$ and therefore $\feat(T)$ contains a minimal support set $S$ of size at most $s$. Because the for-loop in Line~\ref{algminDTFor} of Algorithm~\ref{alg:minDT} interates over all minimal support sets of size at most $s$ for $E$, it follows that Algorithm~\ref{alg:minDTS} is called with parameters $E$, $s$, and $S$. If $\feat(T)=S$, then $B$ is set to a DT for $E$ of size $|T|$ in Line~\ref{alg:minDTSbest} of Algorithm~\ref{alg:minDTS} and the algorithm will output a DT of size at most $|T|$ for $E$. If, on the other hand, $\feat(T)\setminus S\neq \emptyset$, then because $T$ has minimum size and $S$ is a support set for $E$ with $S \subseteq \feat(T)$, we obtain from Lemma~\ref{lem:useful} that the set $R=\feat(T)\setminus S$ is useful for $S$. Therefore, because of Lemma~\ref{lem:comp-branch}, $R$ has to contain a feature $f$ from the set $R_0$ computed in Line~\ref{alg:minDTSU}. It follows that Algorithm~\ref{alg:minDTS} is called with parameters $E$, $s$, and $S\cup \{v\}$. From now onwards the argument repeats and since $R_0\neq \emptyset$ the process stops after at most $s-|S|$ recursive calls after which a DT for $E$ of size at most $|T|$ will be computed in Line~\ref{alg:minDTSbest} of Algorithm~\ref{alg:minDTS}. Finally, it is easy to see that if Algorithm~\ref{alg:minDT} outputs a DT $T$, then it is a valid solution. This is because, $T$ must have been computed in Line~\ref{alg:minDTSbest} of Algorithm~\ref{alg:minDTS}, which implies that $T$ is a DT for $E$. Moreover, $T$ has size at  most $s$, because of Line~\ref{alg:minDTcheckk} in Algorithm~\ref{alg:minDT}. 
 
