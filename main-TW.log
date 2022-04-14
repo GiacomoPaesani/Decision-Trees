@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  13 APR 2022 11:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  14 APR 2022 09:40
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1236,26 +1236,7 @@ Package: boxedminipage 2020/04/19 v1.1 Boxed LaTeX2e minipages
 \bmp@box=\box90
 \bmp@width=\skip71
 \bmp@height=\skip72
-) (main-TW.aux
-
-LaTeX Warning: Label `lem:leaf' multiply defined.
-
-
-LaTeX Warning: Label `lem:leaf@cref' multiply defined.
-
-
-LaTeX Warning: Label `lem:join' multiply defined.
-
-
-LaTeX Warning: Label `lem:join@cref' multiply defined.
-
-
-LaTeX Warning: Label `lem:relabel' multiply defined.
-
-
-LaTeX Warning: Label `lem:relabel@cref' multiply defined.
-
-)
+) (main-TW.aux)
 \openout1 = `main-TW.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 292.
@@ -1450,56 +1431,43 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <4.25> on input line 695.
 FiXme Note: 'define $\tau $ in prelims' on input line 695.
- [7.8] [8.9] [9.10] [10.11]
-FiXme Note: 'todo: simplify the run-time expression' on input line 980.
- [11.12]
-FiXme Note: 'maybe a longer explanation' on input line 1091.
- [12.13] [13.14]
-[14.15] [15.16]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-Missing character: There is no ; in font nullfont!
-
-Overfull \hbox (59.79388pt too wide) in paragraph at lines 1471--1472
- [][] 
- []
+ [7.8] [8.9] [9.10] [10.11] [11.12]
+FiXme Note: 'todo: simplify the run-time expression' on input line 1020.
+ [12.13]
+FiXme Note: 'maybe a longer explanation' on input line 1131.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16.17] [17.18] [18.19] [19.20] [20.21] [21.22] [22.23]
-
-LaTeX Warning: Reference `the:trac-tw-b' on page 23 undefined on input line 172
-1.
-
-
-LaTeX Warning: Reference `the:trac-tw-b' on page 23 undefined on input line 173
-6.
-
+[13.14] [14.15] [15.16]
+FiXme Note: 'there is one problem remaining: $T'''$ could now have some forgott
+en features from $T$; those should be replaced by arbitrary real features with 
+the same label; but only if such examples also exist; maybe there is a better w
+ay??' on input line 1460.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1764.
+(Font)              <12> on input line 1897.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 1764.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1764.
+(Font)              <8> on input line 1897.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 1764.
+(hyperref)                removing `math shift' on input line 1897.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1764.
+(hyperref)                removing `\delta' on input line 1897.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1764.
+(hyperref)                removing `subscript' on input line 1897.
 
-[23.24] [24.25]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1897.
+
+[16.17] [17.18]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-859.
+992.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1509,14 +1477,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[25.26]
+[18.19]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/9'.
 (microtype)             Ignoring protrusion settings for this character.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 1878.
+(Font)              using `T1/lmr/bx/n' instead on input line 2011.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1524,38 +1492,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26.27] [27.28] [28.29] [29.30]
+[19.20] [20.21] [21.22] [22.23]
 
-LaTeX Warning: Reference `lem:dtthres' on page 30 undefined on input line 2095.
+LaTeX Warning: Reference `lem:dtthres' on page 23 undefined on input line 2228.
 
 
-[30.31] (main-TW.bbl [31.32])
+[23.24] (main-TW.bbl [24.25])
 
-FiXme Summary: Number of notes: 5,
+FiXme Summary: Number of notes: 6,
 (FiXme)        Number of warnings: 0,
 (FiXme)        Number of errors: 0,
 (FiXme)        Number of fatal errors: 0,
-(FiXme)        Total: 5.
+(FiXme)        Total: 6.
 
-[32.33] (main-TW.aux)
+[25.26] (main-TW.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main-TW.out' has not changed.
-(rerunfilecheck)             Checksum: 6F5844502C48505355CC19D35D9B23AD;3406.
+(rerunfilecheck)             Checksum: 7F7D37F6A1E95839759AC7ED4D5745F6;2834.
  ) 
 Here is how much of TeX's memory you used:
- 38470 strings out of 479618
- 746042 string characters out of 2864076
- 1086220 words of memory out of 3000000
- 54203 multiletter control sequences out of 15000+200000
- 598728 words of font info for 401 fonts, out of 3000000 for 9000
+ 38364 strings out of 479618
+ 744299 string characters out of 2864076
+ 1077332 words of memory out of 3000000
+ 54156 multiletter control sequences out of 15000+200000
+ 591327 words of font info for 382 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1872b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1599,9 +1564,9 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (33 pages, 873618 bytes).
+Output written on main-TW.pdf (26 pages, 813402 bytes).
 PDF statistics:
- 679 PDF objects out of 1000 (max. 8388607)
- 163 named destinations out of 1000 (max. 500000)
- 107245 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 609 PDF objects out of 1000 (max. 8388607)
+ 138 named destinations out of 1000 (max. 500000)
+ 103133 words of extra memory for PDF output out of 106986 (max. 10000000)
 

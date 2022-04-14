@@ -938,7 +938,7 @@ record $(T,s)$ is \emph{valid} for $b$ if $s$ is the minimum number
 such that $(T,s)$ is semi-valid. We
 denote by $\RRR(b)$ the set of all valid records for $b$. The
 following corollary follows immediately from Corollary~\ref{cor:sizeofreduced}.
-\begin{corollary}
+\begin{corollary}\label{cor:numofrec}
   $|\RRR(b)|\leq \tfDTsenum$
 \end{corollary}
 Note that $E$ has a DT of size at most $s$ if and only if $\RRR(r)$
@@ -975,6 +975,46 @@ has already been computed for every child $c$ of $b$.
   of Observation~\ref{obs:DTSsize}.
 \end{proof}
 
+Before we present the corresponding lemmas for the join-node and the
+relabelling node, we first need to introduce the so-called plugin
+operation that allows us to reverse the reductions applied to a DT
+(skeleton/template).
+  
+Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t')$ be the path
+  from $t$ to $t'$ in $T$ such that $t$ is an ancestor of $t'$ in
+  $T$, for some integer $\ell$. Moreover, let $e=(p,c)$ be an edge in $T'$ such that $p$ is the
+  parent of $c$ in $T'$. We say that the DT (template/skeleton) $T''$
+  is obtained by \emph{pluging in the path $P$ into $T'$ at edge $e$} if $T''$
+  is obtained from $T'$ by doing the following. For an inner vertex
+  $p_i$ of $P$, let $T(P,p_i)$ be the subtree of $T$ rooted at the
+  unique child $c$ of $p_i$ that is not on $P$. Let $P'$ be the induced subtree of $T$
+  containing all vertices of $P$ plus all vertices of $T(P,p_i)$ for
+  every $i$ with $1 \leq i \leq \ell$. Then, $T''$ is obtained from
+  $T'$ by removing the edge $e=(p,c)$, adding $P'$, and adding the edge
+  from $p$ to $p_1$ as well as the edge from $p_\ell$ to
+  $c$. Moreover, $T''$ inherents all feature assignments as well as
+  the left (right) child relation from $T$ and $T'$.
+
+  The significance
+  of the plugin operation comes from the fact that it allows us to
+  reverse the reduction that has been applied to a DT
+  (template/skeleton). For instance, consider a node $b$ of $B$ and
+  let $T$ be a DT skeleton for $b$ and let $T'$ be a DT template for
+  $b$ such that $T=\red(\rlstan{b}(T'))$. Then,
+  we can use the plugin operation to reverse the direction or in other
+  words obtain $T'$ from $T$ as follows. Let $z : V(T) \rightarrow
+  V(T')$ be the injective function mapping every
+  node in $T$ to its original node in $T'$. Then, we first use
+  $z$ to reverse the relabelling given by $\rlstan{b}(T')$, i.e.,
+  let $T^0$ be the DT obtained from $T$ by setting
+  $\feat_{T^0}(t)=\feat_{T'}(z_H(t))$ for every $t \in V(T^0)$. We now add back the nodes in
+  $V(T')\setminus V(T)$ with the help of our plugin operation. In
+  particular, for every edge $e=(p,c)$ in $T^0$, where $p$ is the
+  parent of $c$ in $T^0$, let $P(e)$ be the path in $T'$ between
+  $z(p)$ and $z(c)$. Let $T^1$ be the DT template obtained from
+  $T^0$ after plugin in the path $P(e)$ into $T^0$ at edge $e$,
+  for every edge $e=(p,c)$ of $T^0$. Then, it is easy to see that $T^1=T'$.
+  
 \newcommand{\tfDTsenumJN}{(2k+2^{k})^{2^{3k+2}+1}}
 \begin{lemma}[join node]\label{lem:join}
   \note{todo: simplify the run-time expression}
@@ -1173,46 +1213,9 @@ has already been computed for every child $c$ of $b$.
 
   In order to obtain $T'$ from $T$, we will essentially need to be able to reverse the
   reduction operation $T_H=\red(\rlstan{b_H}(T_H')$ that has been
-  applied to $T_H'$ to obtain $T_H$ for every $H \in \{L,B\}$. To do so we
-  first need to introduce the so-called plugin operation and notions around this
-  operation. We will do so in the next two
-  paragraphs.
-  
-  Let $D$ and $D'$ be two DT (templates/skeletons). Let $P=(d,p_1,\dotsc,p_\ell,d')$ be the path
-  from $d$ to $d'$ in $D$ such that $d$ is an ancestor of $d'$ in
-  $D$, for some integer $\ell$. Moreover, let $e=(p,c)$ be an edge in $D'$ such that $p$ is the
-  parent of $c$ in $D'$. We say that the DT (template/skeleton) $D''$
-  is obtained by \emph{pluging in the path $P$ into $D'$ at edge $e$} if $D''$
-  is obtained from $D'$ by doing the following. For an inner vertex
-  $p_i$ of $P$, let $D(P,p_i)$ be the subtree of $D$ rooted at the
-  unique child $c$ of $p_i$ that is not on $P$. Let $P'$ be the induced subtree of $D$
-  containing all vertices of $P$ plus all vertices of $D(P,p_i)$ for
-  every $i$ with $1 \leq i \leq \ell$. Then, $D''$ is obtained from
-  $D'$ by removing the edge $e=(p,c)$, adding $P'$, and adding the edge
-  from $p$ to $p_1$ as well as the edge from $p_\ell$ to
-  $c$. Moreover, $D''$ inherents all feature assignments as well as
-  the left (right) child relation from $D$ and $D'$.
-
-  The significance
-  of the plugin operation comes from the fact that it allows us to
-  reverse the reduction that has been applied to a DT
-  (template/skeleton). For instance, consider $T_H'$ and $T_H$. Then,
-  $T_H=\red(\rlstan{b}(T_H')$ and we can use the plugin operation to
-  obtain $T_H'$ from $T_H$ as follows. Let $z_H : V(T_H) \rightarrow
-  V(T_H')$ be the injective function mapping every
-  node in $T_H$ to its original node in $T_H'$. Then, we first use
-  $z_H$ to reverse the relabelling given by $\rlstan{b}(T_H')$, i.e.,
-  let $T_H^0$ be the DT template obtained from $T_H$ by setting
-  $\feat_{T_H^0}(t)=\feat_{T_H'}(z_H(t))$ for every $t \in V(T_H^0)$. We now add back the nodes in
-  $V(T_H')\setminus V(T_H)$ with the help of our plugin operation. In
-  particular, for every edge $e=(p,c)$ in $T_H^0$, where $p$ is the
-  parent of $c$ in $T_H^0$, let $P(e)$ be the path in $T_H'$ between
-  $z_H(p)$ and $z_H(c)$. Let $T_H^1$ be the DT template obtained from
-  $T_H^0$ after plugin in the path $P(e)$ into $T_H^0$ at edge $e$,
-  for every edge $e=(p,c)$ of $T_H^0$. Then, it is easy to see that $T_H^1=T_H'$.
-  We will now use the plugin operation to obtain $T'$ from $T_L'$,
-  $T_R'$, $T_L$, and $T_R$ in a very similar manner.
-  
+  applied to $T_H'$ to obtain $T_H$ for every $H \in \{L,B\}$. To do
+  so we will make use of the plugin operation.
+    
   Our first order of business is to rename all forgotten features in
   $T$ to their real features as given by $T_L'$ and $T_R'$. That is,
   for every node $t$ in $T$ assigned to a forgotten feature, i.e.,
@@ -1335,418 +1338,548 @@ has already been computed for every child $c$ of $b$.
 \end{proof}
 
 \begin{lemma}[relabel node]\label{lem:relabel}
-Let $b\in V(B)$ be relabel node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{3k+1})$.
+  Let $b\in V(B)$ be relabeling node in $B$. Then $\RRR(b)$ can be
+  computed in time $\bigoh(2^{2k+1}\tfDTsenum)$.
 \end{lemma}
-
 \begin{proof}
-Let $b_C$ be the unique child of $b$ in $B$. Let $R$ be the mapping of $[k]$ to itself that represent the node $b$. Moreover, since we are considering a {\it nice} NLC-expression we can assume $R$ is the identity mapping, i.e. $R(\ell)=\ell$, for all values except for a unique element $i$ of its domain, i.e. $R(i)=j$ for some $j\in [k]\setminus \{i\}$.
+  Let $c$ be the unique child of $b$ in $B$ and let $R_b : [k]
+  \rightarrow [k]$ be the relabelling function associated with
+  $b$. Because $B$ is nice, it holds that there are labels $i$ and $j$
+  with $i \neq j$ such that $R(i)=j$ and $R(\ell)=\ell$ for every $\ell \in
+  [k]\setminus \{i\}$.
 
-We say that a future feature $A$ is {\it good} if it does not distinguish between $i$ and $j$, that is $i\in A$ if and only if $j\in A$, and {\it bad} otherwise. Let $(T_C,s_C)$ be an element of $\mathcal{R}(b_C)$. Let $p''$ the following relabelling of the DT template $T_C$: every feature with label $i$ is assigned to label $j$ and every future feature with label $A$ is assigned to the future feature with label $A\setminus \{i\}$. 
+  \newcommand{\g}{g}
+  We say that a future feature $f_L \in \SoIF{[k]}$ is {\it good} if it does not
+  distinguish between $i$ and $j$, i.e., $i\in L$ if and only if
+  $j\in L$, and {\it bad} otherwise. For a bad future feature $f_L$,
+  we denote by $\g(f_L)$ the good future feature $f_{\g(L)}$, where
+  $\g(L)=L\cup \{i\}$ if $j \in L$ and $\g(L)=L\setminus \{i\}$,
+  otherwise, i.e., informally, $g(f_L)$ is the good feature corresponding to $f_L$
+  that sends all examples with label $i$ to the same side as $f_L$
+  sends all examples with label $j$.
+  
 
-If $T_C$ has a bad future feature then we do not take any other action. Suppose now $T_C$ has only good future features; now let $T$ be the DT template obtained from $T_C$ after the application of the composition $r \circ p''$ and let $s^*$ be the number of nodes that have been deleted from $T_C$ to $T$.
+  \newcommand{\rlrelF}{\alpha^F_{i\rightarrow j}}
+  \newcommand{\rlrelI}{\alpha^I_{i\rightarrow j}}
+  To obtain the set $\RRR(b)$ of valid records for $b$, we first
+  enumerate all reduced DT skeletons $T$ for $b$. Let $\rlrelI : \SoIF{[k]}
+  \rightarrow \SoIF{[k]}$ be the function defined by setting
+  $\rlrelI(f_L)=g(f_L)$ for every bad future feature $f_L \in
+  \SoIF{[k]}$, i.e., $\rlrelI$ relabels every bad feature
+  $f_L$ to its corresponding good feature $\g(f_L)$. Let
+  $T^c=\red(\rlrelI(T))$. We now
+  check whether $\RRR(c)$ contains a record of the form $(T^c,s^c)$. If
+  not, then we disregard $T$. Otherwise, let $\rlrelF$ be the feature
+  relabelling that relabels the forgotten feature $f_i$ to the
+  forgotten feature $f_j$. Let $\hat{T}=\red(\rlrelF(T))$ and
+  $\hat{s}=|V(T)\setminus V(\hat{T})|$. We now distinguish two
+  cases. If we have not yet added any record of the form
+  $(\hat{T},s')$ to $\RRR(b)$, then we add the record
+  $(\hat{T},s^c+\hat{s})$ to $\RRR(b)$. Otherwise we replace the unique
+  existing record $(\hat{T},s')$ with the record $(\hat{T},\min\{s',s^c+\hat{s}\})$.
+  This completes the construction of the set
+  $\RRR(b)$ of valid records. 
 
-If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'\leq s_C+s^*$ then we do not take any other action.
-If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'>s_C+s^*$ then we replace it with $(T,s_C+s^*)$.
-If there is no record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'$ then we add $(T,s_C+s^*)$ to $\mathcal{R}(b)$.
+  Note that computing $\RRR(b)$ in this
+  manner can be achieved in the stated run-time. This is because due
+  to Corollary~\ref{cor:sizeofreduced} we can enumerate all possible
+  choices for $T$ in time $\bigoh(\tfDTsenum)$ and for every such
+  choice $T$ we can compute $T^c$ and $\hat{T}$ and check the existence of a record
+  $(T^c,s)$ in $\RRR(c)$ in time at most
+  $\bigoh(|T|)=\bigoh(2^{2k+1})$ (because of Corollary~\ref{cor:DTSsize}).
 
-\medskip
-Now we want to evaluate the running time of computing $\mathcal{R}(b)$. Consider record $(T_C,s_C)$ in $\mathcal{R}(b_C)$. In $\mathcal{O}(k)$ time we check if $T_C$ all the future features are good. For every such DT $T_C$, there are at most $2^{2k}$ paths from the root to the leaves and for every of these paths there are at most $k$ nodes for each of the following: feature with label $i$ and and future feature that contains $i$. This means $r \circ p''$ can be done in $\mathcal{O}(k)$ time.
-%GP: $r$ can be done together with $p''$ as we can relabel nodes top-to-bottom and check at the same time if it can be reduce.
-This means to compute $\mathcal{R}(b)$ takes $\mathcal{O}(k|\mathcal{R}(b_C)|)=\mathcal{O}(k(2k+2^k+2)2^{3k+1})$ time.
+  It remains to show the correctness of our construction for $\RRR(b)$, i.e.,
+  we have to show that a record is valid for $b$ if and only if we
+  have added such a record according to our construction
+  above. For this it suffices to show that a record is
+  semi-valid for $b$ if and only if we have added such a record according to
+  our construction above. This is because, a valid record $(T,s)$ can
+  be obtained from the set of all semi-valid records $(T,s')$, where
+  $s$ is the minimum $s'$ among all semi-valid records for $T$.
 
-\medskip
-Now we have to show the correctness of the construction for $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
+  Towards showing the forward direction, suppose that the record
+  $(\hat{T},s)$ is semi-valid for $b$. Then, there is a reduced DT
+  template $T'$ for $b$ such that $\hat{T}=\rlstan{b}(T')$ and
+  $s=|V(T')\setminus V(\hat{T})|$. % now i need to get T^c', T, and T^c
 
-\smallskip
-We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction there exists a record $(T_C,s_C)\in \mathcal{R}(b_C)$ such that $T$ is obtained from $T_C$ after the application of $r \circ p''$ and let $s^*=s-s_C$. By induction $s_C$ is the minimum amount of nodes that have been deleted from a witness $T'_C$ of $T_C$ for $b_C$. By construction we also know that every future feature of both $T'_C$ and $T_C$ is good.
+  Let $T=\red(\rlstan{c}(T'))$. Then, $\hat{T}=\red(\rlrelF(T))$
+  because of Lemma~\ref{lem:frlred} together with the observation that
+  $\rlrelF \circ \rlstan{c}=\rlstan{b}$. Note that $T$ corresponds to the reduced
+  DT skeleton considered by our construction. Let
+  $T^c=\red(\rlrelI(T))$, let $\hat{s}=|V(T)\setminus V(\hat{T})|$,
+  and let $s^c=s-\hat{s}$. It remains to show that the record $(T^c,s^c)$ is
+  semi-valid for $c$. Let $T''=\red(\rlrelI(T'))$. Then, $T''$ is a
+  reduced DT template for $c$, because so is $T'$ for $b$ and moreover
+  all examples, in particular those with label $i$, in $\exam(c)$ end
+  up in the same leaf in $T''$ as they do in $T'$; because of the
+  relabelling $\rlrelI$ that relabelled all bad future features in
+  $T'$ into their corresponding good future features in
+  $T''$.
+  Moreover, $T^c=\red(\rlstan{c}(T'')$ because of
+  Lemma~\ref{lem:frlred} and furthermore
+  $s^c=s-\hat{s}=|V(T'')\setminus V(T^c)|$. Therefore, $T''$ shows
+  that $(T^c,s^c)$ is semi-valid for $c$.
 
-Denote with $T'$ the real DT obtained $T'_C$ after the application of $r \circ p''$: note that this last reduction does not any node since every future feature of $T'_C$ is good and there is no feature with label $i$. To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a witness of $T$ for $b$. 
+  % $s=|V(T')\setminus V(\hat{T})|$
+  % $s-\hat{s}=|V(T')\setminus V(T)|$
+  
+  Towards showing the reverse direction, suppose that we have added 
+  the record $(\hat{T},s^c+\hat{s})$ using our construction. Then,
+  there is a DT skeleton $T$ for $b$ with
+  $\hat{T}=\red(\rlrelF(\hat{T}))$ and $\hat{s}=|V(T)\setminus
+  V(\hat{T})|$ and a record $(T^c,s^c) \in \RRR(c)$ with
+  $T^c=\red(\rlrelI(T))$.
+  
+  We have to show that the record $(\hat{T},s^c+\hat{s})$ is semi-valid for $b$. Because
+  $(T^c,s^c) \in \RRR(c)$, there is a reduced DT template $T'$ for $c$ such that
+  $T^c=\red(\rlstan{c}(T')$ and $s^c=|V(T')\setminus V(T^c)|$. 
+  Informally, we now construct a witness $T'''$ for the semi-validity of $(\hat{T},
+  s^c+\hat{s})$ for $b$ from $T'$ by reversing the reduction
+  $T^c=\red(\rlrelI(T))$.
 
-Before proving $(i)$, we describe how $T$ can be obtained from $T'$. Let $p'''$ be the following relabelling of $T'$: every real feature that contains $j$ is assigned to the real feature $A\cup \{i\}$ and every other feature is assigned to itself. Then the application of the composition $p'''$, the standard reduction and $r \circ p''$ to $T'$ is exactly the standard reduction for $T'$ which then result to the DT template $T$.
-By Lemma~\ref{red-last} the score of the standard reduction from $T'$ to $T$ is exactly $s_C+s^*=s$. 
+  Let $a : V(T^c) \rightarrow V(T')$ be the injective function that
+  maps every node in $T^c$ to its corresponding node in $T'$; which
+  exists because $T^c=\red(\rlstan{c}(T'))$. First 
+  Let $b : V(T^c) \rightarrow V(T)$ be the injective function that
+  maps every node in $T^c$ to its corresponding node in $T$; which
+  exists because $T^c=\red(\rlrelI(T))$.
+  First we relabel every future feature in $T'$ in to its
+  corresponding future feature.
+  Let $T''$ be the DT template obtained from $T'$ by setting
+  $\feat_{T''}(a(b^{-1}(t)))=\feat_{T}(t)$ for every node $t \in
+  V(T^c)$ with $\feat_T(t) \in \SoIF{[k]}$ and
+  $\feat_{T''}(t)=\feat_{T'}(t)$ otherwise. Moreover, let $T'''$ be
+  the DT template obtained from $T''$ by doing the following for every
+  edge $e=(p,c)$ in $T^c$, where $p$ is the parent of $c$ in
+  $T^c$. Let $P(e)$ be the path from $b(p)$ to $b(c)$ in $T$. Then, we
+  plugin the path $P(e)$ into $T''$ at the edge $(p',a(c))$, where $p'$ is the
+  parent of $a(c)$ in $T''$.
+  \note{there is one problem remaining: $T'''$ could now have some
+    forgotten features from $T$; those should be replaced by arbitrary
+  real features with the same label; but only if such examples also
+  exist; maybe there is a better way??}
+  
+  Then, $T'''$ is a DT template for $b$, because $T'$ is a DT template
+  for $c$ and we only changed where examples with label $i$ go, which
+  are not present in $\exam(b)$. Moreover, $T=\red(\rlstan{c}(T'''))$
+  and therefore $\hat{T}=\red(\rlstan{b}(T''')$. Finally, because
+  $|V(T''')\setminus V(T)|=|V(T')\setminus V(T^c)|=s^c$, it holds that
+  $|V(T''')\setminus V(\hat{T})|=s^c+\hat{s}$, which shows that the
+  record $(\hat{T},s^c+\hat{s})$ is semi-valid for $b$.
 
-Now we consider statement $(ii)$. First note that $exam(b)=exam(b_C)$.
-We show that a given example $e\in exam(b)$ is correctly classified by $T'$. Say that $e$ goes along a path $P$ of $T'_C$ from the root to a leaf $\ell$. We show $e$ goes along the path $P$ in $T'$ as well: every real feature has not changed and so $e$ behaves the same. Since every future feature of $T'_C$ is good, then $e$ behave the same on the corresponding future feature of $T'$.
 
-\smallskip
-Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $B$ for $b$. In particular, we recall that real $T'$ is a DT for $b$ with real features and future feature labels in $\mathcal{P}([k]\setminus \{i\})$.
+%   Now we have to show the correctness of the construction for
+%   $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is
+%   the minimum number of elements that have been deleted from a witness
+%   $T'$ of $T$ for $b$.
 
-We create the real DT $T'_C$ as the application of $r \circ p'''$ to $T'$, the DT template $T_C$ as the application of the standard reduction to $T'_C$. By construction we have $(T_C,s_C)\in \mathcal{R}(b_C)$, where $s_C$ is the number of nodes that have been removed from $T'_C$ to $T_C$. Note that $T_C$ has only good future features.
-Finally we note that $T$ is obtained from $T_C$ by the application of $r \circ p''$.
+
+% \smallskip
+% We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By
+% construction there exists a record $(T_C,s_C)\in \mathcal{R}(b_C)$
+% such that $T$ is obtained from $T_C$ after the application of $r \circ
+% p''$ and let $s^*=s-s_C$. By induction $s_C$ is the minimum amount of
+% nodes that have been deleted from a witness $T'_C$ of $T_C$ for
+% $b_C$. By construction we also know that every future feature of both
+% $T'_C$ and $T_C$ is good.
+
+% Denote with $T'$ the real DT obtained $T'_C$ after the application of
+% $r \circ p''$: note that this last reduction does not any node since
+% every future feature of $T'_C$ is good and there is no feature with
+% label $i$. To conclude this part of the proof we have to show two
+% things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices;
+% $(ii)$ $T'$ is a witness of $T$ for $b$.
+
+% Before proving $(i)$, we describe how $T$ can be obtained from $T'$. Let $p'''$ be the following relabelling of $T'$: every real feature that contains $j$ is assigned to the real feature $A\cup \{i\}$ and every other feature is assigned to itself. Then the application of the composition $p'''$, the standard reduction and $r \circ p''$ to $T'$ is exactly the standard reduction for $T'$ which then result to the DT template $T$.
+% By Lemma~\ref{red-last} the score of the standard reduction from $T'$
+% to $T$ is exactly $s_C+s^*=s$.
+
+% Now we consider statement $(ii)$. First note that $exam(b)=exam(b_C)$.
+% We show that a given example $e\in exam(b)$ is correctly classified by
+% $T'$. Say that $e$ goes along a path $P$ of $T'_C$ from the root to a
+% leaf $\ell$. We show $e$ goes along the path $P$ in $T'$ as well:
+% every real feature has not changed and so $e$ behaves the same. Since
+% every future feature of $T'_C$ is good, then $e$ behave the same on
+% the corresponding future feature of $T'$.
+
+% \smallskip
+% Now we prove the backward direction. Let $T$ be a reduced DT such that
+% $s$ is the minimum number of elements that have been deleted from a
+% witness $T'$ of $B$ for $b$. In particular, we recall that real $T'$
+% is a DT for $b$ with real features and future feature labels in
+% $\mathcal{P}([k]\setminus \{i\})$.
+
+% We create the real DT $T'_C$ as the application of $r \circ p'''$ to
+% $T'$, the DT template $T_C$ as the application of the standard
+% reduction to $T'_C$. By construction we have $(T_C,s_C)\in
+% \mathcal{R}(b_C)$, where $s_C$ is the number of nodes that have been
+% removed from $T'_C$ to $T_C$. Note that $T_C$ has only good future
+% features.
+% Finally we note that $T$ is obtained from $T_C$ by the application of
+% $r \circ p''$.
+
 \end{proof}
 
-\subsection{Formal Definition of Records and Preliminary Results}
-
-We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a maximal subtree of $T$ and in $Y$ the root have at most the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
-
-Now we can define two operations on subcubic rooted trees and single pairs. We say that we {\it plug in} a single pair $(Y,S)$ in a left (right) edge $uv$ as follows: we make the root $y$ of $Y$ the left (right) child of $u$, $Y\setminus \{y\}$ to be the $S$ subtree of $y$ and $v$ to be the $H\in \{left,right\}\setminus S$ child of $y$. See Figure~\ref{fig:plugin} for the corresponding drawings. Note after a plug in of a single pair in an edge, the node $v$ belongs in the same side of the subtree rooted at $u$ as it was before the plug in.
-
-\begin{figure}[h]
-\begin{minipage}{0.2\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (0,1)--(-1,-0)--(0,-1);
-\draw[fill=white] (0,1) circle [radius=2pt]
-(0,-1) circle [radius=2pt];
-\draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(-2,-1);
-\draw[very thick] (-2.5,-1.25) to[out=60,in=120] (-1.5,-1.25);
-\node[left] at (0,1) {$u$};
-\node[left] at (-1,0) {$y$};
-\node[left] at (0,-1) {$v$};
-\end{tikzpicture}
-\subcaption{$(Y,left)$~left.}
-\end{minipage}
-\begin{minipage}{0.2\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (0,1)--(-2,-1);
-\draw[fill=white] (0,1) circle [radius=2pt]
-(-2,-1) circle [radius=2pt];
-\draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
-\draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
-\node[left] at (0,1) {$u$};
-\node[left] at (-1,0) {$y$};
-\node[right] at (-2,-1) {$v$};
-\end{tikzpicture}
-\subcaption{$(Y,right)$~left.}
-\end{minipage}
-\begin{minipage}{0.25\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (-2,1)--(0,-1);
-\draw[fill=white] (-2,1) circle [radius=2pt]
-(0,-1) circle [radius=2pt];
-\draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(-2,-1);
-\draw[very thick] (-2.5,-1.25) to[out=60,in=120] (-1.5,-1.25);
-\node[right] at (-2,1) {$u$};
-\node[left] at (-1,0) {$y$};
-\node[left] at (0,-1) {$v$};
-\end{tikzpicture}
-\subcaption{$(Y,left)$~right.}
-\end{minipage}
-\begin{minipage}{0.2\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (-2,1)--(-1,0)--(-2,-1);
-\draw[fill=white] (-2,1) circle [radius=2pt]
-(-2,-1) circle [radius=2pt];
-\draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
-\draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
-\node[right] at (-2,1) {$u$};
-\node[left] at (-1,0) {$y$};
-\node[right] at (-2,-1) {$v$};
-\end{tikzpicture}
-\subcaption{$(Y,right)$~right.}
-\end{minipage}
-\caption{The drawings describe the plug in operation in the different four cases. The bold part highlight the single pair $(Y,S)$.}
-\label{fig:plugin}
-\end{figure}
-
-Let $(Y,S)$ be a single pair in a rooted subcubic tree $T$, then we {\it remove} $(Y,S)$ from $T$ as follows. Let $y$ be the root of $Y$. If $y$ is the root of $T$, then we obtain an empty tree. If $y$ is a leaf node of $T$, then we obtain $T-y$. Otherwise let $y$ be a non-root and non-leaf node, let $u$ be the parent of $y$ and $v$ be the child of $y$ that is not in $V(Y)$, then we consider the tree obtained from $T$ after replacing $y$ with $v$ as the child of $u$ and deleting $Y$. See Figure~\ref{fig:reduction} for an example.
-
-\begin{figure}[h]
-\begin{minipage}{0.5\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (0,1)--(-2,-1) (0,1)--(1,0);
-\draw[fill=white] (0,1) circle [radius=2pt]
-(1,0) circle [radius=2pt]
-(-2,-1) circle [radius=2pt];
-\draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
-\draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
-\node[left] at (0,1) {$u$};
-\node[left] at (-1,0) {$y$};
-\node[left] at (-2,-1) {$v$};
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.1\textwidth}
-\centering
-\begin{tikzpicture}[scale=1]
-\draw (0,1)--(-2,-1) (0,1)--(1,0);
-\draw[fill=white] (0,1) circle [radius=2pt]
-(1,0) circle [radius=2pt]
-(-2,-1) circle [radius=2pt];
-\node[left] at (0,1) {$u$};
-\node[left] at (-2,-1) {$v$};;
-\end{tikzpicture}
-\end{minipage}
-\caption{The drawing describe an example of the remove operation: a single pair $(Y,right)$ is removed from a subcubic rooted tree. The bold part highlight the single pair $(Y,S)$.}\label{fig:reduction}
-\end{figure}
-
-It is clear from the four different plug in cases that if we want to plug in two pairs $(Y,S)$ and $(Y',S')$ on an edge $uv$ such that the ancestor-descendant relationship is given, say $y$ of $Y$ has to be in the path from the root to $y'$ of $Y'$, then we can do these plug ins in any order but with some care. It is the same if we first plug in $(Y,S)$ in the edge $uv$ and then plug in $(Y',S')$ in the edge $yv$ or if we first plug in $(Y',S')$ in the edge $uv$ and then plug in $(Y,S)$ in the edge $uy'$. See Figure~\ref{fig:multiplugin} for the an example.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[scale=0.5]
-\draw[dashed] (-5,0)--(-2,2.5) node[midway,above] {$y'$}
-(-5,-1)--(-2,-3.5) node[midway,above] {$y$}
-(0,2.5)--(2,0) node[midway,above] {$y$}
-(0,-3.5)--(2,-1) node[midway,above] {$y'$};
-\draw (-7,1)--(-5,-2) (-2,4)--(0,1) (-2,-2)--(-1,-3.5)--(-2,-5) (3,1)--(4,0)--(3,-1)--(4,-2);
-\draw[very thick] (-1,-3.5)--(0,-5) (-1,2.5)--(-2,1) (4,0)--(5,-1) (3,-1)--(2,-2) (-2.3,0.87) to[out=60,in=120] (-1.7,0.87)
-(-0.3,-5.13) to[out=60,in=120] (0.3,-5.13) (4.7,-1.13) to[out=60,in=120] (5.3,-1.13) (1.7,-2.13) to[out=60,in=120] (2.3,-2.13);
-\draw[fill=white] (-7,1) circle [radius=3pt] (-5,-2) circle [radius=3pt] (-2,4) circle [radius=3pt] (0,1) circle [radius=3pt] (-2,-2) circle [radius=3pt] (-2,-5) circle [radius=3pt] (3,1) circle [radius=3pt] (4,-2) circle [radius=3pt];
-\draw[fill=black] (-1,-3.5) circle [radius=3pt] (-1,2.5) circle [radius=3pt] (4,0) circle [radius=3pt] (3,-1) circle [radius=3pt];
-\node[left] at (-7,1) {$u$};
-\node[left] at (-2,4) {$u$};
-\node[right] at (-2,-2) {$u$};
-\node[right] at (3,1) {$u$};
-\node[left] at (-5,-2) {$v$};
-\node[left] at (0,1) {$v$};
-\node[right] at (-2,-5) {$v$};
-\node[right] at (4,-2) {$v$};
-\node[above right] at (4,0) {$y$};
-\node[above right] at (-1,-3.5) {$y$};
-\node[above right] at (-1,2.5) {$y'$};
-\node[above] at (3,-1) {$y'$};
-\end{tikzpicture}
-\caption{An example of plugging in two pairs $(Y,left)$ and $(Y',right)$ in a left edge $uv$.}
-\label{fig:multiplugin}
-\end{figure}
+% \subsection{Formal Definition of Records and Preliminary Results}
+
+% We start off with some definitions. We say an edge is a {\it left (right) edge} of a subcubic rooted tree if it connects a non-leaf node with his left (resp. right) child. Let $Y$ be a rooted subcubic tree and $S\in \{left,right\}$, then we say the pair $(Y,S)$ is a {\it single pair} if the root of $Y$ has at most one child and the side $S$ indicates whether the edge from the root is either a left or right edge. Moreover, we say that $(Y,S)$ is single pair in a subcubic rooted tree $T$ if $Y$ is a maximal subtree of $T$ and in $Y$ the root have at most the $S$ child. Note that when tree of a single pair is made of just a node, the side is not relevant.
+
+% Now we can define two operations on subcubic rooted trees and single pairs. We say that we {\it plug in} a single pair $(Y,S)$ in a left (right) edge $uv$ as follows: we make the root $y$ of $Y$ the left (right) child of $u$, $Y\setminus \{y\}$ to be the $S$ subtree of $y$ and $v$ to be the $H\in \{left,right\}\setminus S$ child of $y$. See Figure~\ref{fig:plugin} for the corresponding drawings. Note after a plug in of a single pair in an edge, the node $v$ belongs in the same side of the subtree rooted at $u$ as it was before the plug in.
+
+% \begin{figure}[h]
+% \begin{minipage}{0.2\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (0,1)--(-1,-0)--(0,-1);
+% \draw[fill=white] (0,1) circle [radius=2pt]
+% (0,-1) circle [radius=2pt];
+% \draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(-2,-1);
+% \draw[very thick] (-2.5,-1.25) to[out=60,in=120] (-1.5,-1.25);
+% \node[left] at (0,1) {$u$};
+% \node[left] at (-1,0) {$y$};
+% \node[left] at (0,-1) {$v$};
+% \end{tikzpicture}
+% \subcaption{$(Y,left)$~left.}
+% \end{minipage}
+% \begin{minipage}{0.2\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (0,1)--(-2,-1);
+% \draw[fill=white] (0,1) circle [radius=2pt]
+% (-2,-1) circle [radius=2pt];
+% \draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
+% \draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
+% \node[left] at (0,1) {$u$};
+% \node[left] at (-1,0) {$y$};
+% \node[right] at (-2,-1) {$v$};
+% \end{tikzpicture}
+% \subcaption{$(Y,right)$~left.}
+% \end{minipage}
+% \begin{minipage}{0.25\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (-2,1)--(0,-1);
+% \draw[fill=white] (-2,1) circle [radius=2pt]
+% (0,-1) circle [radius=2pt];
+% \draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(-2,-1);
+% \draw[very thick] (-2.5,-1.25) to[out=60,in=120] (-1.5,-1.25);
+% \node[right] at (-2,1) {$u$};
+% \node[left] at (-1,0) {$y$};
+% \node[left] at (0,-1) {$v$};
+% \end{tikzpicture}
+% \subcaption{$(Y,left)$~right.}
+% \end{minipage}
+% \begin{minipage}{0.2\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (-2,1)--(-1,0)--(-2,-1);
+% \draw[fill=white] (-2,1) circle [radius=2pt]
+% (-2,-1) circle [radius=2pt];
+% \draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
+% \draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
+% \node[right] at (-2,1) {$u$};
+% \node[left] at (-1,0) {$y$};
+% \node[right] at (-2,-1) {$v$};
+% \end{tikzpicture}
+% \subcaption{$(Y,right)$~right.}
+% \end{minipage}
+% \caption{The drawings describe the plug in operation in the different four cases. The bold part highlight the single pair $(Y,S)$.}
+% \label{fig:plugin}
+% \end{figure}
+
+% Let $(Y,S)$ be a single pair in a rooted subcubic tree $T$, then we {\it remove} $(Y,S)$ from $T$ as follows. Let $y$ be the root of $Y$. If $y$ is the root of $T$, then we obtain an empty tree. If $y$ is a leaf node of $T$, then we obtain $T-y$. Otherwise let $y$ be a non-root and non-leaf node, let $u$ be the parent of $y$ and $v$ be the child of $y$ that is not in $V(Y)$, then we consider the tree obtained from $T$ after replacing $y$ with $v$ as the child of $u$ and deleting $Y$. See Figure~\ref{fig:reduction} for an example.
+
+% \begin{figure}[h]
+% \begin{minipage}{0.5\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (0,1)--(-2,-1) (0,1)--(1,0);
+% \draw[fill=white] (0,1) circle [radius=2pt]
+% (1,0) circle [radius=2pt]
+% (-2,-1) circle [radius=2pt];
+% \draw[very thick,fill=black] (-1,0) circle [radius=2pt] (-1,0)--(0,-1);
+% \draw[very thick] (-0.5,-1.25) to[out=60,in=120] (0.5,-1.25);
+% \node[left] at (0,1) {$u$};
+% \node[left] at (-1,0) {$y$};
+% \node[left] at (-2,-1) {$v$};
+% \end{tikzpicture}
+% \end{minipage}
+% \begin{minipage}{0.1\textwidth}
+% \centering
+% \begin{tikzpicture}[scale=1]
+% \draw (0,1)--(-2,-1) (0,1)--(1,0);
+% \draw[fill=white] (0,1) circle [radius=2pt]
+% (1,0) circle [radius=2pt]
+% (-2,-1) circle [radius=2pt];
+% \node[left] at (0,1) {$u$};
+% \node[left] at (-2,-1) {$v$};;
+% \end{tikzpicture}
+% \end{minipage}
+% \caption{The drawing describe an example of the remove operation: a single pair $(Y,right)$ is removed from a subcubic rooted tree. The bold part highlight the single pair $(Y,S)$.}\label{fig:reduction}
+% \end{figure}
+
+% It is clear from the four different plug in cases that if we want to plug in two pairs $(Y,S)$ and $(Y',S')$ on an edge $uv$ such that the ancestor-descendant relationship is given, say $y$ of $Y$ has to be in the path from the root to $y'$ of $Y'$, then we can do these plug ins in any order but with some care. It is the same if we first plug in $(Y,S)$ in the edge $uv$ and then plug in $(Y',S')$ in the edge $yv$ or if we first plug in $(Y',S')$ in the edge $uv$ and then plug in $(Y,S)$ in the edge $uy'$. See Figure~\ref{fig:multiplugin} for the an example.
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}[scale=0.5]
+% \draw[dashed] (-5,0)--(-2,2.5) node[midway,above] {$y'$}
+% (-5,-1)--(-2,-3.5) node[midway,above] {$y$}
+% (0,2.5)--(2,0) node[midway,above] {$y$}
+% (0,-3.5)--(2,-1) node[midway,above] {$y'$};
+% \draw (-7,1)--(-5,-2) (-2,4)--(0,1) (-2,-2)--(-1,-3.5)--(-2,-5) (3,1)--(4,0)--(3,-1)--(4,-2);
+% \draw[very thick] (-1,-3.5)--(0,-5) (-1,2.5)--(-2,1) (4,0)--(5,-1) (3,-1)--(2,-2) (-2.3,0.87) to[out=60,in=120] (-1.7,0.87)
+% (-0.3,-5.13) to[out=60,in=120] (0.3,-5.13) (4.7,-1.13) to[out=60,in=120] (5.3,-1.13) (1.7,-2.13) to[out=60,in=120] (2.3,-2.13);
+% \draw[fill=white] (-7,1) circle [radius=3pt] (-5,-2) circle [radius=3pt] (-2,4) circle [radius=3pt] (0,1) circle [radius=3pt] (-2,-2) circle [radius=3pt] (-2,-5) circle [radius=3pt] (3,1) circle [radius=3pt] (4,-2) circle [radius=3pt];
+% \draw[fill=black] (-1,-3.5) circle [radius=3pt] (-1,2.5) circle [radius=3pt] (4,0) circle [radius=3pt] (3,-1) circle [radius=3pt];
+% \node[left] at (-7,1) {$u$};
+% \node[left] at (-2,4) {$u$};
+% \node[right] at (-2,-2) {$u$};
+% \node[right] at (3,1) {$u$};
+% \node[left] at (-5,-2) {$v$};
+% \node[left] at (0,1) {$v$};
+% \node[right] at (-2,-5) {$v$};
+% \node[right] at (4,-2) {$v$};
+% \node[above right] at (4,0) {$y$};
+% \node[above right] at (-1,-3.5) {$y$};
+% \node[above right] at (-1,2.5) {$y'$};
+% \node[above] at (3,-1) {$y'$};
+% \end{tikzpicture}
+% \caption{An example of plugging in two pairs $(Y,left)$ and $(Y',right)$ in a left edge $uv$.}
+% \label{fig:multiplugin}
+% \end{figure}
 
-For a subset of labels $A\subseteq [k]$, we define the feature template $f_A$ by setting $e(f_A)=1$ if and only if $lab(e)\in A$ and $e(f_A)=0$ otherwise. With a small abuse of notation, we often identify the feature template $f_A$ with the corresponding subset of labels $A$.
+% For a subset of labels $A\subseteq [k]$, we define the feature template $f_A$ by setting $e(f_A)=1$ if and only if $lab(e)\in A$ and $e(f_A)=0$ otherwise. With a small abuse of notation, we often identify the feature template $f_A$ with the corresponding subset of labels $A$.
 
-\smallskip
-Suppose we have a DT such that some feature label~$i$ occurs twice on a path from the root to the leaves, say~$f_1$ is the instance closer to the root and~$f_2$ is the other instance. If~$f_2$ is in the left (resp. right) subtree of~$f_1$, we remove $f_2$'s right (resp. left) subtree. In this case we say we have done an {\it actual removal}.
+% \smallskip
+% Suppose we have a DT such that some feature label~$i$ occurs twice on a path from the root to the leaves, say~$f_1$ is the instance closer to the root and~$f_2$ is the other instance. If~$f_2$ is in the left (resp. right) subtree of~$f_1$, we remove $f_2$'s right (resp. left) subtree. In this case we say we have done an {\it actual removal}.
 
-Suppose we have a feature template labelled~$A$ in our DT. Let $A_1,\ldots,A_\ell$ be the sequence of feature templates on the path from the root to~$A$ in order (not including~$A$). Let $A_i'=A_i$ if~$A$ is in the right sub-tree of~$A_i$ and let $A_i'=\overline{A_i}$ otherwise. If $\overline{A} \subseteq A_1' \cup \ldots \cup A_\ell'$, then we remove the subtree rooted at the left child of~$A$. If $A\subseteq \overline{A_1'} \cup \ldots \cup \overline{A_\ell'}$, then we remove the subtree rooted at the right child of~$A$. In this case we say we have done a {\it template removal}. If this procedure has been applied to a record exhaustively, we say that the DT is {\it reduced}.
+% Suppose we have a feature template labelled~$A$ in our DT. Let $A_1,\ldots,A_\ell$ be the sequence of feature templates on the path from the root to~$A$ in order (not including~$A$). Let $A_i'=A_i$ if~$A$ is in the right sub-tree of~$A_i$ and let $A_i'=\overline{A_i}$ otherwise. If $\overline{A} \subseteq A_1' \cup \ldots \cup A_\ell'$, then we remove the subtree rooted at the left child of~$A$. If $A\subseteq \overline{A_1'} \cup \ldots \cup \overline{A_\ell'}$, then we remove the subtree rooted at the right child of~$A$. In this case we say we have done a {\it template removal}. If this procedure has been applied to a record exhaustively, we say that the DT is {\it reduced}.
 
-To be short, for a DT $T$ and a node $v$, we write $v\in T$ instead of $v\in V(T)$ and $v\not\in T$ otherwise. In a DT $T$ we say that path $p$ is a {\it downward} pard path if it is contained in a path having the root as endpoint.
+% To be short, for a DT $T$ and a node $v$, we write $v\in T$ instead of $v\in V(T)$ and $v\not\in T$ otherwise. In a DT $T$ we say that path $p$ is a {\it downward} pard path if it is contained in a path having the root as endpoint.
 
-We now formally define two important operations. Given a DT $T$, we say that we {\it reduce} $T$ if we exhaustively do actual removals and template removals. Call $r(T)$ the resulting DT.
+% We now formally define two important operations. Given a DT $T$, we say that we {\it reduce} $T$ if we exhaustively do actual removals and template removals. Call $r(T)$ the resulting DT.
 
-Recall that in any DT $T$, every non-leaf node $v$ has one of the following three contents: $v$ is a real feature (without label), or $v$ is a feature with a label, or $v$ is a future feature with the corresponding subset of labels.
-A {\it relabelling} $p$ for $T$ is an assignment of contents of $T$ as follows. Every feature is assigned to a feature with is either future, real or with a label. We say that we {\it relabel} the DT $T$ via the relabelling $p$ if for every node of $T$ we apply the corresponding assignment and call $p(T)$ the resulting DT.
+% Recall that in any DT $T$, every non-leaf node $v$ has one of the following three contents: $v$ is a real feature (without label), or $v$ is a feature with a label, or $v$ is a future feature with the corresponding subset of labels.
+% A {\it relabelling} $p$ for $T$ is an assignment of contents of $T$ as follows. Every feature is assigned to a feature with is either future, real or with a label. We say that we {\it relabel} the DT $T$ via the relabelling $p$ if for every node of $T$ we apply the corresponding assignment and call $p(T)$ the resulting DT.
 
-The following lemma shows that, after repeatedly applying it the necessary amount of times, to obtain a reduced DT after a sequence of relabels, it is safe to reduce at the end.
+% The following lemma shows that, after repeatedly applying it the necessary amount of times, to obtain a reduced DT after a sequence of relabels, it is safe to reduce at the end.
 
-\begin{lemma}[Relabelling Lemma]\label{red-last}
-Let $T$ be a DT and $p$ be relabelling of $T$. Then $(r \circ p \circ r) (T)=(r \circ p) (T)$.
-\end{lemma}
+% \begin{lemma}[Relabelling Lemma]\label{red-last}
+% Let $T$ be a DT and $p$ be relabelling of $T$. Then $(r \circ p \circ r) (T)=(r \circ p) (T)$.
+% \end{lemma}
 
-\begin{proof}
-For every $v\in T$, we want to prove $v\in (r\circ p\circ r)(T) \Leftrightarrow v\in (r \circ p)(T)$.
+% \begin{proof}
+% For every $v\in T$, we want to prove $v\in (r\circ p\circ r)(T) \Leftrightarrow v\in (r \circ p)(T)$.
 
-$\Rightarrow$ Suppose there is a node $v\not\in (r \circ p)(T)$. Since $v\in p(T)$, there is a set of ancestors of $v$ in $p(T)$ that allows to remove $v$. Let $A_v$ be the union of all the minimal set of ancestors of $v$ in $p(T)$ that allows to remove $v$. If $A_v$ is a set of ancestors of $v$ in $T$ that allows to reduce $v$ then $v\not\in r(T)$ and so $v\not \in (r\circ p\circ r)(T)$. Otherwise let $A'_v$ be the subset of $A_v$ in $(p \circ r)(T)$. We conclude by noting that $A'_v$ contains one of the minimal sets $A_v$ is composed of and so $v\not \in (r\circ p\circ r)(T)$.
-
-$\Leftarrow$ Suppose there is a node $v\not\in (r \circ p \circ r)(T)$. If $v\in (p \circ r)(T)$, there exists a set $A_v$ of ancestors of $v$ in $(p \circ r)(T)$ that allows to reduce $v$. Then $A_v$ is a set of ancestors of $v$ in $p(T)$ that allows to reduce $v$ and so $v\not\in (r \circ p)(T)$. If $v\not\in (p \circ r)(T)$ then $v\not\in r(T)$: there exists a set $A_v$ of ancestors of $v$ in $T$ that allows to remove $v$. This means $A_v$ is a set of ancestors of $v$ in $p(T)$ that allows to remove $v$ and so $v\not\in (r \circ p)(T)$.
-\end{proof}
+% $\Rightarrow$ Suppose there is a node $v\not\in (r \circ p)(T)$. Since $v\in p(T)$, there is a set of ancestors of $v$ in $p(T)$ that allows to remove $v$. Let $A_v$ be the union of all the minimal set of ancestors of $v$ in $p(T)$ that allows to remove $v$. If $A_v$ is a set of ancestors of $v$ in $T$ that allows to reduce $v$ then $v\not\in r(T)$ and so $v\not \in (r\circ p\circ r)(T)$. Otherwise let $A'_v$ be the subset of $A_v$ in $(p \circ r)(T)$. We conclude by noting that $A'_v$ contains one of the minimal sets $A_v$ is composed of and so $v\not \in (r\circ p\circ r)(T)$.
+
+% $\Leftarrow$ Suppose there is a node $v\not\in (r \circ p \circ r)(T)$. If $v\in (p \circ r)(T)$, there exists a set $A_v$ of ancestors of $v$ in $(p \circ r)(T)$ that allows to reduce $v$. Then $A_v$ is a set of ancestors of $v$ in $p(T)$ that allows to reduce $v$ and so $v\not\in (r \circ p)(T)$. If $v\not\in (p \circ r)(T)$ then $v\not\in r(T)$: there exists a set $A_v$ of ancestors of $v$ in $T$ that allows to remove $v$. This means $A_v$ is a set of ancestors of $v$ in $p(T)$ that allows to remove $v$ and so $v\not\in (r \circ p)(T)$.
+% \end{proof}
 
-We say that a DT $T$ is a {\it real DT} if every non-leaf node is either a real feature or a future feature, whereas it is a {\it DT template} if it contains no real feature.
-
-Let $B$ be a rooted subcubic tree that corresponds to a $k$-NLC expression of the graph $G_I(E)$.
-For $b\in V(B)$, we write $feat(b)$ and $exam(b)$ for the sets of features and examples introduced at nobe $b$.
-We say that a real DT $T$ is a DT for the node $b$ if every real feature of $T$ is an element of $feat(b)$ and every example in $exam(b)$ is correctly classified by $T$, i.e. if $e\in exam(b)\cap E^+$ then $e$ ends in a leaf with a $+$ label and if $e\in exam(b)\cap E^-$ then $e$ ends in a leaf with a $-$ label.
-
-Given a real DT $T$ and a node $b\in B$, often we want to perform a very specific composition of operations. Let $p_b$ be the following relabelling of $T$: every real feature of $T$ is assigned to a feature with the label given by the $k$-NLC expression at node $b$ and every other feature is assigned to itself. Then the composition $r \circ p_b$ is called the {\it standard reduction} of $T$ at node $b$.
-Given a DT $T$ and a node $b\in B$, it is useful to give the following relabelling $p'_b$: every feature with a label is assigned to the real feature of that node. The relabelling $p'_b$ is called the {\it real relabelling} of $T$ at node $b$.
-
-We say that a DT template $T$ is a DT for the node $b$ if there exits a real DT $T'$ for $b$ such that $T$ is the standard reduction of $T'$. In this case we say that $T'$ is the witness of $T$ for $b$.
+% We say that a DT $T$ is a {\it real DT} if every non-leaf node is either a real feature or a future feature, whereas it is a {\it DT template} if it contains no real feature.
+
+% Let $B$ be a rooted subcubic tree that corresponds to a $k$-NLC expression of the graph $G_I(E)$.
+% For $b\in V(B)$, we write $feat(b)$ and $exam(b)$ for the sets of features and examples introduced at nobe $b$.
+% We say that a real DT $T$ is a DT for the node $b$ if every real feature of $T$ is an element of $feat(b)$ and every example in $exam(b)$ is correctly classified by $T$, i.e. if $e\in exam(b)\cap E^+$ then $e$ ends in a leaf with a $+$ label and if $e\in exam(b)\cap E^-$ then $e$ ends in a leaf with a $-$ label.
+
+% Given a real DT $T$ and a node $b\in B$, often we want to perform a very specific composition of operations. Let $p_b$ be the following relabelling of $T$: every real feature of $T$ is assigned to a feature with the label given by the $k$-NLC expression at node $b$ and every other feature is assigned to itself. Then the composition $r \circ p_b$ is called the {\it standard reduction} of $T$ at node $b$.
+% Given a DT $T$ and a node $b\in B$, it is useful to give the following relabelling $p'_b$: every feature with a label is assigned to the real feature of that node. The relabelling $p'_b$ is called the {\it real relabelling} of $T$ at node $b$.
+
+% We say that a DT template $T$ is a DT for the node $b$ if there exits a real DT $T'$ for $b$ such that $T$ is the standard reduction of $T'$. In this case we say that $T'$ is the witness of $T$ for $b$.
 
-\begin{lemma}\label{lem:reduced-tree-height}
-If there are $\ell$ features with labels and $2^h$ future features, then every reduced DT template has height at most~$\ell+h$. Furthermore, every path from the root to the leaves contains at most~$\ell$ features with label and at most $h-1$ future features.
-\end{lemma}
+% \begin{lemma}\label{lem:reduced-tree-height}
+% If there are $\ell$ features with labels and $2^h$ future features, then every reduced DT template has height at most~$\ell+h$. Furthermore, every path from the root to the leaves contains at most~$\ell$ features with label and at most $h-1$ future features.
+% \end{lemma}
 
-\begin{proof}
-Consider a path~$P$ of maximum length from the root to the leaves in a reduced DT template $T$. 
-By the assumptions on $T$, no feature with label appears more than once on this path: the number of these feature nodes on this path is at most~$\ell$. Consider two future features $f_{A}$ and $f_{A'}$ that appear in $P$, say $f_{A}$ is the instance closer to the root. Since $T$ is reduced, we must have that $\emptyset\subset A'\subset A$. Since the label of any future feature has at most $h$ elements, there can be at most $h-1$ feature template nodes on this path. The path ends with a leaf node, so this gives a total of $\ell+h-1+1=\ell+h$ nodes, as required.
-\end{proof}
+% \begin{proof}
+% Consider a path~$P$ of maximum length from the root to the leaves in a reduced DT template $T$. 
+% By the assumptions on $T$, no feature with label appears more than once on this path: the number of these feature nodes on this path is at most~$\ell$. Consider two future features $f_{A}$ and $f_{A'}$ that appear in $P$, say $f_{A}$ is the instance closer to the root. Since $T$ is reduced, we must have that $\emptyset\subset A'\subset A$. Since the label of any future feature has at most $h$ elements, there can be at most $h-1$ feature template nodes on this path. The path ends with a leaf node, so this gives a total of $\ell+h-1+1=\ell+h$ nodes, as required.
+% \end{proof}
 
-\begin{lemma}\label{lem:reduced-tree-number}
-If there are $\ell$ features with label and $2^h$ future features, 
-then there are at most $(\ell+2^k+2)2^{\ell+k+1}$ reduced DT templates. Furthermore, these can be enumerated in $\mathcal{O}((\ell+2^k+2)2^{\ell+k+1})$-time.
-\end{lemma}
+% \begin{lemma}\label{lem:reduced-tree-number}
+% If there are $\ell$ features with label and $2^h$ future features, 
+% then there are at most $(\ell+2^k+2)2^{\ell+k+1}$ reduced DT templates. Furthermore, these can be enumerated in $\mathcal{O}((\ell+2^k+2)2^{\ell+k+1})$-time.
+% \end{lemma}
 
-\begin{proof}
-By Lemma~\ref{lem:reduced-tree-height}, the tree has height at most $\ell+k$.
-Each node of the DT could be a feature with label, a future feature, or a leaf: at most $\ell+2^h+2$ different contents. Since there are at most $2^{\ell+h+1}$ nodes in the tree, there are at most $(\ell+2^h+2) 2^{\ell+h+1}$ possible DTs.
-\end{proof}
+% \begin{proof}
+% By Lemma~\ref{lem:reduced-tree-height}, the tree has height at most $\ell+k$.
+% Each node of the DT could be a feature with label, a future feature, or a leaf: at most $\ell+2^h+2$ different contents. Since there are at most $2^{\ell+h+1}$ nodes in the tree, there are at most $(\ell+2^h+2) 2^{\ell+h+1}$ possible DTs.
+% \end{proof}
 
-\smallskip
-The {\it semantics} for a record are defined as follows. We say that a pair $(T,s)$ is a {\it record} for the node $b\in B$ and we write $(T,s)\in \mathcal{R}(b)$, if $T$ is a DT template for $b$ and $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
+% \smallskip
+% The {\it semantics} for a record are defined as follows. We say that a pair $(T,s)$ is a {\it record} for the node $b\in B$ and we write $(T,s)\in \mathcal{R}(b)$, if $T$ is a DT template for $b$ and $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
 
-\subsection{Proof to the Main Result}
+% \subsection{Proof to the Main Result}
 
-Now, it suffices to compute $\mathcal{R}(b)$ via leaf-to-root dynamic programming. The following four lemmas show how this can be achieved for all of the four types of nodes in a $k$-NLC expression tree $B$.
+% Now, it suffices to compute $\mathcal{R}(b)$ via leaf-to-root dynamic programming. The following four lemmas show how this can be achieved for all of the four types of nodes in a $k$-NLC expression tree $B$.
 
-\begin{lemma}[leaf node]\label{lem:leaf}
-Let $b\in V(B)$ be a leaf node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2^k+3)2^{k+2})$.
-\end{lemma}
+% \begin{lemma}[leaf node]\label{lem:leaf}
+% Let $b\in V(B)$ be a leaf node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2^k+3)2^{k+2})$.
+% \end{lemma}
 
-\begin{proof}
-Let $v$ be the vertex of $G_I(E)$ that corresponds to the leaf node $b$. This means either $v\in E$ or $v\in feat(E)$.
+% \begin{proof}
+% Let $v$ be the vertex of $G_I(E)$ that corresponds to the leaf node $b$. This means either $v\in E$ or $v\in feat(E)$.
 
-We have to enumerate all possible reduced DT templates $T$ for $b$. It is enough to consider all reduced DT templates $T$ of height at most $k+1$ and discard those that are not DT templates for $b$; these can be enumerated in time $\mathcal{O}((2^k+3)2^{k+2})$ by Lemma~\ref{lem:reduced-tree-number} and the check can be done in time $\mathcal{O}(k)$. We add the pair $(T,0)$ to the set of records $\mathcal{R}(b)$. 
+% We have to enumerate all possible reduced DT templates $T$ for $b$. It is enough to consider all reduced DT templates $T$ of height at most $k+1$ and discard those that are not DT templates for $b$; these can be enumerated in time $\mathcal{O}((2^k+3)2^{k+2})$ by Lemma~\ref{lem:reduced-tree-number} and the check can be done in time $\mathcal{O}(k)$. We add the pair $(T,0)$ to the set of records $\mathcal{R}(b)$. 
 
-Now we have to show the correctness of the construction for $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
+% Now we have to show the correctness of the construction for $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
 
-We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction, we have that $s=0$ and $T$ is a DT template for $b$ which is already reduced. Then $T$ is trivially a witness of $T$ for $b$.
+% We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction, we have that $s=0$ and $T$ is a DT template for $b$ which is already reduced. Then $T$ is trivially a witness of $T$ for $b$.
 
-Now we prove the backward direction. Let $T$ be a reduced DT template such that $0$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$. This means $T'$ is obtained from $T$ after the real relabelling at node $b$ is applied: $T$ is a DT template among the considered DTs above which leads to the fact that $(T,0)\in \mathcal{R}(b)$.
-\end{proof}
+% Now we prove the backward direction. Let $T$ be a reduced DT template such that $0$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$. This means $T'$ is obtained from $T$ after the real relabelling at node $b$ is applied: $T$ is a DT template among the considered DTs above which leads to the fact that $(T,0)\in \mathcal{R}(b)$.
+% \end{proof}
 
-\begin{lemma}[join node]\label{lem:join}
-Let $b\in V(B)$ be a join node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{6k+1})$.
-\end{lemma}
+% \begin{lemma}[join node]\label{lem:join}
+% Let $b\in V(B)$ be a join node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{6k+1})$.
+% \end{lemma}
 
-\begin{proof}
-Let $b_L$ and $b_R$ be the left, resp. right, child of $b$ in $B$: we may assume the labels for $feat(b_L)$ are in $[k]$ and the labels for $feat(b_R)$ are in $[k']$. Moreover, let $M$ be the $k\times k$ $\{0,1\}$ matrix that represent the node $b$. Finally, for every label $i\in [k]$, let $A_i=\{j\in [k]~|~M_{i,j}=1\}$.
+% \begin{proof}
+% Let $b_L$ and $b_R$ be the left, resp. right, child of $b$ in $B$: we may assume the labels for $feat(b_L)$ are in $[k]$ and the labels for $feat(b_R)$ are in $[k']$. Moreover, let $M$ be the $k\times k$ $\{0,1\}$ matrix that represent the node $b$. Finally, for every label $i\in [k]$, let $A_i=\{j\in [k]~|~M_{i,j}=1\}$.
 
-We consider every reduced DT $T$ for $b$ with feature labels in $[k]\cup [k']$ and future feature labels in $\mathcal{P}([k])$; these can be enumerated in time $\mathcal{O}((2k+2^k+2)2^{3k+1})$ by Lemma~\ref{lem:reduced-tree-number}.
+% We consider every reduced DT $T$ for $b$ with feature labels in $[k]\cup [k']$ and future feature labels in $\mathcal{P}([k])$; these can be enumerated in time $\mathcal{O}((2k+2^k+2)2^{3k+1})$ by Lemma~\ref{lem:reduced-tree-number}.
 
-For every such DT $T$, we create a DT $T_L$ as follows. Let $p_*$ be the following relabelling: for every $i'\in [k']$, every feature with label $i'$ is assigned to the future feature $A_i$. Then we apply the composition $r \circ p_*$ to $T$. In a symmetrical way we create a DT $T_R$. Let $p'_*$ be the following relabelling: for every $i\in [k]$, every feature with label $i$ is assigned to the future feature $A_{i'}$ and every future feature $A_i$ is assigned to the future feature $A_{i'}$. Then we apply the composition $r \circ p'_*$ to $T$.
+% For every such DT $T$, we create a DT $T_L$ as follows. Let $p_*$ be the following relabelling: for every $i'\in [k']$, every feature with label $i'$ is assigned to the future feature $A_i$. Then we apply the composition $r \circ p_*$ to $T$. In a symmetrical way we create a DT $T_R$. Let $p'_*$ be the following relabelling: for every $i\in [k]$, every feature with label $i$ is assigned to the future feature $A_{i'}$ and every future feature $A_i$ is assigned to the future feature $A_{i'}$. Then we apply the composition $r \circ p'_*$ to $T$.
 
-Now we want to understand if there is a record in $\mathcal{R}(b_L)$ of the form $(T_L,s_L)$ for some positive integer $s_L$ and if there is a record in $\mathcal{R}(b_R)$ of the form $(T_R,s_R)$ for some positive integer $s_R$: if the answer is yes in both cases, we add a record $(T,s_L+s_R)$ to $\mathcal{R}(b)$; otherwise we discard this option.
+% Now we want to understand if there is a record in $\mathcal{R}(b_L)$ of the form $(T_L,s_L)$ for some positive integer $s_L$ and if there is a record in $\mathcal{R}(b_R)$ of the form $(T_R,s_R)$ for some positive integer $s_R$: if the answer is yes in both cases, we add a record $(T,s_L+s_R)$ to $\mathcal{R}(b)$; otherwise we discard this option.
 
-\medskip
-Now we want to evaluate the running time of computing $\mathcal{R}(b)$. Every reduced DT $T$ can be enumerated in time $\mathcal{O}((2k+2^k+2)2^{3k+1})$ by Lemma~\ref{lem:reduced-tree-number}.
-For every such DT $T$, there are at most $2^{3k}$ paths from the root to the leaves and for every of these paths there are at most $k$ nodes for each of the following: features with label in $[k]$, features with label in $[k']$ and future features by Lemma~\ref{lem:reduced-tree-height}.
-This means $r \circ p_*$ and $r \circ p'_*$ can be done in $\mathcal{O}(k2^{3k})$ time.
-%GP: $r$ can be done together with $p_*$ as we can relabel nodes top-to-bottom and check at the same time if it can be reducde.
+% \medskip
+% Now we want to evaluate the running time of computing $\mathcal{R}(b)$. Every reduced DT $T$ can be enumerated in time $\mathcal{O}((2k+2^k+2)2^{3k+1})$ by Lemma~\ref{lem:reduced-tree-number}.
+% For every such DT $T$, there are at most $2^{3k}$ paths from the root to the leaves and for every of these paths there are at most $k$ nodes for each of the following: features with label in $[k]$, features with label in $[k']$ and future features by Lemma~\ref{lem:reduced-tree-height}.
+% This means $r \circ p_*$ and $r \circ p'_*$ can be done in $\mathcal{O}(k2^{3k})$ time.
+% %GP: $r$ can be done together with $p_*$ as we can relabel nodes top-to-bottom and check at the same time if it can be reducde.
 
-\medskip
-Now we have to show the correctness of the construction for $\mathcal{R}(b)$. We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction there exist records $(T_L,s_L)\in \mathcal{R}(b_L)$ and $(T_R,s_R)\in \mathcal{R}(b_R)$ such that $T_L$ and $T_R$ are obtained by the application of $r \circ p_*$ and $r \circ p'_*$ respectively to $T$ and $s_L+s_R=s$.
+% \medskip
+% Now we have to show the correctness of the construction for $\mathcal{R}(b)$. We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction there exist records $(T_L,s_L)\in \mathcal{R}(b_L)$ and $(T_R,s_R)\in \mathcal{R}(b_R)$ such that $T_L$ and $T_R$ are obtained by the application of $r \circ p_*$ and $r \circ p'_*$ respectively to $T$ and $s_L+s_R=s$.
 
-By induction, for $H\in \{L,R\}$, we know that $s_H$ is the minimum number of elements that have been deleted from a witness $T'_H$ of $T_H$ for $b_H$.
+% By induction, for $H\in \{L,R\}$, we know that $s_H$ is the minimum number of elements that have been deleted from a witness $T'_H$ of $T_H$ for $b_H$.
 
-For $H\in \{L,R\}$, we define maps $x_H$ and $y_H$ as follows. Let $x_H~:~V(T_H)\to V(T)$ and $y_H~:~V(T_H)\to V(T'_L)$ be the functions that maps every node of $T_H$ to the corresponding node in $T$ and in $T'_L$ and note that by constructions both these maps are injective. 
+% For $H\in \{L,R\}$, we define maps $x_H$ and $y_H$ as follows. Let $x_H~:~V(T_H)\to V(T)$ and $y_H~:~V(T_H)\to V(T'_L)$ be the functions that maps every node of $T_H$ to the corresponding node in $T$ and in $T'_L$ and note that by constructions both these maps are injective. 
 
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-\node (1) at (-2,1) {$T'_L$};
-\node (2) at (0,1) {$T'$};
-\node (3) at (2,1) {$T'_R$};
-\node (4) at (-2,-1) {$T_L$};
-\node (5) at (0,-1) {$T$};
-\node (6) at (2,-1) {$T_R$};
-\draw[right hook->] (4)--(5) node[midway,above] {$x_L$};
-\draw[right hook->] (6)--(5) node[midway,above] {$x_R$};
-\draw[right hook->] (4)--(1) node[midway,left] {$y_L$};
-\draw[right hook->] (6)--(3) node[midway,left] {$y_R$};
-\draw[thick] (1)--(2);
-\draw[thick] (3)--(2);
-\draw[very thick] (5)--(2);
-\end{tikzpicture}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+% \node (1) at (-2,1) {$T'_L$};
+% \node (2) at (0,1) {$T'$};
+% \node (3) at (2,1) {$T'_R$};
+% \node (4) at (-2,-1) {$T_L$};
+% \node (5) at (0,-1) {$T$};
+% \node (6) at (2,-1) {$T_R$};
+% \draw[right hook->] (4)--(5) node[midway,above] {$x_L$};
+% \draw[right hook->] (6)--(5) node[midway,above] {$x_R$};
+% \draw[right hook->] (4)--(1) node[midway,left] {$y_L$};
+% \draw[right hook->] (6)--(3) node[midway,left] {$y_R$};
+% \draw[thick] (1)--(2);
+% \draw[thick] (3)--(2);
+% \draw[very thick] (5)--(2);
+% \end{tikzpicture}
+% \end{figure}
 
-Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  
-In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the maximal subtree of $T'_H$ rooted at $y$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
-In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x\}$; let $(X^H_x,S^H_x)$ the corresponding single pair. 
-Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest downwards path in $T'_H$ that contains $y$ and with both endpoints in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$. 
+% Moreover, $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ can be partitioned into subtrees that have been deleted after the application of $r\circ p_*$, $r\circ p'_*$ on $T$ or of the standard reduction on $T'_H$: let $X^*_H$ and $Y^*_H$ be the set of roots of the above subtrees in $V(T)\setminus Im(x_H)$ and $V(T'_H)\setminus Im(y_H)$ respectively.  
+% In addition, for every element $y\in Y^*_H$, let $Y^H_y$ be the maximal subtree of $T'_H$ rooted at $y$ with no elements from $Im(y_H)$ and that does not contain any vertex from $Y^*_H\setminus \{y\}$; let $(Y^H_y,S^H_y)$ the corresponding single pair.
+% In a similar way, for every element $x\in X^*_H$, let $X^H_x$ be the maximal subtree of $T$ rooted at $x$ with no elements from $Im(x_H)$ and that does not contain any vertex from $X^*_H\setminus \{x\}$; let $(X^H_x,S^H_x)$ the corresponding single pair. 
+% Finally, for every $y\in Y^*_H$, let $P^H_y$ be the shortest downwards path in $T'_H$ that contains $y$ and with both endpoints in $Im(y_H)$, say $y_H(t)$ and $y_H(t')$. 
 
-\smallskip
-\noindent
-{\it Claim 1: For every $H\in \{L,R\}$ and for every $y,y'\in Y^*_H$, the paths $P^H_{y}$ and $P^H_{y'}$ are either edge disjoint or $P^H_{y}=P^H_{y'}$.}
+% \smallskip
+% \noindent
+% {\it Claim 1: For every $H\in \{L,R\}$ and for every $y,y'\in Y^*_H$, the paths $P^H_{y}$ and $P^H_{y'}$ are either edge disjoint or $P^H_{y}=P^H_{y'}$.}
 
-\noindent
-{\it Proof.} If $P^H_{y}$ and $P^H_{y'}$ are edge disjoint, then the statement is proven immediately. Suppose $P^H_{y}$ and $P^H_{y'}$ share an edge. By minimality and the fact they are downwards paths, $P^H_{y}$ and $P^H_{y'}$ share the endpoint towards the root. If they also share the other endpoint, then the statement is proven immediately. Suppose now their endpoints towards the leaves is different, say $w$ and $w'$, and consider the last edge those paths have in common in a root-to-leaf order, say $uv$. 
+% \noindent
+% {\it Proof.} If $P^H_{y}$ and $P^H_{y'}$ are edge disjoint, then the statement is proven immediately. Suppose $P^H_{y}$ and $P^H_{y'}$ share an edge. By minimality and the fact they are downwards paths, $P^H_{y}$ and $P^H_{y'}$ share the endpoint towards the root. If they also share the other endpoint, then the statement is proven immediately. Suppose now their endpoints towards the leaves is different, say $w$ and $w'$, and consider the last edge those paths have in common in a root-to-leaf order, say $uv$. 
 
-Without loss of generality, we can assume $w$ belongs to the left branch of $v$ and $w'$ belongs to the right branch of $v$. Note that $v\in V(T'_H)\setminus Im(y_H)$, or we get a contradiction due the minimality of $P^H_y$.
-Now we get the following contradiction: by construction, $w$ and $w'$ are both elements of $Im(y_H)$ but at least one of them must be in $V(T'_H)\setminus Im(y_H)$ since it is an element of either $Y^H_{y}$ or of $Y^H_{y'}$. This proves Claim 1.
+% Without loss of generality, we can assume $w$ belongs to the left branch of $v$ and $w'$ belongs to the right branch of $v$. Note that $v\in V(T'_H)\setminus Im(y_H)$, or we get a contradiction due the minimality of $P^H_y$.
+% Now we get the following contradiction: by construction, $w$ and $w'$ are both elements of $Im(y_H)$ but at least one of them must be in $V(T'_H)\setminus Im(y_H)$ since it is an element of either $Y^H_{y}$ or of $Y^H_{y'}$. This proves Claim 1.
 
-\smallskip
-Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
+% \smallskip
+% Now for every $y\in Y^*_H$ we consider the path $Q^H_y$ in $T$ having endpoints $x_H(t)$ and $x_H(t)$.
 
-\smallskip
-Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
-For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
+% \smallskip
+% Now we are able to describe how to obtain a witness $T'$ of $T$ for $b$. 
+% For every $y\in Y^*_L$, in the last edge of path $Q^L_y$ we plug in the single pair $(Y^L_{y'},S^L_{y'})$ rooted at $y'$, for every internal node $y'$ of $P^L_y$, in the order the nodes $y'$ apprear in $P^L_y$. Note that, in the case an element of $Y^*_L$ is present in more than one $P^L_y$, we plug in the corresponding single pair only once. Note also that whenever we plug in some single pair $(Y^L_{y},S^L_{y})$ in a DT, the tree $Y^L_{y}$ has real features and future features as nodes. Call this graph $T^*$. Now we do the same sequence of plug ins of the single pairs corresponding to the internal vertices of $P^R_y$ in the last edge of the path $Q^R_y$. Again, in the case an element of $Y^*_R$ is present in more than one $P^R_y$, we plug in the corresponding single pair only once. Call the tree obtained in this way $T'$. Node that $T'$ contains real features from $feat(b_L)$ and from $feat(b_R)$ and future features with labels in $\mathcal{P}([k])$.
 
-\smallskip
-To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a real DT for $b$. We start proving $(i)$: by construction $T'$ is obtained from $T$ after adding $s_L$ elements from $T'_L$ and $s_R$ elements from $T'_R$, and so with $s_L+s_R=s$ more elements. 
+% \smallskip
+% To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a real DT for $b$. We start proving $(i)$: by construction $T'$ is obtained from $T$ after adding $s_L$ elements from $T'_L$ and $s_R$ elements from $T'_R$, and so with $s_L+s_R=s$ more elements. 
 
-Before considering statement $(ii)$, we consider the following relabelling $p_+$ of $T'$: every real feature in $feat(b_R)$ is a assigned to a feature with its label at node $b_R$ and every other feature is assigned to itself. The real DT $T'_L$ can be obtained from $T'$ by the application of the composition $r \circ p_* \circ p_+$.
+% Before considering statement $(ii)$, we consider the following relabelling $p_+$ of $T'$: every real feature in $feat(b_R)$ is a assigned to a feature with its label at node $b_R$ and every other feature is assigned to itself. The real DT $T'_L$ can be obtained from $T'$ by the application of the composition $r \circ p_* \circ p_+$.
 
-Now we consider statement $(ii)$. We show that given an example $e\in exam(b_L)$, $e$ is correctly classified by $T'$ and to do so we show that $e$ ends in a leaf of $T'$ that corresponds to the leaf where $e$ ends in $T'_L$. 
-Say that $e$ goes along a path $P$ of $T'_L$ from the root to a leaf $\ell$ and let $Q$ be the corresponding path in $T'$, i.e. the path from $r$ to $\ell$ (note that by construction $\ell$ is present in $T'$ and is still a leaf). 
-Let $v$ be a node of $Q$, we can have the following different cases.
+% Now we consider statement $(ii)$. We show that given an example $e\in exam(b_L)$, $e$ is correctly classified by $T'$ and to do so we show that $e$ ends in a leaf of $T'$ that corresponds to the leaf where $e$ ends in $T'_L$. 
+% Say that $e$ goes along a path $P$ of $T'_L$ from the root to a leaf $\ell$ and let $Q$ be the corresponding path in $T'$, i.e. the path from $r$ to $\ell$ (note that by construction $\ell$ is present in $T'$ and is still a leaf). 
+% Let $v$ be a node of $Q$, we can have the following different cases.
 
-\begin{itemize}
-\item $v$ is a real feature from $feat(b_L)$: $v$ is also present in $T'_L$ as real feature; 
-\item $v$ is a real feature from $feat(b_R)$: $v$ might not be present in $T'_L$ due reductions but if it is present it is a future feature $A_i$ for some $i\in [k]$;
-\item $v$ is a future feature $f_A$: $v$ might not be present in $T'_L$ due reductions but if it is present it is still the same future feature $A_i$.
-\end{itemize}
+% \begin{itemize}
+% \item $v$ is a real feature from $feat(b_L)$: $v$ is also present in $T'_L$ as real feature; 
+% \item $v$ is a real feature from $feat(b_R)$: $v$ might not be present in $T'_L$ due reductions but if it is present it is a future feature $A_i$ for some $i\in [k]$;
+% \item $v$ is a future feature $f_A$: $v$ might not be present in $T'_L$ due reductions but if it is present it is still the same future feature $A_i$.
+% \end{itemize}
 
-If $v$ is present in $T'_L$ then the behaviour of $v$ on $e$ in $T'_L$ and in $T'$ is the same. Suppose now $v$ is a node of $Q$ that is being reduced due his label and so it is not present in $T'_L$. This means there is a set of ancestors of $v$ such that their labels allows to remove $v$ and by construction $v$ behaves on $e$ like those ancestors. This proves $e$ goes along $Q$ and in particular it ends at leaf $\ell$ and so $T'$ is a real DT for $b_L$. With symmetric construction, we show that $T'$ is also a real DT for $b_R$.
+% If $v$ is present in $T'_L$ then the behaviour of $v$ on $e$ in $T'_L$ and in $T'$ is the same. Suppose now $v$ is a node of $Q$ that is being reduced due his label and so it is not present in $T'_L$. This means there is a set of ancestors of $v$ such that their labels allows to remove $v$ and by construction $v$ behaves on $e$ like those ancestors. This proves $e$ goes along $Q$ and in particular it ends at leaf $\ell$ and so $T'$ is a real DT for $b_L$. With symmetric construction, we show that $T'$ is also a real DT for $b_R$.
 
-\medskip
-Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$. In particular, we recall that $T'$ is a real DT for $b$ with actual feature labels in $[k]\cup [k']$ and future feature labels in $\mathcal{P}([k])$. 
+% \medskip
+% Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$. In particular, we recall that $T'$ is a real DT for $b$ with actual feature labels in $[k]\cup [k']$ and future feature labels in $\mathcal{P}([k])$. 
 
-We create at real DT $T'_L$ by the application of the composition $r \circ p_* \circ p_+$ to $T'$. By assumption $T'$ is a real DT for $b_L$ and by construction $T'_L$ is a real DT for $b_L$. 
-Denote with $T_L$ the DT template obtained from $T'_L$ by standard reduction and denote with $s_L$ the number of nodes that have been deleted from $T'_L$ to obtain $T$. By induction we have $(T_L,s_L)\in \mathcal{R}(b_L)$.
-Now we note that $T_L$ is obtained from $T$ after the application of the composition $r \circ p_*$. In a symmetric way, we construct $T'_R$, $T_R$ and the record $(T_R,s_R)\in \mathcal{R}(b_R)$. Then $(T,s_L+s_R)\in \mathcal{R}(b)$.
-\end{proof}
+% We create at real DT $T'_L$ by the application of the composition $r \circ p_* \circ p_+$ to $T'$. By assumption $T'$ is a real DT for $b_L$ and by construction $T'_L$ is a real DT for $b_L$. 
+% Denote with $T_L$ the DT template obtained from $T'_L$ by standard reduction and denote with $s_L$ the number of nodes that have been deleted from $T'_L$ to obtain $T$. By induction we have $(T_L,s_L)\in \mathcal{R}(b_L)$.
+% Now we note that $T_L$ is obtained from $T$ after the application of the composition $r \circ p_*$. In a symmetric way, we construct $T'_R$, $T_R$ and the record $(T_R,s_R)\in \mathcal{R}(b_R)$. Then $(T,s_L+s_R)\in \mathcal{R}(b)$.
+% \end{proof}
 
-\begin{lemma}[relabel node]\label{lem:relabel}
-Let $b\in V(B)$ be relabel node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{3k+1})$.
-\end{lemma}
+% \begin{lemma}[relabel node]\label{lem:relabel}
+% Let $b\in V(B)$ be relabel node. Then $\mathcal{R}(b)$ can be computed in time $\mathcal{O}(k(2k+2^k+2)2^{3k+1})$.
+% \end{lemma}
 
-\begin{proof}
-Let $b_C$ be the unique child of $b$ in $B$. Let $R$ be the mapping of $[k]$ to itself that represent the node $b$. Moreover, since we are considering a {\it nice} NLC-expression we can assume $R$ is the identity mapping, i.e. $R(\ell)=\ell$, for all values except for a unique element $i$ of its domain, i.e. $R(i)=j$ for some $j\in [k]\setminus \{i\}$.
+% \begin{proof}
+% Let $b_C$ be the unique child of $b$ in $B$. Let $R$ be the mapping of $[k]$ to itself that represent the node $b$. Moreover, since we are considering a {\it nice} NLC-expression we can assume $R$ is the identity mapping, i.e. $R(\ell)=\ell$, for all values except for a unique element $i$ of its domain, i.e. $R(i)=j$ for some $j\in [k]\setminus \{i\}$.
 
-We say that a future feature $A$ is {\it good} if it does not distinguish between $i$ and $j$, that is $i\in A$ if and only if $j\in A$, and {\it bad} otherwise. Let $(T_C,s_C)$ be an element of $\mathcal{R}(b_C)$. Let $p''$ the following relabelling of the DT template $T_C$: every feature with label $i$ is assigned to label $j$ and every future feature with label $A$ is assigned to the future feature with label $A\setminus \{i\}$. 
+% We say that a future feature $A$ is {\it good} if it does not distinguish between $i$ and $j$, that is $i\in A$ if and only if $j\in A$, and {\it bad} otherwise. Let $(T_C,s_C)$ be an element of $\mathcal{R}(b_C)$. Let $p''$ the following relabelling of the DT template $T_C$: every feature with label $i$ is assigned to label $j$ and every future feature with label $A$ is assigned to the future feature with label $A\setminus \{i\}$. 
 
-If $T_C$ has a bad future feature then we do not take any other action. Suppose now $T_C$ has only good future features; now let $T$ be the DT template obtained from $T_C$ after the application of the composition $r \circ p''$ and let $s^*$ be the number of nodes that have been deleted from $T_C$ to $T$.
+% If $T_C$ has a bad future feature then we do not take any other action. Suppose now $T_C$ has only good future features; now let $T$ be the DT template obtained from $T_C$ after the application of the composition $r \circ p''$ and let $s^*$ be the number of nodes that have been deleted from $T_C$ to $T$.
 
-If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'\leq s_C+s^*$ then we do not take any other action.
-If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'>s_C+s^*$ then we replace it with $(T,s_C+s^*)$.
-If there is no record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'$ then we add $(T,s_C+s^*)$ to $\mathcal{R}(b)$.
+% If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'\leq s_C+s^*$ then we do not take any other action.
+% If there is a record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'>s_C+s^*$ then we replace it with $(T,s_C+s^*)$.
+% If there is no record in $\mathcal{R}(b)$ of the form $(T,s')$ for some integer $s'$ then we add $(T,s_C+s^*)$ to $\mathcal{R}(b)$.
 
-\medskip
-Now we want to evaluate the running time of computing $\mathcal{R}(b)$. Consider record $(T_C,s_C)$ in $\mathcal{R}(b_C)$. In $\mathcal{O}(k)$ time we check if $T_C$ all the future features are good. For every such DT $T_C$, there are at most $2^{2k}$ paths from the root to the leaves and for every of these paths there are at most $k$ nodes for each of the following: feature with label $i$ and and future feature that contains $i$. This means $r \circ p''$ can be done in $\mathcal{O}(k)$ time.
-%GP: $r$ can be done together with $p''$ as we can relabel nodes top-to-bottom and check at the same time if it can be reduce.
-This means to compute $\mathcal{R}(b)$ takes $\mathcal{O}(k|\mathcal{R}(b_C)|)=\mathcal{O}(k(2k+2^k+2)2^{3k+1})$ time.
+% \medskip
+% Now we want to evaluate the running time of computing $\mathcal{R}(b)$. Consider record $(T_C,s_C)$ in $\mathcal{R}(b_C)$. In $\mathcal{O}(k)$ time we check if $T_C$ all the future features are good. For every such DT $T_C$, there are at most $2^{2k}$ paths from the root to the leaves and for every of these paths there are at most $k$ nodes for each of the following: feature with label $i$ and and future feature that contains $i$. This means $r \circ p''$ can be done in $\mathcal{O}(k)$ time.
+% %GP: $r$ can be done together with $p''$ as we can relabel nodes top-to-bottom and check at the same time if it can be reduce.
+% This means to compute $\mathcal{R}(b)$ takes $\mathcal{O}(k|\mathcal{R}(b_C)|)=\mathcal{O}(k(2k+2^k+2)2^{3k+1})$ time.
 
-\medskip
-Now we have to show the correctness of the construction for $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
+% \medskip
+% Now we have to show the correctness of the construction for $\mathcal{R}(b)$, i.e. $(T,s)\in \mathcal{R}(b)$ if and only if $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $T$ for $b$.
 
-\smallskip
-We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction there exists a record $(T_C,s_C)\in \mathcal{R}(b_C)$ such that $T$ is obtained from $T_C$ after the application of $r \circ p''$ and let $s^*=s-s_C$. By induction $s_C$ is the minimum amount of nodes that have been deleted from a witness $T'_C$ of $T_C$ for $b_C$. By construction we also know that every future feature of both $T'_C$ and $T_C$ is good.
+% \smallskip
+% We start with the forward direction. Let $(T,s)\in \mathcal{R}(b)$. By construction there exists a record $(T_C,s_C)\in \mathcal{R}(b_C)$ such that $T$ is obtained from $T_C$ after the application of $r \circ p''$ and let $s^*=s-s_C$. By induction $s_C$ is the minimum amount of nodes that have been deleted from a witness $T'_C$ of $T_C$ for $b_C$. By construction we also know that every future feature of both $T'_C$ and $T_C$ is good.
 
-Denote with $T'$ the real DT obtained $T'_C$ after the application of $r \circ p''$: note that this last reduction does not any node since every future feature of $T'_C$ is good and there is no feature with label $i$. To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a witness of $T$ for $b$. 
+% Denote with $T'$ the real DT obtained $T'_C$ after the application of $r \circ p''$: note that this last reduction does not any node since every future feature of $T'_C$ is good and there is no feature with label $i$. To conclude this part of the proof we have to show two things: $(i)$ $T$ is obtained from $T'$ after removing $s$ vertices; $(ii)$ $T'$ is a witness of $T$ for $b$. 
 
-Before proving $(i)$, we describe how $T$ can be obtained from $T'$. Let $p'''$ be the following relabelling of $T'$: every real feature that contains $j$ is assigned to the real feature $A\cup \{i\}$ and every other feature is assigned to itself. Then the application of the composition $p'''$, the standard reduction and $r \circ p''$ to $T'$ is exactly the standard reduction for $T'$ which then result to the DT template $T$.
-By Lemma~\ref{red-last} the score of the standard reduction from $T'$ to $T$ is exactly $s_C+s^*=s$. 
+% Before proving $(i)$, we describe how $T$ can be obtained from $T'$. Let $p'''$ be the following relabelling of $T'$: every real feature that contains $j$ is assigned to the real feature $A\cup \{i\}$ and every other feature is assigned to itself. Then the application of the composition $p'''$, the standard reduction and $r \circ p''$ to $T'$ is exactly the standard reduction for $T'$ which then result to the DT template $T$.
+% By Lemma~\ref{red-last} the score of the standard reduction from $T'$ to $T$ is exactly $s_C+s^*=s$. 
 
-Now we consider statement $(ii)$. First note that $exam(b)=exam(b_C)$.
-We show that a given example $e\in exam(b)$ is correctly classified by $T'$. Say that $e$ goes along a path $P$ of $T'_C$ from the root to a leaf $\ell$. We show $e$ goes along the path $P$ in $T'$ as well: every real feature has not changed and so $e$ behaves the same. Since every future feature of $T'_C$ is good, then $e$ behave the same on the corresponding future feature of $T'$.
+% Now we consider statement $(ii)$. First note that $exam(b)=exam(b_C)$.
+% We show that a given example $e\in exam(b)$ is correctly classified by $T'$. Say that $e$ goes along a path $P$ of $T'_C$ from the root to a leaf $\ell$. We show $e$ goes along the path $P$ in $T'$ as well: every real feature has not changed and so $e$ behaves the same. Since every future feature of $T'_C$ is good, then $e$ behave the same on the corresponding future feature of $T'$.
 
-\smallskip
-Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $B$ for $b$. In particular, we recall that real $T'$ is a DT for $b$ with real features and future feature labels in $\mathcal{P}([k]\setminus \{i\})$.
+% \smallskip
+% Now we prove the backward direction. Let $T$ be a reduced DT such that $s$ is the minimum number of elements that have been deleted from a witness $T'$ of $B$ for $b$. In particular, we recall that real $T'$ is a DT for $b$ with real features and future feature labels in $\mathcal{P}([k]\setminus \{i\})$.
 
-We create the real DT $T'_C$ as the application of $r \circ p'''$ to $T'$, the DT template $T_C$ as the application of the standard reduction to $T'_C$. By construction we have $(T_C,s_C)\in \mathcal{R}(b_C)$, where $s_C$ is the number of nodes that have been removed from $T'_C$ to $T_C$. Note that $T_C$ has only good future features.
-Finally we note that $T$ is obtained from $T_C$ by the application of $r \circ p''$.
-\end{proof}
+% We create the real DT $T'_C$ as the application of $r \circ p'''$ to $T'$, the DT template $T_C$ as the application of the standard reduction to $T'_C$. By construction we have $(T_C,s_C)\in \mathcal{R}(b_C)$, where $s_C$ is the number of nodes that have been removed from $T'_C$ to $T_C$. Note that $T_C$ has only good future features.
+% Finally we note that $T$ is obtained from $T_C$ by the application of $r \circ p''$.
+% \end{proof}
 
-Now we can finally prove Theorem~\ref{the:trac-nlcw-b-td} and Theorem~\ref{the:trac-tw-b}, which we restate here.
+% Now we can finally prove Theorem~\ref{the:trac-nlcw-b-td} and Theorem~\ref{the:trac-tw-b}, which we restate here.
 
-\smallskip
-\noindent
-{\bf Theorem~\ref{the:trac-nlcw-b-td} (restated).}
-{\it Let $E$ be a CI, let $(B,\chi)$ be an NLC-expression decomposition of width $k$ for $G_I(E)$, and let $s$ be an integer. Then, deciding whether $E$ has a DT of size at most $s$ is fixed-parameter tractable parameterized by $k$. In particular, such computation takes $\mathcal{O}()$ time.}
+% \smallskip
+% \noindent
+% {\bf Theorem~\ref{the:trac-nlcw-b-td} (restated).}
+% {\it Let $E$ be a CI, let $(B,\chi)$ be an NLC-expression decomposition of width $k$ for $G_I(E)$, and let $s$ be an integer. Then, deciding whether $E$ has a DT of size at most $s$ is fixed-parameter tractable parameterized by $k$. In particular, such computation takes $\mathcal{O}()$ time.}
 
-\begin{proof}
-We start off by computing $\mathcal{R}(b)$ for every node $b$ of $B$, via leaf-to-root dynamic programming. An upper bound for the running time for this step is the number of nodes of $B$ times the maximum running time to compute the record at each node which is given by Lemmas~\ref{lem:leaf}, \ref{lem:join} and \ref{lem:relabel}.
+% \begin{proof}
+% We start off by computing $\mathcal{R}(b)$ for every node $b$ of $B$, via leaf-to-root dynamic programming. An upper bound for the running time for this step is the number of nodes of $B$ times the maximum running time to compute the record at each node which is given by Lemmas~\ref{lem:leaf}, \ref{lem:join} and \ref{lem:relabel}.
 
-Now we look at the root node $r$ of $B$. We go through all the records of $\mathcal{R}(r)$ and select a record $(T,s)\in \mathcal{R}(r)$ such that $|T|+s$ is minimum over all DTs with no future feature.
-\end{proof}
+% Now we look at the root node $r$ of $B$. We go through all the records of $\mathcal{R}(r)$ and select a record $(T,s)\in \mathcal{R}(r)$ such that $|T|+s$ is minimum over all DTs with no future feature.
+% \end{proof}
 
-\smallskip
-\noindent
-{\bf Theorem~\ref{the:trac-tw-b} (restated).}
-{\it \DTL{} is fixed-parameter tractable parameterized by NLC-width.}
-
-
-
-
-
-
-
-
-
-
-
-
+% \smallskip
+% \noindent
+% {\bf Theorem~\ref{the:trac-tw-b} (restated).}
+% {\it \DTL{} is fixed-parameter tractable parameterized by NLC-width.}
 
 
 
