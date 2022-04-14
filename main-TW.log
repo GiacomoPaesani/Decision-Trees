@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  14 APR 2022 09:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  14 APR 2022 11:44
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1432,9 +1432,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <4.25> on input line 695.
 FiXme Note: 'define $\tau $ in prelims' on input line 695.
  [7.8] [8.9] [9.10] [10.11] [11.12]
-FiXme Note: 'todo: simplify the run-time expression' on input line 1020.
+FiXme Note: 'todo: simplify the run-time expression' on input line 1022.
  [12.13]
-FiXme Note: 'maybe a longer explanation' on input line 1131.
+FiXme Note: 'maybe a longer explanation' on input line 1133.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1443,31 +1443,31 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 FiXme Note: 'there is one problem remaining: $T'''$ could now have some forgott
 en features from $T$; those should be replaced by arbitrary real features with 
 the same label; but only if such examples also exist; maybe there is a better w
-ay??' on input line 1460.
+ay??' on input line 1462.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1897.
+(Font)              <12> on input line 1899.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 1897.
+(Font)              <8> on input line 1899.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1897.
+(hyperref)                removing `math shift' on input line 1899.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 1897.
+(hyperref)                removing `\delta' on input line 1899.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1897.
+(hyperref)                removing `subscript' on input line 1899.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1897.
+(hyperref)                removing `math shift' on input line 1899.
 
 [16.17] [17.18]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-992.
+994.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1484,7 +1484,7 @@ Package microtype Info: Character `029' is missing
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 2011.
+(Font)              using `T1/lmr/bx/n' instead on input line 2013.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1494,7 +1494,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [19.20] [20.21] [21.22] [22.23]
 
-LaTeX Warning: Reference `lem:dtthres' on page 23 undefined on input line 2228.
+LaTeX Warning: Reference `lem:dtthres' on page 23 undefined on input line 2230.
 
 
 [23.24] (main-TW.bbl [24.25])
@@ -1516,11 +1516,11 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: 7F7D37F6A1E95839759AC7ED4D5745F6;2834.
  ) 
 Here is how much of TeX's memory you used:
- 38364 strings out of 479618
- 744299 string characters out of 2864076
+ 38368 strings out of 479618
+ 744343 string characters out of 2864076
  1077332 words of memory out of 3000000
  54156 multiletter control sequences out of 15000+200000
- 591327 words of font info for 382 fonts, out of 3000000 for 9000
+ 591587 words of font info for 384 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1872b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1564,7 +1564,7 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (26 pages, 813402 bytes).
+Output written on main-TW.pdf (26 pages, 813413 bytes).
 PDF statistics:
  609 PDF objects out of 1000 (max. 8388607)
  138 named destinations out of 1000 (max. 500000)

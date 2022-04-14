@@ -423,8 +423,8 @@ $(G_b,\lab_b)$), such that:
 \begin{enumerate}
 \item Every leaf represents an initial $k$-graph $i(v)$ with $i \in
   [k]$ and $v \in V$.
-\item Every non-leaf node $b$ with one child $c$ is a \emph{relabeling node}
-  and is associated with a relabeling function $R_b:[k] \to
+\item Every non-leaf node $b$ with one child $c$ is a \emph{relabelling node}
+  and is associated with a relabelling function $R_b:[k] \to
   [k]$. Moreover, $G_b$ is obtained from $G_c$ after relabelling all
   vertices of $G_c$ with label $i$ to label $R_b(i)$ for every $i \in [k]$.
 \item Every non-leaf node $b$ with two children, i.e., a left child
@@ -598,10 +598,10 @@ With these ideas in mind, we are now ready to provide a formal definition of the
 In the following, let $E$ be a CI and let $B$ be a $k$-NLC-expression
 tree for $G_I(E)$. Consider a node $b$ of $B$. Recall that $b$ is
 either a leaf node associated with a $k$-graph $i(v)$, a relabelling
-node with $1$ child and with relabelling function $R_b$, or a join node
+node with one child and with relabelling function $R_b$, or a join node
 with a left child, a right child and a join matrix $M_b$. Moreover,
 recall that $(G_b,\lab_b)$ is the $k$-graph associated with $b$ (whose
-unlabeled version is a subgraph of $G$) and $V_b$ is the set of
+unlabelled version is a subgraph of $G$) and $V_b$ is the set of
 vertices of $G_b$. Additionally, we will use the following
 notation. We denote by $\feat(b)$ the set $V_b\cap \feat(E)$ of
 features in $V_b$ and by $\exam(b)$ the set $V_b\cap E$ of examples in
@@ -615,21 +615,21 @@ $V_b$.
 Consider a node $b$ of $B$. 
 Let $L$ be a set of labels (usually $L=[k]$). For a subset
 $L'\subseteq L$, we denote by $\overline{L'}$ the set $L\setminus L'$.
-For a label $l \in L$, we introduce a new feature $f_l$, which we
+For a label $\ell \in L$, we introduce a new feature $f_\ell$, which we
 will call a \emph{forgotten feature}.
 %Informally, forgotten
 %features will be used to replace real features in a DT for $b$is that
 Moreover, for a subset $L'
 \subseteq L$ of labels, we introduce a new feature $f_{L'}$, which we
-call an \emph{future (or introduce) feature}. Let $\SoFF{L}=\SB f_l \SM l \in L\SE$ be the
+call an \emph{future (or introduce) feature}. Let $\SoFF{L}=\SB f_\ell \SM \ell \in L\SE$ be the
 set of all forgotten features and let $\SoIF{L}=\SB f_{L'} \SM L' \subseteq
 L\SE$ be the set of all future features w.r.t. $L$. To distinguish
-features in $\feat(E)$ from forgotton and future features, we will
+features in $\feat(E)$ from forgotten and future features, we will
 sometimes refer to them as \emph{real features}.
 
 
 Let $T$ be a DT and $t \in V(T)$. We say that a node $t_A$
-is a \emph{left (right) anchestor} of $t$ if $t$ is contained in the
+is a \emph{left (right) ancestor} of $t$ if $t$ is contained in the
 subtree of $T$ rooted at the left (right) child of $t_A$. We denote by
 $\anc_T^L(t)$ ($\anc_T^R(t)$), or simply $\anc^L(t)$ ($\anc^R(t)$) if
 $T$ is clear from the context, the set of all left (right) ancestors of $t$ in
@@ -637,11 +637,11 @@ $T$. We denote by $\anc(t)$ the set of all \emph{ancestors} of $t$ in
 $T$, i.e., $\anc(t)=\anc^L(t)\cup\anc^R(t)$.
 
 Let $T$ be a DT and $t \in V(T)$ be an inner node of
-$T$ with left child $l$, right child $r$, and parent $p$.
+$T$ with left child $\ell$, right child $r$, and parent $p$.
 We say that $T'$ is obtained from $T$ after
 \emph{left (right) contracting $t$} if $T'$ is the DT
-obtained from $T$ after removing $t$ together with all nodes in $T_r$/$T_l$
-and adding the edge between $p$ and $l$/$r$; if $t$ has no parent then no
+obtained from $T$ after removing $t$ together with all nodes in $T_r$/$T_\ell$
+and adding the edge between $p$ and $\ell$/$r$; if $t$ has no parent then no
 edge is added.
 
 We say that $T$ is a \emph{DT for $b$}, if $T$ is a DT for $\exam(b)$ that uses only the
@@ -650,7 +650,7 @@ features in $\feat(b)$. We say that an inner node $t \in V(T)$ is
 \feat(\anc^L(t))$ ($\feat(t) \in \feat(\anc^R(t))$). We say that $t$ is
 redundant if it is either left redundant or right redundant. Intuitively, a node $t$
 is left (right) redundant if all examples that end up at $t$, i.e., the
-examples in $E_T(t)$, go the left (right) child of $t$ in $T$. Therefore,
+examples in $E_T(t)$, go to the left (right) child of $t$ in $T$. Therefore,
 if $t$ is left (right) redundant in $T$, then the tree obtained after
 left (right) contracting $t$ is still a DT. 
 
@@ -664,16 +664,16 @@ otherwise it is $0$. We say that a DT template is
 otherwise we say that it is \emph{incomplete}. Informally, the role of
 the future features in a DT template is to provide
 spaceholders for the features in $\feat(E)\setminus \feat(b)$. Because
-all of those features behave the same w.r.t. to examples in $\exam(b)$
-having the same label, they can be charactericed by the set of labels
+all of those features behave the same w.r.t. examples in $\exam(b)$
+having the same label, they can be characterised by the set of labels
 for which those features are $1$.
 Let $T$ be a DT template for $b$ and let $t \in V(T)$. We denote by $\AL_T(t)$
 (or short $\AL(t)$ if $T$ is clear from the context) the
 set of \emph{filtered labels} for $t$, i.e.,
 $\AL(t)=(\bigcap_{f_{L'} \in \feat(\anc_L(t))\cap \SoIF{[k]}}\overline{L'})
 \cap (\bigcap_{f_{L'} \in \feat(\anc_R(t))\cap
-  \SoIF{[k]}}L')$. Informally, $\AL(t)$ is the set of all labels $l
-\in [k]$ such that an example $e$ with label $l$ would end up at $t$,
+  \SoIF{[k]}}L')$. Informally, $\AL(t)$ is the set of all labels $\ell
+\in [k]$ such that an example $e$ with label $\ell$ would end up at $t$,
 if only the effect of the future features on the path to $t$ is
 considered. We say that $t$ with $f_{L'}=\feat(t) \in \SoIF{[k]}$ is
 \emph{left (right) redundant} in $T$ if $\AL(t) \subseteq
@@ -699,10 +699,10 @@ DT that can only use features in $\SoFF{[k]}\cup
 \SoIF{[k]}$. Note that because of the features $\SoFF{[k]}$, whose
 behaviour w.r.t. the examples in $\exam(b)$ is not defined, the
 behaviour w.r.t. the examples in $\exam(b)$ of such a DT skeleton is
-not necessarily defined. Nevertheless, the behaviour of a feature $f_l$
-in $\SoFF{[k]}$ is well-defined w.r.t. to the examples in
+not necessarily defined. Nevertheless, the behaviour of a feature $f_\ell$
+in $\SoFF{[k]}$ is well-defined w.r.t. the examples in
 $\exam(E)\setminus \exam(b)$, i.e., it behaves the same as any feature
-in $\feat(b)$ with label $l$. Intuitively, DT skeletons are
+in $\feat(b)$ with label $\ell$. Intuitively, DT skeletons are
 obtained from DT templates after replacing every feature
 $f$ in $\feat(b)$ with the forgotten feature $f_{\lab_b(f)}$. This allows us to
 further compress the information contained in DT templates,
@@ -711,12 +711,12 @@ template behaves w.r.t. future examples in $E$. In particular,
 DT skeletons will form the main information stored by our
 records. 
 
-Let $T$ be a DT skeleton and $t \in V(T)$. Similarily as we
+Let $T$ be a DT skeleton and $t \in V(T)$. Similarly as we
 did for DT templates, we say that $T$ is \emph{complete} if
 it uses no future features and otherwise we say that it is
-incomplete. We say that an inner node $t$ with $f_l=\feat(t)\in
-\SoFF{[k]}$ is \emph{left (right) redundant} in $T$ if $f_l \in
-\feat(\anc^L(t))$ ($f_l \in \feat(\anc^R(t))$). Similarily, as for
+incomplete. We say that an inner node $t$ with $f_\ell=\feat(t)\in
+\SoFF{[k]}$ is \emph{left (right) redundant} in $T$ if $f_\ell \in
+\feat(\anc^L(t))$ ($f_\ell \in \feat(\anc^R(t))$). Similarly, as for
 DT (templates), if $t$ with $\feat(t) \in \SoFF{[k]}$ is left (right) redundant, then we can
 left (right) contract $t$ without changing the properties of $T$.
 
@@ -739,7 +739,7 @@ result.
   Clearly, if $t'$ is left (right) redundant in $T'$, then the same is
   true in $T$; this is because if $t''$ is a left (right) ancestor of
   $t'$ in $T'$, then the same holds in $T$. So suppose that $t'$ is
-  left (right) redundant in $T$. If $\feat(t')$ is a real or forgotton
+  left (right) redundant in $T$. If $\feat(t')$ is a real or forgotten
   feature, then $t'$ is left (right) redundant in $T$ because of
   some left (right) ancestor $t_A$ of $t'$ in $T$ with
   $\feat(t_A)=\feat(t')$. If $t_A\neq t$, then $t'$ is also left (right)
@@ -799,9 +799,9 @@ $\red(T)$ with respect to future examples in $E\setminus \exam(b)$.
   $T$. The proof is essentially the same as the proof in 
   Observation~\ref{obs:dttred} for the case that $\feat(t)$ is a real
   feature or a future feature. Moreover, if $\feat(t)$ is a forgotten
-  feature $f_l$, then $t$ is left (right) redundant
+  feature $f_\ell$, then $t$ is left (right) redundant
   because of some left (right) ancestor $t'$ with
-  $\feat(t')=\feat(t)=f_l$. Moreover, because $e$ goes to $t$, $e$ went to
+  $\feat(t')=\feat(t)=f_\ell$. Moreover, because $e$ goes to $t$, $e$ went to
   the left (right) child of $t'$ and therefore $e$ goes to the
   left (right) child of $t$ (because $e$ behaves in the same way
   w.r.t. every feature in $V_b$ that has the same label).
@@ -813,7 +813,7 @@ bound on the number of DT skeletons (and the time to enumerate those)
 as this will allow us to obtain a similar bound for the number of records.
 We say that $T$ is \emph{reduced} if $\red(T)=T$.
 \begin{observation}\label{obs:DTSsize}
-  Let $T$ be a reduced DT skeleton whose forgotton features use a set
+  Let $T$ be a reduced DT skeleton whose forgotten features use a set
   of at most $k_F$ labels and whose future features use a set of at
   most $k_I$ labels. Then, $T$
   has height at most $k_F+k_I+1$ and size at most $2^{k_F+k_I+1}$.
@@ -823,7 +823,7 @@ We say that $T$ is \emph{reduced} if $\red(T)=T$.
   feature appears at most once on $P$; because the
   second occurrence of such a feature would necessarily be
   redundant. Therefore, $P$ can contain at most $k_F$ forgotten
-  features. Similarily, $P$ can contain at most $k_I$ future features,
+  features. Similarly, $P$ can contain at most $k_I$ future features,
   since otherwise one of the future features on $P$ would be
   redundant. Therefore, $T$ has height at most $k_F+k_I+1$ and therefore
   size at most $2^{k_F+k_I+1}$.
@@ -836,7 +836,7 @@ We obtain the following corollary as a special case.
 
 \newcommand{\tfDTsenumE}{(k_F+2^{k_I})^{2^{k_F+k_I+2}+1}}
 \begin{observation}\label{obs:sizeofreduced}
-  The are at most $\tfDTsenumE$ reduced DT skeletons whose forgotton features use a set
+  The are at most $\tfDTsenumE$ reduced DT skeletons whose forgotten features use a set
   of at most $k_F$ labels and whose future features use a set of at
   most $k_I$ labels. Moreover, those can
   be enumerated in time $\bigoh(\tfDTsenumE)$.
@@ -860,12 +860,12 @@ We obtain the following corollary as a special case.
 \newcommand{\rlstan}[1]{\alpha^s_{#1}}
 
 Let $T$ be a DT (template/skeleton) using only features in
-$\feat(E)\cup \SoFF{L}\cup SoIF{L}$ for some set $L$ of labels
+$\feat(E)\cup \SoFF{L}\cup \SoIF{L}$ for some set $L$ of labels
 (usually $L=[k]$).
-A \emph{feature relabeling} is a function
+A \emph{feature relabelling} is a function
 $\frf : \feat(E) \cup \SoFF{L} \rightarrow \SoFF{L'}\cup \SoIF{L'}$,
 where $L'$ is some set of labels (usually $L'=L$). With a slight abuse of notation, we denote by $\frf(T)$, the decision
-tree obtained after relabeling all features used by $T$ according to
+tree obtained after relabelling all features used by $T$ according to
 $\frf$, i.e., $\frf(T)$ is obtained from $T$ after replacing
 the feature assignment function $\feat_T(t)$ for $T$ with the function
 $\feat_{\frf(T)}(t)$ defined by setting
@@ -881,7 +881,7 @@ We denote by
 $\rlstan{b}$ the \emph{standard feature relabelling} for $b$, i.e., the function $\rlstan{b} : \feat(b)\rightarrow
 \SoFF{[k]}$ defined by setting $\rlstan{b}(f)=f_{\lab_b(f)}$ for every $f \in \feat(b)$.
 
-We now show an important property on the interchangebility of feature relabelings and
+We now show an important property on the interchangebility of feature relabellings and
 reductions. That is, we show in Lemma~\ref{lem:frlred} below that the effect
 of any sequence of feature relabellings and reductions that ends with
 the reduction operation ($\red()$) is the same as the effect of the
@@ -891,7 +891,7 @@ following auxiliary lemma.
 \begin{lemma}\label{lem:relabRed}
   Let $T$ be a DT (template/skeleton) for a node $b \in
   V(B)$ and let $\alpha$ be a feature relabelling. If a node
-  $t\in V(T)$ is left (right) redudant in $T$, then it is also
+  $t\in V(T)$ is left (right) redundant in $T$, then it is also
   left (right) redundant in $\alpha(T)$.
 \end{lemma}
 \begin{proof}
@@ -917,7 +917,7 @@ following auxiliary lemma.
   after left (right) contracting every node $t$ that is left (right)
   redundant in $T$; note that such a node $t$ is also left (right)
   redundant in $\alpha(T)$ because of Lemma~\ref{lem:relabRed}. Then,
-  $T'=\alpha(red(T))$ and moreover because of
+  $T'=\alpha(\red(T))$ and moreover because of
   Lemma~\ref{lem:red-welldef} (and using the fact that every node $t$
   that is left (right) redundant in $T$ is so in $\alpha(T)$), a node
   $t \in V(T')$ is left (right) redundant in $T'$ if and only if it is
@@ -976,7 +976,7 @@ has already been computed for every child $c$ of $b$.
 \end{proof}
 
 Before we present the corresponding lemmas for the join-node and the
-relabelling node, we first need to introduce the so-called plugin
+relabelling node, we first need to introduce the so-called plug in
 operation that allows us to reverse the reductions applied to a DT
 (skeleton/template).
   
@@ -992,27 +992,29 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   every $i$ with $1 \leq i \leq \ell$. Then, $T''$ is obtained from
   $T'$ by removing the edge $e=(p,c)$, adding $P'$, and adding the edge
   from $p$ to $p_1$ as well as the edge from $p_\ell$ to
-  $c$. Moreover, $T''$ inherents all feature assignments as well as
+  $c$. 
+%GP: in this construction, you still have nodes $t$ and $t'$ of $P'$. For example you could, after adding $P$, just identify $t$ with $p$ and $t'$ with $c$.
+  Moreover, $T''$ inherits all feature assignments as well as
   the left (right) child relation from $T$ and $T'$.
 
   The significance
-  of the plugin operation comes from the fact that it allows us to
+  of the plug in operation comes from the fact that it allows us to
   reverse the reduction that has been applied to a DT
   (template/skeleton). For instance, consider a node $b$ of $B$ and
   let $T$ be a DT skeleton for $b$ and let $T'$ be a DT template for
   $b$ such that $T=\red(\rlstan{b}(T'))$. Then,
-  we can use the plugin operation to reverse the direction or in other
+  we can use the plug in operation to reverse the direction or in other
   words obtain $T'$ from $T$ as follows. Let $z : V(T) \rightarrow
   V(T')$ be the injective function mapping every
   node in $T$ to its original node in $T'$. Then, we first use
   $z$ to reverse the relabelling given by $\rlstan{b}(T')$, i.e.,
   let $T^0$ be the DT obtained from $T$ by setting
   $\feat_{T^0}(t)=\feat_{T'}(z_H(t))$ for every $t \in V(T^0)$. We now add back the nodes in
-  $V(T')\setminus V(T)$ with the help of our plugin operation. In
+  $V(T')\setminus V(T)$ with the help of our plug in operation. In
   particular, for every edge $e=(p,c)$ in $T^0$, where $p$ is the
   parent of $c$ in $T^0$, let $P(e)$ be the path in $T'$ between
   $z(p)$ and $z(c)$. Let $T^1$ be the DT template obtained from
-  $T^0$ after plugin in the path $P(e)$ into $T^0$ at edge $e$,
+  $T^0$ after pluging in the path $P(e)$ into $T^0$ at edge $e$,
   for every edge $e=(p,c)$ of $T^0$. Then, it is easy to see that $T^1=T'$.
   
 \newcommand{\tfDTsenumJN}{(2k+2^{k})^{2^{3k+2}+1}}
@@ -1041,7 +1043,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   For every such reduced DT skeleton $T$, we now do the following in
   order to decide whether $T$ gives rise to a valid record for
   $b$. Let $\rltb : \SoFF{[k_L]} \cup \SoFF{[k_R]} \rightarrow \SoFF{[k]}$ 
-  be the feature relabeling that relabels every (left/right) feature $f_{i_H} \in
+  be the feature relabelling that relabels every (left/right) feature $f_{i_H} \in
   \SoFF{[k_L]} \cup \SoFF{[k_R]}$ (for some $H \in \{L,R\}$) to its
   original feature $f_i$.
   % We now check whether $\hat{T}=\rltb(T)$ contains any redundant
@@ -1049,14 +1051,14 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
 
   \newcommand{\rlL}{\alpha_L}
   \newcommand{\rlR}{\alpha_R}
-  Let $\rlL : \SoFF{[k_R]} \rightarrow \SoIF{[k]}$ be the feature relabeling
+  Let $\rlL : \SoFF{[k_R]} \rightarrow \SoIF{[k]}$ be the feature relabelling
   that relabels every forgotten feature $f_{i_R} \in \SoFF{[k_R]}$ to the future
   feature $f_{A_{*,i}}$. Let $T_L$ be the reduced DT skeleton obtained
   from $T$ after applying the relabelling using $\rlL$ followed by
   $\rltb$ and then reducing the
   resulting DT skeleton, i.e., $T_L=\red(\rltb(\rlL(T)))$.
 
-  Similarily, let $\rlR : \SoFF{[k]_L} \rightarrow \SoIF{[k]}$ be the feature relabeling
+  Similarily, let $\rlR : \SoFF{[k]_L} \rightarrow \SoIF{[k]}$ be the feature relabelling
   that relabels every forgotten feature $f_{i_L} \in \SoFF{[k_L]}$ to the future
   feature $f_{A_{i,*}}$. Let $T_R$ be the reduced DT skeleton obtained
   from $T$ after applying the relabelling using $\rlR$ followed by
@@ -1112,7 +1114,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
 
   \newcommand{\rltbiR}{\alpha_{\rightarrow R}}
   \newcommand{\rltbiL}{\alpha_{\rightarrow L}}
-  Let $\rltbiR : \SoFF{[k]} \rightarrow \SoFF{[k_R]}$ ($\rltbiL : \SoFF{[k]} \rightarrow \SoFF{[k_L]}$) be the feature relabeling
+  Let $\rltbiR : \SoFF{[k]} \rightarrow \SoFF{[k_R]}$ ($\rltbiL : \SoFF{[k]} \rightarrow \SoFF{[k_L]}$) be the feature relabelling
   that relabels every forgotten feature $f_{i} \in \SoFF{[k]}$ to its
   corresponding forgotten feature in $[k_R]$ ($[k_L]$), i.e.,
   $\rltbiR(i)=i_R$ ($\rltbiL(i)=i_L$) for every $i \in [k]$.
@@ -1214,7 +1216,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   In order to obtain $T'$ from $T$, we will essentially need to be able to reverse the
   reduction operation $T_H=\red(\rlstan{b_H}(T_H')$ that has been
   applied to $T_H'$ to obtain $T_H$ for every $H \in \{L,B\}$. To do
-  so we will make use of the plugin operation.
+  so we will make use of the plug in operation.
     
   Our first order of business is to rename all forgotten features in
   $T$ to their real features as given by $T_L'$ and $T_R'$. That is,
@@ -1235,7 +1237,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   removed when going from $T_L'$ to $T_L$ (via the reduction
   $\red(\rlstan{b_L}(T_L'))$). To achieve this, we go over
   every edge $e=(p,c)$ of $T_L$ such that $p$ is the parent of $c$ in
-  $T_L$ and plugin the path $P_L'(e)$ (from $T_L'$) into the last edge
+  $T_L$ and plug in the path $P_L'(e)$ (from $T_L'$) into the last edge
   on the path $P_L(e)$ (from $T^0$). Let $T^1$ be the tree obtained from
   $T^0$ after doing this operation for every edge of $T_L$.
 
@@ -1247,7 +1249,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   removed when going from $T_R'$ to $T_R$ (via the reduction
   $\red(\rlstan{b_R}(T_R'))$). To achieve this, we go over
   every edge $e=(p,c)$ of $T_R$ such that $p$ is the parent of $c$ in
-  $T_R$ and plugin the path $P_R'(e)$ (from $T_R'$) into the last edge
+  $T_R$ and plug in the path $P_R'(e)$ (from $T_R'$) into the last edge
   on the path $P_R(e)$ (from $T^1$). Let $T'$ be the tree obtained from
   $T^1$ after doing this operation for every edge of $T_R$.
 
@@ -1338,7 +1340,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
 \end{proof}
 
 \begin{lemma}[relabel node]\label{lem:relabel}
-  Let $b\in V(B)$ be relabeling node in $B$. Then $\RRR(b)$ can be
+  Let $b\in V(B)$ be relabelling node in $B$. Then $\RRR(b)$ can be
   computed in time $\bigoh(2^{2k+1}\tfDTsenum)$.
 \end{lemma}
 \begin{proof}
@@ -1452,7 +1454,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   the DT template obtained from $T''$ by doing the following for every
   edge $e=(p,c)$ in $T^c$, where $p$ is the parent of $c$ in
   $T^c$. Let $P(e)$ be the path from $b(p)$ to $b(c)$ in $T$. Then, we
-  plugin the path $P(e)$ into $T''$ at the edge $(p',a(c))$, where $p'$ is the
+  plug in the path $P(e)$ into $T''$ at the edge $(p',a(c))$, where $p'$ is the
   parent of $a(c)$ in $T''$.
   \note{there is one problem remaining: $T'''$ could now have some
     forgotten features from $T$; those should be replaced by arbitrary
