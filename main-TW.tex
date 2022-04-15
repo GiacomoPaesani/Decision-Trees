@@ -881,7 +881,7 @@ We denote by
 $\rlstan{b}$ the \emph{standard feature relabelling} for $b$, i.e., the function $\rlstan{b} : \feat(b)\rightarrow
 \SoFF{[k]}$ defined by setting $\rlstan{b}(f)=f_{\lab_b(f)}$ for every $f \in \feat(b)$.
 
-We now show an important property on the interchangebility of feature relabellings and
+We now show an important property on the interchangeability of feature relabellings and
 reductions. That is, we show in Lemma~\ref{lem:frlred} below that the effect
 of any sequence of feature relabellings and reductions that ends with
 the reduction operation ($\red()$) is the same as the effect of the
@@ -1029,7 +1029,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   $k\times k$ binary matrix. For every label $i\in [k]$, let
   $A_{i,*}=\SB j\in [k] \SM M_b[i,j]=1\SE$ and $A_{*,i}=\SB j\in [k] \SM M_b[j,i]=1\SE$.
 
-  To distiguish between forgotten features from the left
+  To distinguish between forgotten features from the left
   and the right subtree, we introduce the left $i_L$ and the right
   version $i_R$ for every label $i \in [k]$. With a slight abuse of notation, we also
   denote by $[k_L]$ be the set $\{1_L,\dotsc,k_L\}$ of (left) labels and
@@ -1058,7 +1058,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   $\rltb$ and then reducing the
   resulting DT skeleton, i.e., $T_L=\red(\rltb(\rlL(T)))$.
 
-  Similarily, let $\rlR : \SoFF{[k]_L} \rightarrow \SoIF{[k]}$ be the feature relabelling
+  Similarly, let $\rlR : \SoFF{[k]_L} \rightarrow \SoIF{[k]}$ be the feature relabelling
   that relabels every forgotten feature $f_{i_L} \in \SoFF{[k_L]}$ to the future
   feature $f_{A_{i,*}}$. Let $T_R$ be the reduced DT skeleton obtained
   from $T$ after applying the relabelling using $\rlR$ followed by
@@ -1165,7 +1165,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
 
   Let $T_L'$ be the reduced DT template for $b_L$ such that
   $T_L=\red(\rlstan{b_L}(T_L'))$ and $s_L=|V(T_L')\setminus V(T_L)|$,
-  which exists because $(T_L,s_L)$ is semi-valid for $b_L$. Similarily, let
+  which exists because $(T_L,s_L)$ is semi-valid for $b_L$. Similarly, let
   $T_R'$ be the reduced DT template for $b_R$ such that
   $T_R=\red(\rlstan{b_R}(T_R'))$ and $s_R=|V(T_R')\setminus V(T_R)|$,
   which exists because $(T_R,s_R)$ is semi-valid for $b_R$.
@@ -1186,7 +1186,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   Let $H \in \{L,R\}$. Because $T_H$ is obtained from $T$ by reduction, every node in $T_H$
   corresponds to a unique node in $T$. Therefore, there is an
   injective function $x_H : V(T_H) \rightarrow V(T)$ mapping every
-  node in $T_H$ to its original node in $T$. Similarily, because $T_H$
+  node in $T_H$ to its original node in $T$. Similarly, because $T_H$
   is obtained from $T_H'$ by reduction, there is an injective function
   $y_H : V(T_H) \rightarrow V(T_H')$ mapping every node in $T_H$ to
   its original node in $T_H'$. See also Figure~\ref{fig:DPjoinmap} for
@@ -1230,7 +1230,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   
   Consider an edge $e=(p,c)$ in $T_L$ such that $p$ is the parent of $c$
   in $T_L$. Then, $e$ corresponds to a path $P_L'(e)$ between
-  $y_L(p)$ and $y_L(c)$ in $T_L'$. Similarily, $e$ corresponds to a
+  $y_L(p)$ and $y_L(c)$ in $T_L'$. Similarly, $e$ corresponds to a
   path $P_L(e)$ between $x_L(p)$ and $x_L(c)$ in $T^0$.
 
   Our next order of business is now to add all nodes to $T^0$ that have been
@@ -1243,9 +1243,9 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
 
   Consider an edge $e=(p,c)$ in $T_R$ such that $p$ is the parent of $c$
   in $T_R$. Then, $e$ corresponds to a path $P_R'(e)$ between
-  $y_R(p)$ and $y_R(c)$ in $T_R'$. Similarily, $e$ corresponds to a
+  $y_R(p)$ and $y_R(c)$ in $T_R'$. Similarly, $e$ corresponds to a
   path $P_R(e)$ between $x_R(p)$ and $x_R(c)$ in $T^1$. 
-  Similarily to above, we now add all nodes to $T^1$ that have been
+  Similarly to above, we now add all nodes to $T^1$ that have been
   removed when going from $T_R'$ to $T_R$ (via the reduction
   $\red(\rlstan{b_R}(T_R'))$). To achieve this, we go over
   every edge $e=(p,c)$ of $T_R$ such that $p$ is the parent of $c$ in
@@ -1271,14 +1271,14 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   $\exam(b)$ correctly. Towards showing this, let $e \in
   \exam(b)$, then $e \in \exam(b_H)$ for some $H\in
   \{L,R\}$. Because $T_H'$ is a DT template for $b_H$, we know that
-  $e$ is correctly classified by $T_H'$. Let $l$ be the leaf in $T_H'$
-  that contains $e$, i.e., $e \in E_{T_H'}(l)$ and let $Q$ be the path
-  from the root of $T_H'$ to $l$. Then, $l$ also exists
-  in $T'$ and moreover the path $P$ from the root of $T'$ to $l$
+  $e$ is correctly classified by $T_H'$. Let $\ell$ be the leaf in $T_H'$
+  that contains $e$, i.e., $e \in E_{T_H'}(\ell)$ and let $Q$ be the path
+  from the root of $T_H'$ to $\ell$. Then, $\ell$ also exists
+  in $T'$ and moreover the path $P$ from the root of $T'$ to $\ell$
   contains all nodes of $Q$. Note furthermore that if a node $t$ in
   $Q$ has its left/right child on $Q$, then the same holds on $P$.
   We will show that $e$ follows
-  along the path $P$ in $T'$ and therefore ends up in $l$, which shows
+  along the path $P$ in $T'$ and therefore ends up in $\ell$, which shows
   that $e$ is correctly classified by $T'$.
 
   Let $t$ be a node of
@@ -1299,7 +1299,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   $A_{\rlL{T}}(t) \subseteq \overline{L}$. Because all these ancestors
   are in $T_H$ and therefore on $Q$, $\lab_{b_L}(e) \in
   A_{\rlL{T}}(t)$, which implies that $e$ is send to the non-redundant
-  child of $t$. Finally, since $P$ contains $l$ it follows that $P$
+  child of $t$. Finally, since $P$ contains $\ell$ it follows that $P$
   contains also the non-redundant child of $t$ in $\rlL(T)$ and
   therefore $e$ is send to the child of
   $t$ on $P$, as required. 
@@ -1328,7 +1328,7 @@ Let $T$ and $T'$ be two DT (templates/skeletons). Let $P=(t,p_1,\dotsc,p_\ell,t'
   \in \feat_{T'}(b_H)$ are also in $T_H'$, we obtain that $t$ is
   redundant in $\rlTpT(T')$ if and only if it is redundant in
   $\rlstan{b_H}(T_H')$. Therefore, $\bigcup_{H \in
-    \{L,R\}}V(T_H')\setminus V(T_H)$ is the set of all redudant nodes
+    \{L,R\}}V(T_H')\setminus V(T_H)$ is the set of all redundant nodes
   in $\rlTpT(T')$, which is equal to $V(T')\setminus V(T^0)$ by
   construction of $T'$, as required. Note that $|V(T')\setminus
   V(T^0)|=s_L+s_R$ because of the construction of $T'$. Now, because
