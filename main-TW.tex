@@ -2243,11 +2243,16 @@ To analyse the run-time of the algorithm, we first remark that the whole algorit
 \end{algorithmic}
 \end{algorithm}
 
+\section{Approximation}
 
+For every natural number $k\geq 1$, we can define a CI $E_k$ as follows. Let $E_k$ be the CI with exactly $2^k$ examples $\{e_1,\ldots,e_{2^k}\}$ on $k$ binary features $\{f_1,\ldots,f_k\}$: there is exactly one example for every of the $2^k$ feature assignments.
+An example $e\in exam(E_k)$ is a positive example if $|\{f\in feat(E_k)~|~f(e)=1\}|$ is even and negative otherwise.
+
+Let $D_k$ be the set of all the examples $e$ in $exam(E_k)$ such that $f_i(e)=1$ for every $i\in [k-2]$ and denote by $\overline{D_k}$ the set $exam(E_k)\setminus D_k$. Now we are ready to define a new feature $f^*$ as follows: $f^*(e)=1$ if $e$ is a positive example or $e\in D_k$ and $f^*(e)=0$ otherwise.
 
 
 \section{Conclusion}
-We have initiated the study of the parameterized complexity of learning DTs from data. Our main tractability result provides novel insights into the structure of DTs and is based on the NLC-width parameter that seems to be well suited to measure the complexity of input instances for the problem.
+We have initiated the study of the parametrized complexity of learning DTs from data. Our main tractability result provides novel insights into the structure of DTs and is based on the NLC-width parameter that seems to be well suited to measure the complexity of input instances for the problem.
 
 The problem of learning DTs comes in many variants and flavors, which opens up a wide range of new research directions to explore. For instance:
 
