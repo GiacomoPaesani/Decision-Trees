@@ -2245,10 +2245,46 @@ To analyse the run-time of the algorithm, we first remark that the whole algorit
 
 \section{Approximation}
 
+\begin{lemma}
+Let $E$ be a CI, $S$ be a minimal support set for $E$ and $f^*$ be a feature in $feat(E)\setminus S$. Let $T$ be a DT for $E$ of minimum size such that $feat(T)=S$ and $T'$ be a DT for $E$ of minimum size such that $feat(T)=S\cup \{f^*\}$. Then $\frac{|T|}{|T'|}\geq \frac{}{}$.
+\end{lemma}
+
+\begin{proof}
 For every natural number $k\geq 1$, we can define a CI $E_k$ as follows. Let $E_k$ be the CI with exactly $2^k$ examples $\{e_1,\ldots,e_{2^k}\}$ on $k$ binary features $\{f_1,\ldots,f_k\}$: there is exactly one example for every of the $2^k$ feature assignments.
 An example $e\in exam(E_k)$ is a positive example if $|\{f\in feat(E_k)~|~f(e)=1\}|$ is even and negative otherwise.
 
 Let $D_k$ be the set of all the examples $e$ in $exam(E_k)$ such that $f_i(e)=1$ for every $i\in [k-2]$ and denote by $\overline{D_k}$ the set $exam(E_k)\setminus D_k$. Now we are ready to define a new feature $f^*$ as follows: $f^*(e)=1$ if $e$ is a positive example or $e\in D_k$ and $f^*(e)=0$ otherwise.
+
+Let us prove that $\{f_1,\ldots,f_k\}$ is the unique minimal support set in $S=\{f_1,\ldots,f_k,f^*\}$ for $E$. First we show that $\{f_1,\ldots,f_k\}$ is a support set: let $e^-\in E^-$ and $e^+\in E^+$, by construction there is one feature $f\in \{f_1,\ldots,f_k\}$ where $f(e^+)\neq f(e^-)$. Now it is time to show that, for any $i\in [k]$, the set $S_i=\{f_1,\ldots,\overline{f_i},\ldots,f_k,f^*\}=S\setminus \{f_i\}$ is not a support set for $E$. Suppose $i\in [k-2]$, let $e^-_i$ and $e^+-_i$ be the negative and the positive examples such that $f(e^-_i)=f(e^+_i)=1$ if $k$ is odd ($=0$ if $k$ is even) for every $f\in S_i$: $e^-_i$ and $e^+_i$ can not be distinguished by a feature in $S_i$ and so $S_i$ is not a support set (note there one such pair $exam(E_k)$). Suppose $i\in \{k-1,k\}$, let $e^-_i$ and $e^+_i$ be the negative and the positive examples in $D_k$ such that $f(e^-_i)=f(e^+_i)$ for every $f\in S_i$: $e^-_i$ and $e^+_i$ can not be distinguished by a feature in $S_i$ and so $S_i$ is not a support set (note there exits two of such pairs in $exam(E_k)$).
+
+Now we can show that a reduced DT $T$ with features in $\{f_1,\ldots,f_k\}$ is a DT for $E_k$ if and only if $T$ is a complete DT of height $k+1$. Note that a leaf is either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf. We start with the forward direction: let $T$ be a reduced DT that is not a complete DT of height $k+1$. Let $P$ a path of $T$ from the root to a leaf $\ell$ of length at most $k$: at most $k-1$ features appear in $P$ and so there exists a feature $f_i\in \{f_1,\ldots,f_k\}$ that does not appear in $P$. Since $S_i$ is not a support set for $E$, there exit a negative example $e^-$ and a positive example $e^+$ that can not be distinguished by $S_i$, this means that $\{e^-,e^+\}\subseteq E_T(\ell)$ and so $T$ is not a DT for $E_k$. In order to prove the backward direction, we assume that $T$ is a reduced and complete DT of height $k+1$ with features in $\{f_1,\ldots,f_k\}$. Let $P$ be a path of $T$ from the root to a leaf $\ell$ of length $k+1$. Since $T$ is reduced, every feature of $\{f_1,\ldots,f_k\}$ appears exactly once in $P$. Since $\{f_1,\ldots,f_k\}$ is a support set, there is only one example $e_\ell$ that ends $\ell$, that is $\ell\in E_T(\ell)$. From this proof, it follows that every reduced DT $T$ with features in $\{f_1,\ldots,f_k\}$ for $E_k$ has $2^{k+2}-1$ nodes ($2^{k+1}-1$ of those are inner nodes).
+
+Let $\sigma$ be any bijection of the set $[k-2]$ and $\tau$ be any of the two bijections of the set $\{k-1,k\}$ and (arbitrarily) define $\sigma(k-1)=\tau(k-1)$. Let us describe a DT $T_{\sigma,\tau}$ as follows. The root of $r$ has feature $f^*$. The left child of $r$ is a negative leaf and the right child $v_1$ has feature $f_{\sigma(1)}$. For every $i\in [k-2]$, the left child of $v_i$ is a positive leaf and the right child $v_{i+1}$ has feature $f_{\sigma(i+1)}$. Finally $v_k$ and $v'_k$ are respectively the left and right child of $v_{k-1}$, both having feature $f_{\sigma(k)}$. The children of $v_k$ and $v'_k$ are leaves that are either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf.
+
+Now we can show that every DT $T'$ with features in $\{f_1,\ldots,f_k,f^*\}$ is a DT for $E_k$ of minimum size if and only if $T'=T_{\sigma,\tau}$, for some permutations $\sigma$ and $\tau$.
+
+
+In order to prove the backward direction, we assume that $T'=T_{\sigma,\tau}$, for some permutation $\sigma$ and $\tau$. By construction, $r$, and its feature $f^*$, sends every negative example to its left child $c_\ell$, which is a negative leaf, except for the two negative examples, that is, if $\{e_1^-,e_2^-\}=E^-\cap D_k$ then $E_{T'}(c_\ell)=E^-\setminus \{e_1^-,e_2^-\}$ and $E_{T'}(v_1)=E^+\cup \{e_1^-,e_2^-\}$. 
+%The rest of the construction serves to classify $e_1^-$ and $e_2^-$.
+Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in  E_{T'}(v_i)$ then $e\in E_{T'}(v_{i+1})$ and by induction $e\in E_{T'}(v_{k-1})$. Let $e$ be an example in $\overline{D_k}$: let $i\in [k-2]$ be the minimum integer such that $f_{\sigma(i)}(e)=0$. This means that $e\not\in E_{T'}(v_{i+1})$ and is classified by the left child of the node $v_i$. We have just proved that $D_k=E_{T'}(v_{k-1})$ and that $T'$ classifies $\overline{D_k}$. Now it is straightforward to show that $T'_{v_{k-1}}$ classifies $D_k$.
+Finally we have to show that $T'$ has minimum size. TO DO
+
+From this proof, it follows that every reduced DT $T$ with features in $\{f_1,\ldots,f_k,f^*\}$ for $E_k$ has $2k+5$ nodes ($k+2$ of those are inner nodes).
+\end{proof}
+
+\begin{tabular}{ccc|c|c}
+$f_1$ & $f_2$ & $f_3$ & $f^*$ & \\
+$0$ & $0$ & $0$ & $1$ & $+$ \\
+$0$ & $0$ & $1$ & $0$ & $-$ \\
+$0$ & $1$ & $0$ & $0$ & $-$ \\
+$0$ & $1$ & $1$ & $1$ & $+$ \\
+\hline
+$1$ & $0$ & $0$ & $1$ & $-$ \\
+$1$ & $0$ & $1$ & $1$ & $+$ \\
+$1$ & $1$ & $0$ & $1$ & $+$ \\
+$1$ & $1$ & $1$ & $1$ & $-$
+\end{tabular}
+
 
 
 \section{Conclusion}
