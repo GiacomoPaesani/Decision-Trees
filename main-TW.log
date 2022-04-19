@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  18 APR 2022 18:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  19 APR 2022 13:19
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1497,7 +1497,17 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: Reference `lem:dtthres' on page 23 undefined on input line 2230.
 
 
-[23.24] [24.25] [25.26] (main-TW.bbl [26.27])
+[23.24] [24.25] [25.26]
+Overfull \hbox (21.99109pt too wide) in paragraph at lines 2335--2348
+ [][] 
+ []
+
+
+Overfull \hbox (11.94966pt too wide) in paragraph at lines 2333--2365
+[]$[]$$[]$ 
+ []
+
+(main-TW.bbl [26.27] [27.28])
 
 FiXme Summary: Number of notes: 6,
 (FiXme)        Number of warnings: 0,
@@ -1505,7 +1515,7 @@ FiXme Summary: Number of notes: 6,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 6.
 
-[27.28] (main-TW.aux)
+[28.29] (main-TW.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1516,11 +1526,11 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: 9A9CB03D2C7653808910949A94D4334B;3214.
  ) 
 Here is how much of TeX's memory you used:
- 38388 strings out of 479618
- 744602 string characters out of 2864076
+ 38423 strings out of 479618
+ 745134 string characters out of 2864076
  1077503 words of memory out of 3000000
- 54165 multiletter control sequences out of 15000+200000
- 591587 words of font info for 384 fonts, out of 3000000 for 9000
+ 54182 multiletter control sequences out of 15000+200000
+ 600780 words of font info for 395 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,102p,1872b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1564,9 +1574,9 @@ rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
 o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on main-TW.pdf (28 pages, 831282 bytes).
+Output written on main-TW.pdf (29 pages, 835521 bytes).
 PDF statistics:
- 639 PDF objects out of 1000 (max. 8388607)
- 149 named destinations out of 1000 (max. 500000)
- 103157 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 646 PDF objects out of 1000 (max. 8388607)
+ 151 named destinations out of 1000 (max. 500000)
+ 109301 words of extra memory for PDF output out of 128383 (max. 10000000)
 
