@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  19 APR 2022 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  22 APR 2022 13:12
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1379,10 +1379,6 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 \openout3 = `main-TW.vtc'.
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 310.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 310.
 [1.1
 
 {C:/Users/Giacomo/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
@@ -1393,81 +1389,43 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.386 
+l.343 
        [1.2
 
-] [2.3]
+]
 
-LaTeX Warning: Citation `GW05' on page 3 undefined on input line 457.
+LaTeX Warning: Reference `fig:example' on page 2 undefined on input line 350.
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 354.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 354.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 372.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 372.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 372.
 
 
-LaTeX Warning: Citation `OS06' on page 3 undefined on input line 458.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\delta' on input line 372.
 
 
-LaTeX Warning: Citation `HO08' on page 3 undefined on input line 458.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 372.
 
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 458.
-[3.4]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 372.
+
+[2.3]
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 482.
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
-t line 521.
- [4.5]
-Package hyperref Info: bookmark level for unknown fixme defaults to 0 on input 
-line 528.
-FiXme Note: 'todo: Due to proposition ...' on input line 528.
-Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 530.
-FiXme Note: 'todo: adjust to NLC-width' on input line 550.
-Package hyperref Info: bookmark level for unknown observation defaults to 0 on 
-input line 554.
- [5.6] [6.7]
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 695.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.5> on input line 695.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.94997> on input line 695.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.25> on input line 695.
-FiXme Note: 'define $\tau $ in prelims' on input line 695.
- [7.8] [8.9] [9.10] [10.11] [11.12]
-FiXme Note: 'todo: simplify the run-time expression' on input line 1022.
- [12.13]
-FiXme Note: 'maybe a longer explanation' on input line 1133.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[13.14] [14.15] [15.16]
-FiXme Note: 'there is one problem remaining: $T'''$ could now have some forgott
-en features from $T$; those should be replaced by arbitrary real features with 
-the same label; but only if such examples also exist; maybe there is a better w
-ay??' on input line 1462.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1899.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 1899.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1899.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 1899.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1899.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1899.
-
-[16.17] [17.18]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-994.
+line 435.
+ [3.4]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
+67.
 
 (C:\Users\Giacomo\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1476,15 +1434,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-[18.19]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/9'.
 (microtype)             Ignoring protrusion settings for this character.
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 2013.
+(Font)              using `T1/lmr/bx/n' instead on input line 486.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1492,30 +1448,53 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19.20] [20.21] [21.22] [22.23]
 
-LaTeX Warning: Reference `lem:dtthres' on page 23 undefined on input line 2230.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4.5] [5.6]
+
+LaTeX Warning: Reference `lem:enum-dt-fund' on page 6 undefined on input line 6
+28.
+
+[6.7]
+Package hyperref Info: bookmark level for unknown observation defaults to 0 on 
+input line 643.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
+t line 651.
+ [7.8] [8.9]
+
+LaTeX Warning: Reference `lem:dtthres' on page 9 undefined on input line 703.
 
 
-[23.24] [24.25] [25.26]
-Overfull \hbox (21.99109pt too wide) in paragraph at lines 2335--2348
+Overfull \hbox (11.94966pt too wide) in paragraph at lines 731--770
+[]$[]$$[]$ 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9.10] [10.11]
+Overfull \hbox (21.99109pt too wide) in paragraph at lines 850--863
  [][] 
  []
 
 
-Overfull \hbox (11.94966pt too wide) in paragraph at lines 2333--2365
+Overfull \hbox (11.94966pt too wide) in paragraph at lines 848--880
 []$[]$$[]$ 
  []
 
-(main-TW.bbl [26.27] [27.28])
 
-FiXme Summary: Number of notes: 6,
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(main-TW.bbl [11.12] [12.13])
+
+FiXme Summary: Number of notes: 0,
 (FiXme)        Number of warnings: 0,
 (FiXme)        Number of errors: 0,
 (FiXme)        Number of fatal errors: 0,
-(FiXme)        Total: 6.
+(FiXme)        Total: 0.
 
-[28.29] (main-TW.aux)
+[13.14] (main-TW.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1523,20 +1502,20 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main-TW.out' has not changed.
-(rerunfilecheck)             Checksum: 9A9CB03D2C7653808910949A94D4334B;3214.
+(rerunfilecheck)             Checksum: 18E679EFDC833F9986AB9C7DDD8EF5EF;1780.
  ) 
 Here is how much of TeX's memory you used:
- 38423 strings out of 479618
- 745134 string characters out of 2864076
- 1077503 words of memory out of 3000000
- 54182 multiletter control sequences out of 15000+200000
- 600780 words of font info for 395 fonts, out of 3000000 for 9000
+ 37841 strings out of 479618
+ 736582 string characters out of 2864076
+ 1077674 words of memory out of 3000000
+ 53832 multiletter control sequences out of 15000+200000
+ 570347 words of font info for 295 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,13n,102p,1872b,1008s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 98i,13n,102p,1872b,828s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
+c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
 {C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
-c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.
-enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
 c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.
 enc}<C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
@@ -1559,24 +1538,21 @@ ype1/public/lm/lmr9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/lm/lmri10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/lm/lmri9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/font
 s/type1/public/lm/lmro10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/lm/lmro8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/lm/lmro9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/lm/lmss10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/lm/lmss8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Giacomo/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Giacomo/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Giacomo/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Giacomo/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Giacom
-o/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-
-Output written on main-TW.pdf (29 pages, 835521 bytes).
+nts/type1/public/lm/lmro9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmss10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmss8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Giacomo/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Giacomo/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Giacomo/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Giacomo/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/Giacomo/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main-TW.pdf (14 pages, 628210 bytes).
 PDF statistics:
- 646 PDF objects out of 1000 (max. 8388607)
- 151 named destinations out of 1000 (max. 500000)
- 109301 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 435 PDF objects out of 1000 (max. 8388607)
+ 80 named destinations out of 1000 (max. 500000)
+ 96965 words of extra memory for PDF output out of 106986 (max. 10000000)
 
