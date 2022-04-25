@@ -4,50 +4,52 @@ The top-level auxiliary file: main-TW.aux
 Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainurl.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
+I found no \citation commands---while reading file main-TW.aux
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
 Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: literature.bib
-You've used 20 entries,
+You've used 0 entries,
             2882 wiz_defined-function locations,
-            968 strings with 11376 characters,
-and the built_in function-call counts, 8955 in all, are:
-= -- 924
-> -- 364
-< -- 1
-+ -- 132
-- -- 110
-* -- 504
-:= -- 1323
-add.period$ -- 64
-call.type$ -- 20
-change.case$ -- 111
+            829 strings with 8113 characters,
+and the built_in function-call counts, 40 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 2
+:= -- 29
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 238
-empty$ -- 823
-format.name$ -- 110
-if$ -- 2289
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 25
-newline$ -- 103
-num.names$ -- 40
-pop$ -- 204
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 3
+num.names$ -- 0
+pop$ -- 0
 preamble$ -- 1
-purify$ -- 95
+purify$ -- 0
 quote$ -- 0
-skip$ -- 602
+skip$ -- 1
 stack$ -- 0
-substring$ -- 418
-swap$ -- 32
-text.length$ -- 1
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 70
+type$ -- 0
 warning$ -- 0
-while$ -- 68
-width$ -- 22
-write$ -- 221
+while$ -- 0
+width$ -- 0
+write$ -- 2
+(There was 1 error message)
