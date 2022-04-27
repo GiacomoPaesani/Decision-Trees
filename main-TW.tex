@@ -364,6 +364,10 @@ By construction, $r$ and its feature $f^*$ send every negative example to its le
 Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in  E_{T_k}(v_i)$ then $e\in E_{T_k}(v_{i+1})$ and by induction we obtain that $e\in E_{T_k}(v_{k-1})$. Let $e$ be an example in $\overline{D_k}$ and $j\in [k-2]$ be the minimum integer such that $f_j(e)=0$. This means that $e\not\in E_{T_k}(v_{j+1})$ and $e$ is classified by the left child of the node $v_j$. We have just proved that $D_k=E_{T_K}(v_{k-1})$ and that $T_k$ classifies $\overline{D_k}$. Now it is straightforward to show that the subtree of $T_k$ rooted at $v_{k-1}$ classifies $D_k$.
 \end{proof}
 
+Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dts(E,S)$ the minimum size of a DT for $E$ that uses exactly all the features in $S$.
+
+We have that $\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}$.
+
 
 
 
@@ -372,7 +376,7 @@ Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in
 
 For every integer $k\geq 1$, let us describe a DT $T^k$ as follows. The tree $T^k$ has $v_1$ as root. For every $i\in [k]$, the node $v_i$ has $v_{2i}$ and $v_{2i+1}$ as left child and right child respectively. Moreover, if $i\leq k$, the node $v_i$ has feature $f_i$ and is a leaf otherwise (negative if $i$ is even and positive if $i$ is odd). Note that $T^k$ has height $log(k)+1$.
 
-For every integer $k\geq 1$, let us describe a DT $T^k_*$ as follows. The root of $r$ has feature $f'$ and its left branch is the DT $T^k$. The right child of $r$ node $u$ with feature $f''$. The left/right child of $u$ is a negative/positive leaf. In particular note that $T^k_*$ has $log(k)+2$.
+For every integer $k\geq 1$, let us describe a DT $T^k_*$ as follows. The root of $r$ has feature $f'$ and its left branch is the DT $T^k$. The right child of $r$ node $u$ with feature $f''$. The left/right child of $u$ is a negative/positive leaf. In particular note that $T^k_*$ has height $log(k)+2$.
 
 Let $F_k$ be the set of all the examples in $E_k$ that are classified by $T^k$ and denote by $\overline{F_k}=E_k\setminus F_k$. Now we are ready to define a new feature $f'$ follows:$f'(e)=0$ if $e\in F_k$ and $f'(e)=1$ otherwise. We also introduce another new feature $f''$ as follows: $f''(e)=0$ if either $e\in F_k$ or $e$ is a negative example and $f''(e)=1$ otherwise.
 For simplicity the set $S'_k$ denotes $\{f_1,\ldots,f_k,f',f''\}$.
@@ -461,7 +465,9 @@ By construction, $r$ and its feature $f'$ send every example of $F_k$ to its lef
 Therefore, $T^k_*$ classifies $F_k\cup \overline{F_k}=E_k$.
 \end{proof}
 
+Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dth(E,S)$ the minimum height of a DT for $E$ that uses exactly all the features in $S$.
 
+We have that $\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}$.
 
 
 
