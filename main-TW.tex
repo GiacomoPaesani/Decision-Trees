@@ -278,8 +278,8 @@ An example $e\in E_k$ is a positive example if $|\{f\in feat(E_k)~|~f(e)=1\}|$ i
 $S_k$ denotes $\{f_1,\ldots,f_k\}$.
 
 \subsection{For Size}
-Let $D_k$ be the set of all the examples $e$ in $E_k$ such that $f_i(e)=1$ for every $i\in [k-2]$ and denote by $\overline{D_k}$ the set $E_k\setminus D_k$. Now we are ready to define a new feature $f^*$ as follows: $f^*(e)=1$ if either $e$ is a positive example or $e\in D_k$ and $f^*(e)=0$ otherwise.
-For simplicity, the sets $S_k^*$ denotes $\{f_1,\ldots,f_k,f^*\}$. 
+Let $D_k$ be the set of all the examples $e\in E_k$ such that $f_i(e)=1$ for every $i\in [k-2]$ and denote by $\overline{D_k}$ the set $E_k\setminus D_k$. Now we are ready to define a new feature $f^*$ as follows: $f^*(e)=1$ if either $e$ is a positive example or $e\in D_k$ and $f^*(e)=0$ otherwise. See Figure~\ref{fig:E3T3} for a visual representation of $E_3$ and its decomposition in $D_3$ and $\overline{D_3}$.
+For simplicity, the set $S_k^*$ denotes $\{f_1,\ldots,f_k,f^*\}$. 
 
 \begin{figure}[h]
 \small
@@ -321,9 +321,8 @@ $1$ & $1$ & $1$ & $1$ & $-$
 \node at (3.5,-4) {$-$};
 \node at (4.5,-4) {$+$};
 \end{tikzpicture}
-\caption{The CI $E_3$ and the DT $T_3$.}
+\caption{The CI $E_3$ and the DT $T_3$.}\label{fig:E3T3}
 \end{minipage}
-%\label{fig:example}
 \end{figure}
 
 \begin{lemma}\label{lem:umss}
@@ -332,7 +331,7 @@ For every integer $k\geq 1$, the set of features $S_k$ is the only minimal suppo
 
 \begin{proof}
 First we show that $S_k$ is a support set: let $e^-\in E^-_k$ and $e^+\in E^+_k$, by construction there is one feature $f\in S_k$ where $f(e^+)\neq f(e^-)$. 
-Now it is time to show that, for any $i\in [k]$, the set $S_k^i=\{f_1,\ldots,\overline{f_i},\ldots,f_k,f^*\}=S_k\setminus \{f_i\}$ is not a support set for $E_k$. 
+Now it is time to show that, for any $i\in [k]$, the set $S_k^i=\{f_1,\ldots,\overline{f_i},\ldots,f_k,f^*\}=S_k^*\setminus \{f_i\}$ is not a support set for $E_k$. 
 For $i\in [k-2]$, let $e^-_i$ and $e^+_i$ be the negative and the positive examples such that $f(e^-_i)=f(e^+_i)=1$ if $k$ is odd ($=0$ if $k$ is even) for every $f\in S_k^i$: 
 $e^-_i$ and $e^+_i$ can not be distinguished by a feature in $S_k^i$ and so $S_k^i$ is not a support set (note there is one such pair $E_k$). 
 For $i\in \{k-1,k\}$, let $e^-_i$ and $e^+_i$ be the negative and the positive examples in $D_k$ such that $f(e^-_i)=f(e^+_i)$ for every $f\in S_k^i$: $e^-_i$ and $e^+_i$ can not be distinguished by a feature in $S_k^i$ and so $S_k^i$ is not a support set (note there are two of such pairs in $E_k$).
@@ -343,7 +342,7 @@ For every integer $k\geq 1$, a reduced DT $T$ with features in $S_k$ is a DT for
 \end{lemma}
 
 \begin{proof}
-In this proof we assume that a leaf is either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf. We start with the forward direction: let $T$ be a reduced DT that is not a complete DT of height $k+1$. Let $P$ a path of $T$ from the root to a leaf $\ell$ of length at most $k$: at most $k-1$ features appear in $P$ and so there exists a feature $f_i\in S_k$ that does not appear in $P$. Since by Lemma~\ref{lem:umss} $S_k^i$ is not a support set for $E$, there exit a negative example $e^-$ and a positive example $e^+$ that can not be distinguished by $S_k^i$, this means that $\{e^-,e^+\}\subseteq E_T(\ell)$ and so $T$ is not a DT for $E_k$. 
+In this proof we assume that a leaf is either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf. We start with the forward direction: let $T$ be a reduced DT that is not a complete DT of height $k+1$. Let $P$ be a path of $T$ from the root to a leaf $\ell$ of length at most $k$: at most $k-1$ features appear in $P$ and so there exists a feature $f_i\in S_k$ that does not appear in $P$. Since by Lemma~\ref{lem:umss} $S_k^i$ is not a support set for $E_k$, there exit a negative example $e^-$ and a positive example $e^+$ that can not be distinguished by $S_k^i$, this means that $\{e^-,e^+\}\subseteq E_T(\ell)$ and so $T$ is not a DT for $E_k$. 
 
 In order to prove the backward direction, we assume that $T$ is a reduced and complete DT of height $k+1$ with features in $S_k$. Let $P$ be a path of $T$ from the root to a leaf $\ell$ of length $k+1$. Since $T$ is reduced, every feature of $S_k$ appears exactly once in $P$. Since by Lemma~\ref{lem:umss} $S_k$ is a support set, there is only one example $e_\ell$ that ends $\ell$, that is $e_\ell\in E_T(\ell)$. From this proof, it follows that every reduced DT $T$ with features in $\S_k$ for $E_k$ has $2^{k+2}-1$ nodes ($2^{k+1}-1$ of those are inner nodes).
 \end{proof}
@@ -352,7 +351,7 @@ In order to prove the backward direction, we assume that $T$ is a reduced and co
 
 \note{A more general description of $T_k$ can be found commented.}
 
-For every integer $k\geq 1$, let us describe a DT $T_k$ as follows. The root of $r$ has feature $f^*$. The left child of $r$ is a negative leaf and the right child $v_1$ has feature $f_1$. For every $i\in [k-2]$, the left child of $v_i$ is a positive leaf and the right child $v_{i+1}$ has feature $f_{i+1}$. Finally $v_k$ and $v'_k$ are respectively the left and right child of $v_{k-1}$, both having feature $f_k$. The children of $v_k$ and $v'_k$ are leaves that are either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf. In particular note that $T_k$ has $2k+5$ nodes ($k+2$ of those are inner nodes).
+For every integer $k\geq 1$, let us describe a DT $T_k$ as follows. The root $r$ of $T_k$ has feature $f^*$. The left child of $r$ is a negative leaf and the right child $v_1$ has feature $f_1$. For every $i\in [k-2]$, the left child of $v_i$ is a positive leaf and the right child $v_{i+1}$ has feature $f_{i+1}$. Finally $v_k$ and $v'_k$ are respectively the left and right child of $v_{k-1}$, both having feature $f_k$. The children of $v_k$ and $v'_k$ are leaves that are either positive or negative depending on the parity of the number of right arcs present in the unique path from the root to that leaf. In particular note that $T_k$ has $2k+5$ nodes ($k+2$ of those are inner nodes). See Figure~\ref{fig:E3T3} for a visual representation of $T_3$.
 
 \begin{lemma}\label{lem:emss}
 For every integer $k\geq 1$, $T_k$ is a DT for $E_k$.
@@ -366,7 +365,7 @@ Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in
 
 Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dts(E,S)$ the minimum size of a DT for $E$ that uses exactly all the features in $S$.
 
-We have that $\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}$.
+We have that $$\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}.$$
 
 
 
@@ -376,10 +375,10 @@ We have that $\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\app
 
 For every integer $k\geq 1$, let us describe a DT $T^k$ as follows. The tree $T^k$ has $v_1$ as root. For every $i\in [k]$, the node $v_i$ has $v_{2i}$ and $v_{2i+1}$ as left child and right child respectively. Moreover, if $i\leq k$, the node $v_i$ has feature $f_i$ and is a leaf otherwise (negative if $i$ is even and positive if $i$ is odd). Note that $T^k$ has height $log(k)+1$.
 
-For every integer $k\geq 1$, let us describe a DT $T^k_*$ as follows. The root of $r$ has feature $f'$ and its left branch is the DT $T^k$. The right child of $r$ node $u$ with feature $f''$. The left/right child of $u$ is a negative/positive leaf. In particular note that $T^k_*$ has height $log(k)+2$.
-
-Let $F_k$ be the set of all the examples in $E_k$ that are classified by $T^k$ and denote by $\overline{F_k}=E_k\setminus F_k$. Now we are ready to define a new feature $f'$ follows:$f'(e)=0$ if $e\in F_k$ and $f'(e)=1$ otherwise. We also introduce another new feature $f''$ as follows: $f''(e)=0$ if either $e\in F_k$ or $e$ is a negative example and $f''(e)=1$ otherwise.
+Let $F_k$ be the set of all the examples in $E_k$ that are classified by $T^k$ and denote by $\overline{F_k}=E_k\setminus F_k$. Now we are ready to define a new feature $f'$ follows: $f'(e)=0$ if $e\in F_k$ and $f'(e)=1$ otherwise. We also introduce another new feature $f''$ as follows: $f''(e)=0$ if either $e\in F_k$ or $e$ is a negative example and $f''(e)=1$ otherwise.
 For simplicity the set $S'_k$ denotes $\{f_1,\ldots,f_k,f',f''\}$.
+
+For every integer $k\geq 1$, let us describe a DT $T^k_*$ as follows. The root of $r$ has feature $f'$ and its left branch is the DT $T^k$. The right child of $r$ is a node $u$ with feature $f''$. The left/right child of $u$ is a negative/positive leaf. In particular note that $T^k_*$ has height $log(k)+2$. See Figure~\ref{fig:E3T3*} for a visual representation of $E_3$, its decomposition in $F_3$ and $\overline{F_3}$ and the DTs $T^3$ and $T^3_*$.
 
 \begin{figure}[h]
 \small
@@ -435,7 +434,7 @@ $1$ & $1$ & $1$ & $1$ & $0$ & $-$
 \node at (2.5,-2) {$+$};
 \end{tikzpicture}
 \end{minipage}
-\caption{The CI $E_3$, the DT $T^3$ and the DT $T^3_*$} %\label{fig:example}
+\caption{The CI $E_3$, the DT $T^3$ and the DT $T^3_*$} \label{fig:E3T3*}
 \end{figure}
 
 \begin{lemma}\label{lem:humss}
@@ -467,7 +466,7 @@ Therefore, $T^k_*$ classifies $F_k\cup \overline{F_k}=E_k$.
 
 Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dth(E,S)$ the minimum height of a DT for $E$ that uses exactly all the features in $S$.
 
-We have that $\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}$.
+We have that $$\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}.$$
 
 
 

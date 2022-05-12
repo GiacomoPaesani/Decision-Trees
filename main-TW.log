@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  27 APR 2022 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  12 MAY 2022 13:08
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1382,40 +1382,36 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 288.
 
-Overfull \hbox (11.94966pt too wide) in paragraph at lines 286--327
+Overfull \hbox (11.94966pt too wide) in paragraph at lines 286--326
 []$[]$$[]$ 
  []
 
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 329.
+line 328.
 [1.1{C:/Users/Giacomo/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 353.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 352.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.5> on input line 353.
+(Font)              <8.5> on input line 352.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.94997> on input line 353.
+(Font)              <5.94997> on input line 352.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.25> on input line 353.
+(Font)              <4.25> on input line 352.
 Package hyperref Info: bookmark level for unknown fixme defaults to 0 on input 
-line 353.
+line 352.
 FiXme Note: 'A more general description of $T_k$ can be found commented.' on in
-put line 353.
-
-Overfull \hbox (27.45412pt too wide) in paragraph at lines 388--401
+put line 352.
+ [2.2]
+Overfull \hbox (27.45412pt too wide) in paragraph at lines 387--400
  [][] 
  []
 
 
-Overfull \hbox (110.82741pt too wide) in paragraph at lines 436--437
+Overfull \hbox (110.82741pt too wide) in paragraph at lines 435--436
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2.2]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 274.
 See the caption package documentation for explanation.
@@ -1432,17 +1428,17 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: A5B9D678991C8063BAF1B92C112AA014;377.
  ) 
 Here is how much of TeX's memory you used:
- 37278 strings out of 479618
- 729313 string characters out of 2864076
- 1064011 words of memory out of 3000000
- 53571 multiletter control sequences out of 15000+200000
+ 37282 strings out of 479618
+ 729361 string characters out of 2864076
+ 1062670 words of memory out of 3000000
+ 53575 multiletter control sequences out of 15000+200000
  490410 words of font info for 166 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,12n,102p,890b,765s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
-{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
-c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.
 enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.en
+c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.
+enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
 c}<C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.
 pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5
 .pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi
@@ -1450,7 +1446,6 @@ pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5
 i7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
 mi9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mr10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmr5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
@@ -1458,14 +1453,13 @@ lmri10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
 m/lmss8.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 lm/lmssbx10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/pub
 lic/lm/lmsy10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/lm/lmsy5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/symbols/msam10.pfb>
-Output written on main-TW.pdf (3 pages, 264544 bytes).
+ublic/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/symbols/msam10.pfb>
+Output written on main-TW.pdf (3 pages, 241085 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
+ 157 PDF objects out of 1000 (max. 8388607)
  19 named destinations out of 1000 (max. 500000)
  49285 words of extra memory for PDF output out of 51595 (max. 10000000)
 
