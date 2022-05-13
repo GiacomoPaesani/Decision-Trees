@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  12 MAY 2022 13:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  13 MAY 2022 11:26
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1403,15 +1403,16 @@ line 352.
 FiXme Note: 'A more general description of $T_k$ can be found commented.' on in
 put line 352.
  [2.2]
-Overfull \hbox (27.45412pt too wide) in paragraph at lines 387--400
+Overfull \hbox (27.45412pt too wide) in paragraph at lines 383--396
  [][] 
  []
 
 
-Overfull \hbox (110.82741pt too wide) in paragraph at lines 435--436
+Overfull \hbox (110.82741pt too wide) in paragraph at lines 431--432
  [][] 
  []
 
+[3.3]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 274.
 See the caption package documentation for explanation.
@@ -1423,14 +1424,14 @@ FiXme Summary: Number of notes: 1,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 1.
 
-[3.3] (main-TW.aux)
+[4.4] (main-TW.aux)
 Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: A5B9D678991C8063BAF1B92C112AA014;377.
  ) 
 Here is how much of TeX's memory you used:
- 37282 strings out of 479618
- 729361 string characters out of 2864076
- 1062670 words of memory out of 3000000
+ 37283 strings out of 479618
+ 729367 string characters out of 2864076
+ 1063670 words of memory out of 3000000
  53575 multiletter control sequences out of 15000+200000
  490410 words of font info for 166 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1457,9 +1458,9 @@ ublic/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/symbols/msam10.pfb>
-Output written on main-TW.pdf (3 pages, 241085 bytes).
+Output written on main-TW.pdf (4 pages, 243401 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 19 named destinations out of 1000 (max. 500000)
+ 165 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
  49285 words of extra memory for PDF output out of 51595 (max. 10000000)
 

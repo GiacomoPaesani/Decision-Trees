@@ -364,12 +364,8 @@ Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in
 \end{proof}
 
 Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dts(E,S)$ the minimum size of a DT for $E$ that uses exactly all the features in $S$.
-
-We have that $$\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}.$$
-
-
-
-
+By Lemma~\ref{lem:omss}, we have that $dts(E_k,S_k)=2^{k+2}-1$. Moreover, since by Lemma~\ref{lem:emss} $T_k$ is a DT for $E_k$, we have that $dts(E_k,S^*_k)\leq |T_k|=2k+5$.
+In conclusion we have that $$\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}.$$
 
 \subsection{For Height}
 
@@ -465,11 +461,8 @@ Therefore, $T^k_*$ classifies $F_k\cup \overline{F_k}=E_k$.
 \end{proof}
 
 Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dth(E,S)$ the minimum height of a DT for $E$ that uses exactly all the features in $S$.
-
-We have that $$\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}.$$
-
-
-
+By Lemma~\ref{lem:omss}, we have that $dth(E_k,S_k)=k+1$. Moreover, since by Lemma~\ref{lem:hemss} $T^k_*$ is a DT for $E_k$, we have that $dth(E_k,S'_k)\leq |T^k_*|=log(k)+2$.
+In conclusion we have that $$\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}.$$
 
 
 
