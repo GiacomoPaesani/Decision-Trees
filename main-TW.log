@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  13 MAY 2022 11:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.20)  19 MAY 2022 11:45
 entering extended mode
 **./main-TW.tex
 (main-TW.tex
@@ -1402,13 +1402,15 @@ Package hyperref Info: bookmark level for unknown fixme defaults to 0 on input
 line 352.
 FiXme Note: 'A more general description of $T_k$ can be found commented.' on in
 put line 352.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
+t line 369.
  [2.2]
-Overfull \hbox (27.45412pt too wide) in paragraph at lines 383--396
+Overfull \hbox (27.45412pt too wide) in paragraph at lines 391--404
  [][] 
  []
 
 
-Overfull \hbox (110.82741pt too wide) in paragraph at lines 431--432
+Overfull \hbox (110.82741pt too wide) in paragraph at lines 439--440
  [][] 
  []
 
@@ -1429,17 +1431,17 @@ Package rerunfilecheck Info: File `main-TW.out' has not changed.
 (rerunfilecheck)             Checksum: A5B9D678991C8063BAF1B92C112AA014;377.
  ) 
 Here is how much of TeX's memory you used:
- 37283 strings out of 479618
- 729367 string characters out of 2864076
+ 37296 strings out of 479618
+ 729525 string characters out of 2864076
  1063670 words of memory out of 3000000
- 53575 multiletter control sequences out of 15000+200000
- 490410 words of font info for 166 fonts, out of 3000000 for 9000
+ 53576 multiletter control sequences out of 15000+200000
+ 490789 words of font info for 170 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,12n,102p,890b,765s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.
-enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.en
-c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.
-enc}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
+c}{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
+{C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
 c}<C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.
 pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5
 .pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi
@@ -1447,6 +1449,7 @@ pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5
 i7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
 mi9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mr10.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmr5.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
 lmr9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
@@ -1458,9 +1461,9 @@ ublic/lm/lmsy6.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/lm/lmsy7.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/lm/lmsy9.pfb><C:/Users/Giacomo/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/symbols/msam10.pfb>
-Output written on main-TW.pdf (4 pages, 243401 bytes).
+Output written on main-TW.pdf (4 pages, 267840 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  49285 words of extra memory for PDF output out of 51595 (max. 10000000)
 

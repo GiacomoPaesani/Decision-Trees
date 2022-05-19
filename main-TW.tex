@@ -363,9 +363,17 @@ By construction, $r$ and its feature $f^*$ send every negative example to its le
 Let $e$ be an example in $D_k$; by construction, for every $i\in [k-2]$ if $e\in  E_{T_k}(v_i)$ then $e\in E_{T_k}(v_{i+1})$ and by induction we obtain that $e\in E_{T_k}(v_{k-1})$. Let $e$ be an example in $\overline{D_k}$ and $j\in [k-2]$ be the minimum integer such that $f_j(e)=0$. This means that $e\not\in E_{T_k}(v_{j+1})$ and $e$ is classified by the left child of the node $v_j$. We have just proved that $D_k=E_{T_K}(v_{k-1})$ and that $T_k$ classifies $\overline{D_k}$. Now it is straightforward to show that the subtree of $T_k$ rooted at $v_{k-1}$ classifies $D_k$.
 \end{proof}
 
-Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dts(E,S)$ the minimum size of a DT for $E$ that uses exactly all the features in $S$.
-By Lemma~\ref{lem:omss}, we have that $dts(E_k,S_k)=2^{k+2}-1$. Moreover, since by Lemma~\ref{lem:emss} $T_k$ is a DT for $E_k$, we have that $dts(E_k,S^*_k)\leq |T_k|=2k+5$.
-In conclusion we have that $$\frac{dts(E_k,S_k)}{dts(E_k,S^*_k)}\geq \frac{2^{k+2}+1}{2k+5}\approx \frac{2^{k+1}}{k}.$$
+Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dts(E,S)$ the minimum size of a DT for $E$ that uses exactly all the features in $S$ and with $dts(E)$ the minimum size of a DT for $E$, that is $dts(E)=min_S \{dts(E,S)\}$.
+
+\begin{theorem}
+For every integer $k\geq 1$, there is a CI $E$ with $2^k$ examples such that for every minimal support $S$, the multiplicative gap between $dts(E,S)$ and $dts(E)$ is at least $\frac{2^{k+2}-1}{2k+5}$.
+\end{theorem}
+
+\begin{proof}
+Let $k\geq 1$ be an integer and let $E=E_k$. By construction $|E_k|=2^k$ and by Lemma~\ref{lem:umss}, $S_k$ is the only minimal support set for $E_k$. By Lemma~\ref{lem:omss}, we have that $dts(E_k,S_k)=2^{k+2}-1$. 
+Moreover, since by Lemma~\ref{lem:emss} $T_k$ is a DT for $E_k$, we have that $dts(E_k)\leq dts(E_k,S^*_k)\leq |T_k|=2k+5$.
+In conclusion we have that $$dts(E_k,S_k)\geq \frac{2^{k+2}-1}{2k+5} dts(E_k).$$ %\approx \frac{2^{k+1}}{k}
+\end{proof}
 
 \subsection{For Height}
 
@@ -460,10 +468,16 @@ By construction, $r$ and its feature $f'$ send every example of $F_k$ to its lef
 Therefore, $T^k_*$ classifies $F_k\cup \overline{F_k}=E_k$.
 \end{proof}
 
-Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dth(E,S)$ the minimum height of a DT for $E$ that uses exactly all the features in $S$.
-By Lemma~\ref{lem:omss}, we have that $dth(E_k,S_k)=k+1$. Moreover, since by Lemma~\ref{lem:hemss} $T^k_*$ is a DT for $E_k$, we have that $dth(E_k,S'_k)\leq |T^k_*|=log(k)+2$.
-In conclusion we have that $$\frac{dth(E_k,S_k)}{dth(E_k,S'_k)}\geq \frac{k+1}{log(k)+2}\approx \frac{k}{log(k)}.$$
+Let $E$ be a CI and $S$ be a support set for $E$. We denote with $dth(E,S)$ the minimum height of a DT for $E$ that uses exactly all the features in $S$ and with $dth(E)$ the minimumsheight of a DT for $E$, that is $dth(E)=min_S \{dth(E,S)\}$.
 
+\begin{theorem}
+For every integer $k\geq 1$, there is a CI $E$ with $2^k$ examples such that for every minimal support $S$, the multiplicative gap between $dth(E,S)$ and $dth(E)$ is at least $\frac{k+1}{log(k)+2}$.
+\end{theorem}
+
+\begin{proof}
+Let $k\geq 1$ be an integer and let $E=E_k$. By construction $|E_k|=2^k$ and by Lemma~\ref{lem:umss}, $S_k$ is the only minimal support set for $E_k$. By Lemma~\ref{lem:omss}, we have that $dth(E_k,S_k)=k+1$. Moreover, since by Lemma~\ref{lem:hemss} $T^k_*$ is a DT for $E_k$, we have that $dth(E_k)\leq dth(E_k,S'_k)\leq |T^k_*|=log(k)+2$.
+In conclusion we have that $$dth(E_k,S_k)\geq \frac{k+1}{log(k)+2} dth(E_k).$$ %\approx \frac{2^{k+1}}{k}
+\end{proof}
 
 
 
